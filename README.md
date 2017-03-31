@@ -2,6 +2,7 @@
 Projeto de Pesquisa de Iniciação Científica da UVV
 
 Colaboradores:
-	Daniel Freitas : https://github.com/daniielf
+
+-Daniel Freitas : https://github.com/daniielf
 	
-	Humberto Nagato: https://github.com/nagatoh
+-Humberto Nagato: https://github.com/nagatoh
