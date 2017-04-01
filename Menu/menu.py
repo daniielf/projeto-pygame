@@ -3,6 +3,7 @@ import pygame, sys, math
 pygame.init()
 
 running = True
+version = "v0.1"
 
 
 class MainMenu():
@@ -18,7 +19,15 @@ class MainMenu():
         self.font = pygame.font.SysFont(font, font_size)
         self.font_color = font_color
         self.items = []
+        
+        self.titleFont = pygame.font.SysFont(font,font_size*2)
+        self.title = self.titleFont.render ("PyGame", 1, font_color)
+        
+        self.versionFont = pygame.font.SysFont(font, 20)
+        self.version = self.versionFont.render (version, 1, font_color)
+        
         for index, item in enumerate(items):
+						 
             label = self.font.render(item, 1, font_color)
  
             width = label.get_rect().width
@@ -26,8 +35,8 @@ class MainMenu():
  
             posx = (self.scr_width / 2) - (width / 2)
             # t_h: total height of text block
-            t_h = len(items) * height
-            posy = (self.scr_height / 2) - (t_h / 2) + (index * height)
+            t_h = len(items) * height + 10
+            posy = (self.scr_height / 2) - (t_h / 2) + (2* index * height)
  
             self.items.append([item, label, (width, height), (posx, posy)])
             
@@ -44,6 +53,22 @@ class MainMenu():
  
             # Redraw the background
             self.screen.fill(self.bg_color)
+        
+            # Draw Menu Title
+            
+            title_x = self.screen.get_rect().width/2 - self.title.get_rect().width/2
+            title_y = self.screen.get_rect().height/10
+            
+            self.screen.blit (self.title, (title_x ,title_y))
+            
+            # Draw version
+            version_x = self.screen.get_rect().width - self.version.get_rect().width
+            version_y = self.screen.get_rect().height - self.version.get_rect().height
+            
+            self.screen.blit (self.version, (version_x,version_y))
+            
+            # Menu Options
+            
             for name, label, (width, height), (posx, posy) in self.items:
                 self.screen.blit(label, (posx, posy))
 
