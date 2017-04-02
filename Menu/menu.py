@@ -161,6 +161,7 @@ if __name__ == "__main__":
     pygame.display.set_caption('Game Menu')
     gm = MainMenu(screen)
     gm.run()
+    print ("GAME START")
 
 #while (running):
 #    
