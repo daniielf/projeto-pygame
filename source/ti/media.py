@@ -19,3 +19,28 @@ endereço_arquivos = dict(
 	imagens = join_path(dados_dir,'imagens'),
 )
 
+
+def endereco_arquivo(tipo, nome_arquivo):
+    return join_path(endereco_arquivos[tipo], nome_arquivo)
+
+
+def carrega(tipo, nome_arquivo, modo='rb'):
+	return open(endereco_arquivo(tipo, nome_arquivo), modo)
+
+
+def carrega_fonte(nome_arquivo):
+    return endereco_arquivo('fontes', nome_arquivo)
+
+
+def carrega_imagem(nome_arquivo):
+	return endereco_arquivo('imagens', nome_arquivo)
+
+
+def carrega_imagem_menu(nome_arquivo):
+    nome_arquivo = carrega('imagens', nome_arquivo)
+    try:
+        image = pygame.image.load(nome_arquivo)
+    except pygame.error:
+        raise SystemExit, "Unable to load: " + nome_arquivo
+    return image
+

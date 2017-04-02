@@ -11,9 +11,6 @@ Este é o módulo responsável pelas configurações do jogo, como path das imag
 #IMG_Bob_STATUS = "nave_status.png"
 IMG_BOB_JOGADOR = "bob_stand.png"
 
-
-
-
 # Path das imagens tile (background).
 IMG_TILE_1 = "tile.jpg"
 
