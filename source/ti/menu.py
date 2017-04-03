@@ -1,4 +1,4 @@
-import pygame, sys, math
+import pygame, sys, math, game
 
 pygame.init()
 
@@ -110,6 +110,8 @@ class MainMenu():
                     if ((1,0,0) == pygame.mouse.get_pressed()):
                         if (item.index == 0):
                             print "loading"
+                            startGame = game.Game(self.screen)
+                            startGame.run()
                         elif (item.index == 1):
                             print ("Saindo do jogo")
                             running = False
