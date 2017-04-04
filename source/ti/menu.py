@@ -44,7 +44,6 @@ class MenuItem(pygame.font.Font):
 class MainMenu():
     def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=30,
                     font_color=(255, 255, 255)):
- 
         self.screen = screen
         self.scr_width = self.screen.get_rect().width
         self.scr_height = self.screen.get_rect().height
@@ -63,8 +62,8 @@ class MainMenu():
         self.title = self.titleFont.render ("PyGame", 1, font_color)
         
         self.versionFont = pygame.font.SysFont(font, 20)
-        self.version = self.versionFont.render (version, 1, font_color)
-   
+        self.version = self.versionFont.render (version, 1, font_color
+                                               )
         self.langButton = MenuItem(self.langLabel, 100)
         self.langButton.set_position(0,self.screen.get_rect().height - self.langButton.height)
         
