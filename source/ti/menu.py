@@ -6,7 +6,7 @@ pygame.init()
 windowSize = (1000,600)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
-version = "v0.1"
+version = "v0.2"
 
 
 
@@ -66,9 +66,11 @@ class MainMenu():
                                                )
         self.langButton = MenuItem(self.langLabel, 100)
         self.langButton.set_position(0,self.screen.get_rect().height - self.langButton.height)
+        self.langButton.index = 2
         
     def reloadItems(self):
         self.items = []
+        self.items.append(self.langButton)
         for index, item in enumerate(self.labels):
 
             menu_item = MenuItem(item, index)
@@ -84,6 +86,7 @@ class MainMenu():
     def run(self):
         self.reloadItems()
         running = True
+        
         while running:
             # Limit frame speed to 50 FPS
             self.clock.tick(50)
@@ -114,15 +117,24 @@ class MainMenu():
                         elif (item.index == 1):
                             print ("Saindo do jogo")
                             running = False
+                        elif (item.index == 2):
+                            if (self.lang == "pt"):
+                                self.langButton.text = "Pt-BR"
+                                self.labels = ["Start","Exit"]
+                                self.lang = "en"
+                                self.reloadItems()
+                                pygame.mouse.set_pos(self.screen.get_rect().width/2, self.screen.get_rect().height/2 - 30)
+                            else:
+                                self.langButton.text = "En-US"
+                                self.labels = ["Iniciar","Sair"]
+                                self.lang = "pt"
+                                self.reloadItems()
+                                pygame.mouse.set_pos(self.screen.get_rect().width/2, self.screen.get_rect().height/2 - 30)
                 else:
                     item.set_font_color((255, 255, 255))
                     
                 self.screen.blit(item.label, item.position)
-                
-            
-						 
-								
-								
+      
 								
             # Draw version
             version_x = self.screen.get_rect().width - self.version.get_rect().width
@@ -132,25 +144,26 @@ class MainMenu():
             # Draw languageButton
             
             self.screen.blit (self.langButton.label, self.langButton.position)
-            if (self.langButton.is_mouse_over(pygame.mouse.get_pos())):
-                self.langButton.set_font_color((255,0,0))
-                
-                if ((1,0,0) == pygame.mouse.get_pressed()):
-                    if (self.lang == "pt"):
-                        self.langButton.text = "Pt-BR"
-                        self.labels = ["Start","Exit"]
-                        self.lang = "en"
-                        self.reloadItems()
-                        pygame.mouse.set_pos(self.screen.get_rect().width/2 , self.screen.get_rect().height/2)
-                    else:
-                        self.langButton.text = "En-US"
-                        self.labels = ["Iniciar","Sair"]
-                        self.lang = "pt"
-                        self.reloadItems()
-                        pygame.mouse.set_pos(self.screen.get_rect().width/2 , self.screen.get_rect().height/2)
-                    
-            else:
-                self.langButton.set_font_color((255,255,255))
+#                if (self.langButton.is_mouse_over(pygame.mouse.get_pos())):
+#
+#                    self.langButton.set_font_color((255,0,0))
+#
+#                    if ((1,0,0) == pygame.mouse.get_pressed()):
+#                        if (self.lang == "pt"):
+#                            self.langButton.text = "Pt-BR"
+#                            self.labels = ["Start","Exit"]
+#                            self.lang = "en"
+#                            self.reloadItems()
+#                            pygame.mouse.set_pos(self.screen.get_rect().width/2 , self.screen.get_rect().height/2)
+#                        else:
+#                            self.langButton.text = "En-US"
+#                            self.labels = ["Iniciar","Sair"]
+#                            self.lang = "pt"
+#                            self.reloadItems()
+#                            pygame.mouse.set_pos(self.screen.get_rect().width/2 , self.screen.get_rect().height/2)
+#
+#                else:
+#                    self.langButton.set_font_color((255,255,255))
             
             ############ DISPLAY ##############
             pygame.display.flip()

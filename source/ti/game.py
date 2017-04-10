@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import*
 
 font = None
 font_size = 25
@@ -12,9 +13,11 @@ class GameObject (pygame.sprite.Sprite):
         
         pygame.sprite.Sprite.__init__(self)
         
+        
         self.image = pygame.Surface([width, height])
         self.image.fill((0,0,0))
-
+        
+        
         # Make our top-left corner the passed-in location.
         self.rect = self.image.get_rect()
         self.rect.y = pos_y
@@ -28,7 +31,7 @@ class GameObject (pygame.sprite.Sprite):
 class Player (GameObject, pygame.font.Font):
     def __init__(self, image, pos_x, pos_y, width, height, obj_type):
         GameObject.__init__(self,image,pos_x, pos_y ,width,height,0)
-        self.image.fill((255,0,0))
+        self.image = pygame.image.load('../media/bob_cima.png')
         self.cash = 0
         self.c_card = 0
         self.rect = pygame.Rect (500,300, 50,50)
@@ -41,6 +44,7 @@ class Player (GameObject, pygame.font.Font):
         
     def moveUp(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
+        self.image = pygame.image.load('../media/bob_cima.png')
         self.rect.top -= self.acceleration
         for wall in block_hit_list:
             if self.rect.top < wall.rect.bottom:
@@ -51,6 +55,7 @@ class Player (GameObject, pygame.font.Font):
         
     def moveDown(self): 
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
+        self.image = pygame.image.load('../media/bob_baixo.png')
         self.rect.bottom += self.acceleration
         #print len(block_hit_list)
         for wall in block_hit_list:
@@ -61,6 +66,7 @@ class Player (GameObject, pygame.font.Font):
         
     def moveLeft(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
+        self.image = pygame.image.load('../media/bob_esquerda.png')
         self.rect.left -= self.acceleration
         for wall in block_hit_list:
             if self.rect.left < wall.rect.right:
@@ -70,6 +76,7 @@ class Player (GameObject, pygame.font.Font):
         
     def moveRight(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
+        self.image = pygame.image.load('../media/bob_direita.png')
         self.rect.right += self.acceleration
         for wall in block_hit_list:
             if self.rect.right > wall.rect.left:
@@ -89,6 +96,7 @@ class Wall (GameObject):
         
         obstacles.append(self)
         #self.image = pygame.Surface([width,height])
+        
         
     
         
