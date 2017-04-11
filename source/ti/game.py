@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 from pygame.locals import*
 
 font = None
@@ -7,6 +7,7 @@ gameRunning = True
 clock = pygame.time.Clock()
 obstacles = []
 walls = []
+cards_list = []
 
 class GameObject (pygame.sprite.Sprite):
     def __init__(self, image, pos_x, pos_y , width, height, obj_type):
@@ -58,6 +59,7 @@ class Player (GameObject, pygame.font.Font):
         
     def moveDown(self): 
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
+        
         self.image = pygame.image.load('../media/bob_baixo.png')
         self.rect.bottom += self.acceleration
         #print len(block_hit_list)
@@ -65,7 +67,7 @@ class Player (GameObject, pygame.font.Font):
             if self.rect.bottom + 10> wall.rect.top:          
                 self.rect.bottom = wall.rect.top
             else:    
-                self.rect.bottom += self.acceleration
+                self.rect.bottom += self.acceleration          
         
     def moveLeft(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
@@ -102,6 +104,13 @@ class Wall (GameObject):
         #self.image = pygame.Surface([width,height])
         
         
+class Cash (GameObject):
+    def __init__(self,image,pos_x,pos_y,width,height, obj_type):
+        GameObject.__init__(self,image,pos_x ,pos_y , width, height, 2)
+        
+        self.image.fill((0,255,0))
+        cards_list.append(self)
+    
     
         
         
@@ -156,25 +165,50 @@ class Game ():
             pygame.draw.rect(self.screen, (0,0,0), wall.rect, 0)
         
         time_decrement = pygame.USEREVENT+1
-        T = 1000 # second
-        pygame.time.set_timer(time_decrement, T)
+        T1 = 1000 # second
+        pygame.time.set_timer(time_decrement, T1)
+    
+        card_generator = pygame.USEREVENT+2
+        T2 = 4000 # second
+        pygame.time.set_timer(card_generator, T2)
+        
+        cards_hit_list = pygame.sprite.spritecollide(self.player, cards_list, False)
         
         gameRunning = True
         while (gameRunning):
             clock.tick(60)
             
-            
+            cards_hit_list = pygame.sprite.spritecollide(self.player, cards_list, False)
+           
+        
+        
+                
+                
+            for card in cards_hit_list:    
+                bob.c_card += 1
+                cards_list.remove(card)
+                all_sprite_list.remove(card)
+                
+                
+                
             for event in pygame.event.get():
                 if (event.type == time_decrement):
-                    self.player.time -= 1
+                    bob.time -= 1
+                    
+                if (event.type == card_generator and len(cards_list) < 5):
+                    cashGenerator = random.randint(0,100)
+                    if (cashGenerator <= 10):
+                        x = random.randint(50,800)
+                        y = random.randint(50,400)
+                        cash = Cash("",x,y,20,20,2)
+                        pygame.draw.rect(self.screen, (0,255,0), cash.rect , 0)
+                        all_sprite_list.add(cash)
+
+                    
                 if (event.type == pygame.KEYDOWN):
                     pygame.event.set_blocked(pygame.KEYDOWN)
                     if (event.key == pygame.K_ESCAPE):
                         gameRunning = False
-                    elif (event.key == pygame.K_z): 
-                        bob.cash += 1 
-                        bob.rect.x = 480
-                        bob.rect.y = 280
                     elif (event.key == pygame.K_UP):
                         bob.acceleration = 5
                         bob.direction = "up"
@@ -191,12 +225,18 @@ class Game ():
                     elif (event.key == pygame.K_RIGHT):
                         bob.acceleration = 5    
                         bob.direction = "right"
+                        
+                    elif (event.key == pygame.K_RETURN and bob.c_card > 0):
+                        bob.c_card -= 1
+                        bob.cash += 15
 
                 if (event.type == pygame.KEYUP):
                     bob.acceleration = 0
                     pygame.event.set_allowed(pygame.KEYDOWN)
             
             bob.updateValues()
+            
+            
             if (bob.direction == "up"):
                 bob.moveUp()
             elif (bob.direction == "down"):
@@ -207,9 +247,8 @@ class Game ():
                 bob.moveRight()        
                 
                 
-            if self.player.time <= 0:
+            if bob.time <= 0:
                 gameRunning = False
-            
             
             
             
@@ -219,18 +258,18 @@ class Game ():
             
            
             
-            self.screen.blit (self.player.timeLabel, (500,0))
+            self.screen.blit (bob.timeLabel, (450,0))
             # Player Interface Draw
             cash_x = 0
             cash_y = 0
             
            
-            self.screen.blit (self.player.cashLabel, (cash_x,cash_y))
+            self.screen.blit (bob.cashLabel, (cash_x,cash_y))
             
-            cCard_x = self.width - self.player.c_cardLabel.get_rect().width - 50
+            cCard_x = self.width - bob.c_cardLabel.get_rect().width - 50
             cCard_y = 0
             
-            self.screen.blit (self.player.c_cardLabel,(cCard_x,cCard_y))
+            self.screen.blit (bob.c_cardLabel,(cCard_x,cCard_y))
             
             ##Display
             pygame.display.flip()

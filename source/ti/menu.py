@@ -6,9 +6,7 @@ pygame.init()
 windowSize = (1000,600)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
-version = "v0.2"
-
-
+version = "v0.5"
 
 
 
@@ -54,6 +52,7 @@ class MainMenu():
         self.font_color = font_color
         self.items = []
         
+
         self.lang = "en"
         self.labels = ["Start","Exit"]
         self.langLabel = "Pt-BR"
@@ -174,6 +173,7 @@ if __name__ == "__main__":
     screen  = pygame.display.set_mode(windowSize, 0 ,32)
     pygame.display.set_caption('Game Menu')
     gm = MainMenu(screen)
+    pygame.display.set_caption('PyMarket')
     gm.run()
     print ("GAME START")
 
