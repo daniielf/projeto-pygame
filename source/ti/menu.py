@@ -113,6 +113,7 @@ class MainMenu():
                             print "loading"
                             startGame = game.Game(self.screen)
                             startGame.run()
+                            print ("GAME START")
                         elif (item.index == 1):
                             print ("Saindo do jogo")
                             running = False
@@ -175,7 +176,7 @@ if __name__ == "__main__":
     gm = MainMenu(screen)
     pygame.display.set_caption('PyMarket')
     gm.run()
-    print ("GAME START")
+
 
 #while (running):
 #    

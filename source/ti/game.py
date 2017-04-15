@@ -1,132 +1,41 @@
-import pygame, random
+import pygame, random, objects
 from pygame.locals import*
 
-font = None
-font_size = 25
-gameRunning = True
+
 clock = pygame.time.Clock()
 obstacles = []
-walls = []
 cards_list = []
+monster_list = []
 
-class GameObject (pygame.sprite.Sprite):
-    def __init__(self, image, pos_x, pos_y , width, height, obj_type):
-        
-        pygame.sprite.Sprite.__init__(self)
-        
-        
-        self.image = pygame.Surface([width, height])
-        self.image.fill((0,0,0))
-        
-        
-        # Make our top-left corner the passed-in location.
-        self.rect = self.image.get_rect()
-        self.rect.y = pos_y
-        self.rect.x = pos_x
-        
-        self.objType = obj_type
-        self.acceleration = 0
-        self.direction = ""
-        
-        
-class Player (GameObject, pygame.font.Font):
-    def __init__(self, image, pos_x, pos_y, width, height, obj_type):
-        GameObject.__init__(self,image,pos_x, pos_y ,width,height,0)
-        self.image = pygame.image.load('../media/bob_cima.png')
-        self.cash = 0
-        self.c_card = 0
-        self.time = 180
-        
-        self.rect = pygame.Rect (500,300, 50,50)
-        pygame.font.Font.__init__(self, font, font_size)
-        
-        self.walls = walls
-        
-        self.timeLabel = self.render("Tempo:" + str(self.time), 1, (0,0,0))
-        self.cashLabel = self.render("Dinheiro:" + str(self.cash), 1, (0,0,0))
-        self.c_cardLabel = self.render("Cartoes:" + str(self.c_card),1,(0,0,0))
-        
-    def moveUp(self):
-        block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
-        self.image = pygame.image.load('../media/bob_cima.png')
-        self.rect.top -= self.acceleration
-        for wall in block_hit_list:
-            if self.rect.top - 10 < wall.rect.bottom:          
-                self.rect.top = wall.rect.bottom
-            else:
-                self.rect.top -= self.acceleration
-       
-        
-    def moveDown(self): 
-        block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
-        
-        self.image = pygame.image.load('../media/bob_baixo.png')
-        self.rect.bottom += self.acceleration
-        #print len(block_hit_list)
-        for wall in block_hit_list:
-            if self.rect.bottom + 10> wall.rect.top:          
-                self.rect.bottom = wall.rect.top
-            else:    
-                self.rect.bottom += self.acceleration          
-        
-    def moveLeft(self):
-        block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
-        self.image = pygame.image.load('../media/bob_esquerda.png')
-        self.rect.left -= self.acceleration
-        for wall in block_hit_list:
-            if self.rect.left - 10 < wall.rect.right:            
-                self.rect.left = wall.rect.right              
-            else:
-                self.rect.left -= self.acceleration
-        
-    def moveRight(self):
-        block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
-        self.image = pygame.image.load('../media/bob_direita.png')
-        self.rect.right += self.acceleration
-        for wall in block_hit_list:
-            if self.rect.right + 10> wall.rect.left:          
-                self.rect.right = wall.rect.left
-            else:
-                self.rect.right += self.acceleration
-        
-        
-    def updateValues(self):
-        self.timeLabel = self.render("Tempo:" + str(self.time), 1, (0,0,0))
-        self.cashLabel = self.render("Dinheiro:" + str(self.cash), 1, (0,0,0))
-        self.c_cardLabel = self.render("Cartoes:" + str(self.c_card), 1,(0,0,0))
-        
+gameRunning = True
 
-class Wall (GameObject):
-    def __init__(self,image,pos_x,pos_y,width,height, obj_type):
-        GameObject.__init__(self,image,pos_x,pos_y,width,height,1)
+class GameEnd(pygame.font.Font):
+    def __init__(self,screen):
+        self.screen = screen
+        self.width = screen.get_rect().width
+        self.height = screen.get_rect().height
+        self.bg_color = (0,0,0)
+        pygame.font.Font.__init__(self, None, 25)
+        self.text = ""
+        self.textLabel = self.render(self.text, 1, (255,255,255))
         
-        obstacles.append(self)
-        #self.image = pygame.Surface([width,height])
-        
-        
-class Cash (GameObject):
-    def __init__(self,image,pos_x,pos_y,width,height, obj_type):
-        GameObject.__init__(self,image,pos_x ,pos_y , width, height, 2)
-        
-        self.image.fill((0,255,0))
-        cards_list.append(self)
-    
-    
-        
+    def endText(self):
+         self.timeLabel = self.render(self.text, 1, (255,255,255))
         
 class Game ():
     def __init__(self,screen):
         
         self.screen = screen
         self.width = screen.get_rect().width
-        self.hieght = screen.get_rect().height
+        self.height = screen.get_rect().height
         self.bg_color = (255,255,255)
         #self.image
-        self.player = Player("image", 300 , 500, 50 , 50, 0)
+        self.player = objects.Player("image", 300 , 500, 50 , 50, 0)
      
     
     def run(self):
         bob = self.player
+        end = GameEnd(self.screen)
         
          # List to hold all the sprites
         all_sprite_list = pygame.sprite.Group()
@@ -134,31 +43,42 @@ class Game ():
         # Make the walls. (x_pos, y_pos, width, height)
         wall_list = pygame.sprite.Group()
 
-        wall = Wall("", 0, 40, 10, 590, 1)
+        wall = objects.Wall("", 0, 40, 10, 590, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
+        obstacles.append(wall)
 
-        wall = Wall("", 10, 40, 980, 10, 1)
+        wall = objects.Wall("", 10, 40, 980, 10, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
+        obstacles.append(wall)
 
-        wall = Wall("", 10, 200, 300, 10, 1)
+        wall = objects.Wall("", 10, 200, 300, 10, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
+        obstacles.append(wall)
         
-        wall = Wall("", 990, 40, 10, 590, 1)
+        wall = objects.Wall("", 990, 40, 10, 590, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
+        obstacles.append(wall)
         
-        wall = Wall("", 10, 590, 980, 10, 1)
+        wall = objects.Wall("", 10, 590, 980, 10, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
+        obstacles.append(wall)
+        
+        monster_list = pygame.sprite.Group()
+        
+        fFood = objects.FastFood("", 400, 400, 40,40, 3)
+        monster_list.add(fFood)
+        all_sprite_list.add(fFood)
         
         bob.walls = wall_list
         all_sprite_list.add(bob)
         
         
-        self.player.updateValues()
+        bob.updateValues()
         #pygame.draw.rect(self.screen, (255,0,0) ,((bob.position),(bob.collisionWidth, bob.collisionHeight)),0)
         pygame.draw.rect(self.screen, (255,0,0) ,bob.rect,0)
         for wall in obstacles:
@@ -169,19 +89,26 @@ class Game ():
         pygame.time.set_timer(time_decrement, T1)
     
         card_generator = pygame.USEREVENT+2
-        T2 = 4000 # second
+        T2 = 4000 # 4 second
         pygame.time.set_timer(card_generator, T2)
         
-        cards_hit_list = pygame.sprite.spritecollide(self.player, cards_list, False)
+        monster_move = pygame.USEREVENT+3
+        T3 = 500 # 1,5 second
+        pygame.time.set_timer(monster_move, T3)
+        
+        cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
         
         gameRunning = True
         while (gameRunning):
             clock.tick(60)
             
-            cards_hit_list = pygame.sprite.spritecollide(self.player, cards_list, False)
-           
+            cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
+            monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
         
-        
+            for monster in monster_hit_list:
+                end.text = "Derrota"
+                end.endText()
+                gameRunning = False
                 
                 
             for card in cards_hit_list:    
@@ -200,10 +127,23 @@ class Game ():
                     if (cashGenerator <= 10):
                         x = random.randint(50,800)
                         y = random.randint(50,400)
-                        cash = Cash("",x,y,20,20,2)
+                        cash = objects.Cash("",x,y,20,20,2)
+                        cards_list.append(cash)
                         pygame.draw.rect(self.screen, (0,255,0), cash.rect , 0)
                         all_sprite_list.add(cash)
 
+                        
+                if (event.type == monster_move):
+                    direction = random.randint(0,4)
+                    if (direction == 0 and fFood.rect.top + 20 >= 30):
+                        fFood.rect.top -= 20
+                    if (direction == 1 and fFood.rect.bottom + 20 <= 570):
+                        print (fFood.rect.bottom)
+                        fFood.rect.bottom += 20
+                    if (direction == 2 and fFood.rect.left + 20 >= 30):
+                        fFood.rect.left -= 20
+                    if (direction == 3 and fFood.rect.right + 20 <= 970):
+                        fFood.rect.right += 20
                     
                 if (event.type == pygame.KEYDOWN):
                     pygame.event.set_blocked(pygame.KEYDOWN)
@@ -248,7 +188,10 @@ class Game ():
                 
                 
             if bob.time <= 0:
+                end.text = "Vitoria"
+                end.endText()
                 gameRunning = False
+
             
             
             
@@ -272,4 +215,8 @@ class Game ():
             self.screen.blit (bob.c_cardLabel,(cCard_x,cCard_y))
             
             ##Display
+            pygame.display.flip()
+        while (1):
+            
+            self.screen.blit (end.textLabel,(0,0))
             pygame.display.flip()
