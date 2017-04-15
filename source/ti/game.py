@@ -106,8 +106,8 @@ class Game ():
             monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
         
             for monster in monster_hit_list:
-                end.text = "Derrota"
-                end.endText()
+                #end.text = "Derrota"
+                #end.endText()
                 gameRunning = False
                 
                 
@@ -188,8 +188,8 @@ class Game ():
                 
                 
             if bob.time <= 0:
-                end.text = "Vitoria"
-                end.endText()
+                #end.text = "Vitoria"
+                #end.endText()
                 gameRunning = False
 
             
@@ -216,7 +216,4 @@ class Game ():
             
             ##Display
             pygame.display.flip()
-        while (1):
-            
-            self.screen.blit (end.textLabel,(0,0))
-            pygame.display.flip()
+												

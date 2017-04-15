@@ -115,5 +115,6 @@ class FastFood (GameObject):
         GameObject.__init__(self,image,pos_x,pos_y, width, height, 2)
         
         self.image = pygame.image.load('../media/steve.png')
+        self.rect = pygame.Rect (200,200, 50,50)
         #self.image = pygame.image.load('../media/bob_cima.png')
         
