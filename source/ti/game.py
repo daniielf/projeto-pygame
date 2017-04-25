@@ -10,17 +10,50 @@ monster_list = []
 gameRunning = True
 
 class GameEnd(pygame.font.Font):
-    def __init__(self,screen):
+    def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=40):
         self.screen = screen
         self.width = screen.get_rect().width
         self.height = screen.get_rect().height
         self.bg_color = (0,0,0)
-        pygame.font.Font.__init__(self, None, 25)
-        self.text = ""
-        self.textLabel = self.render(self.text, 1, (255,255,255))
+        pygame.font.Font.__init__(self, None, 40)
         
-    def endText(self):
-         self.timeLabel = self.render(self.text, 1, (255,255,255))
+        
+        self.textFont = pygame.font.SysFont(font,font_size)
+        self.exitFont = pygame.font.SysFont(font,20)
+        
+        self.text = "Pontuacao: "  
+        self.result = "Resultado: "
+        
+        
+    def defScore(self, score):
+        self.text += str(score)
+        self.textLabel = self.textFont.render(self.text, 1, (255,255,255))
+        
+    def defResult(self, score):
+        if (score < 50):
+            self.result += " ruim :("
+        elif (score <= 50 and score < 80):
+            self.result += " bom :)"
+        else:
+            self.result += " otimo :D"
+            
+        self.resultLabel = self.textFont.render(self.result, 1, (255,255,255))
+            
+    def run(self):
+        running = True
+        #pygame.display.update()
+        while (running):
+            clock.tick(60)
+            self.screen.fill(self.bg_color)
+            self.screen.blit (self.textLabel, (380,250))
+            self.screen.blit (self.resultLabel, (380,300))
+            exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
+            self.screen.blit (exitLabel, (0,580))
+            for event in pygame.event.get():
+                if (event.type == pygame.QUIT or event.type == pygame.KEYDOWN):
+                    if (event.key == pygame.K_ESCAPE):
+                        running = False
+            pygame.display.flip()
         
 class Game ():
     def __init__(self,screen):
@@ -34,8 +67,10 @@ class Game ():
      
     
     def run(self):
+        main_music = pygame.mixer.music.load("../media/megalovania.wav")
+        pygame.mixer.music.play()
+        
         bob = self.player
-        end = GameEnd(self.screen)
         
          # List to hold all the sprites
         all_sprite_list = pygame.sprite.Group()
@@ -52,11 +87,6 @@ class Game ():
         wall_list.add(wall)
         all_sprite_list.add(wall)
         obstacles.append(wall)
-
-        wall = objects.Wall("", 10, 200, 300, 10, 1)
-        wall_list.add(wall)
-        all_sprite_list.add(wall)
-        obstacles.append(wall)
         
         wall = objects.Wall("", 990, 40, 10, 590, 1)
         wall_list.add(wall)
@@ -68,12 +98,27 @@ class Game ():
         all_sprite_list.add(wall)
         obstacles.append(wall)
         
+        ## Monsters
         monster_list = pygame.sprite.Group()
         
-        fFood = objects.FastFood("", 400, 400, 40,40, 3)
+        fFood = objects.FastFood("", 800, 400, 40, 40, 3)
         monster_list.add(fFood)
         all_sprite_list.add(fFood)
         
+        fFood2 = objects.FastFood("", 500, 130, 40, 40, 3)
+        monster_list.add(fFood2)
+        all_sprite_list.add(fFood2)
+        
+        fFood = objects.FastFood("", 100, 200, 40, 40, 3)
+        monster_list.add(fFood)
+        all_sprite_list.add(fFood)
+        
+        fFood = objects.FastFood("", 320, 500, 40, 40, 3)
+        monster_list.add(fFood)
+        all_sprite_list.add(fFood)
+        
+        
+        ##
         bob.walls = wall_list
         all_sprite_list.add(bob)
         
@@ -93,7 +138,7 @@ class Game ():
         pygame.time.set_timer(card_generator, T2)
         
         monster_move = pygame.USEREVENT+3
-        T3 = 500 # 1,5 second
+        T3 = 100 # 0,1 second
         pygame.time.set_timer(monster_move, T3)
         
         cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
@@ -104,6 +149,7 @@ class Game ():
             
             cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
             monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
+            
         
             for monster in monster_hit_list:
                 #end.text = "Derrota"
@@ -116,12 +162,13 @@ class Game ():
                 cards_list.remove(card)
                 all_sprite_list.remove(card)
                 
-                
-                
+            #####  FRAME EVENTS      
+            ## Time Decrementer    
             for event in pygame.event.get():
                 if (event.type == time_decrement):
                     bob.time -= 1
-                    
+                 
+                ## Credit Card Generator
                 if (event.type == card_generator and len(cards_list) < 5):
                     cashGenerator = random.randint(0,100)
                     if (cashGenerator <= 10):
@@ -132,19 +179,39 @@ class Game ():
                         pygame.draw.rect(self.screen, (0,255,0), cash.rect , 0)
                         all_sprite_list.add(cash)
 
-                        
+                ## Monster Movement        
                 if (event.type == monster_move):
-                    direction = random.randint(0,4)
-                    if (direction == 0 and fFood.rect.top + 20 >= 30):
-                        fFood.rect.top -= 20
-                    if (direction == 1 and fFood.rect.bottom + 20 <= 570):
-                        print (fFood.rect.bottom)
-                        fFood.rect.bottom += 20
-                    if (direction == 2 and fFood.rect.left + 20 >= 30):
-                        fFood.rect.left -= 20
-                    if (direction == 3 and fFood.rect.right + 20 <= 970):
-                        fFood.rect.right += 20
+                    for monster in monster_list:
+                        monsterCollision = pygame.sprite.spritecollide(monster, wall_list, False)
+                        if(monster.movingPositive):
+                            if (len(monsterCollision) == 0):
+                                monster.rect.top -= 15
+                            else:
+                                monster.rect.bottom += 15
+                                monster.movingPositive = False
+                        else:
+                            if (len(monsterCollision) == 0):
+                                monster.rect.bottom += 15
+                            else:
+                                monster.rect.top -= 15
+                                monster.movingPositive = True
                     
+#                    if (monsterMovingUp):
+#                        #if (fFood.rect.top - 20 >= 30):
+#                        if (len(walls_and_monsters_hit_list) == 0):
+#                            fFood.rect.top -= 20
+#                        else:
+#                            fFood.rect.bottom += 20
+#                            monsterMovingUp = False
+#                    else:
+#                        #if (fFood.rect.bottom + 20 <= 590):
+#                        if (len(walls_and_monsters_hit_list) == 0):
+#                            fFood.rect.bottom += 20
+#                        else:
+#                            fFood.rect.top -=20
+#                            monsterMovingUp = True
+                   
+                ## Player Input
                 if (event.type == pygame.KEYDOWN):
                     pygame.event.set_blocked(pygame.KEYDOWN)
                     if (event.key == pygame.K_ESCAPE):
@@ -152,8 +219,7 @@ class Game ():
                     elif (event.key == pygame.K_UP):
                         bob.acceleration = 5
                         bob.direction = "up"
-                        
-                       
+                                    
                     elif (event.key == pygame.K_DOWN):
                         bob.acceleration = 5
                         bob.direction = "down"
@@ -169,7 +235,8 @@ class Game ():
                     elif (event.key == pygame.K_RETURN and bob.c_card > 0):
                         bob.c_card -= 1
                         bob.cash += 15
-
+                        
+                
                 if (event.type == pygame.KEYUP):
                     bob.acceleration = 0
                     pygame.event.set_allowed(pygame.KEYDOWN)
@@ -216,4 +283,10 @@ class Game ():
             
             ##Display
             pygame.display.flip()
-												
+        pygame.event.set_allowed(pygame.KEYDOWN)
+        pygame.mixer.music.stop()
+        ge = GameEnd(self.screen)
+        ge.defScore(bob.cash)
+        ge.defResult(bob.cash)
+        ge.run()
+        #pygame.display.update()

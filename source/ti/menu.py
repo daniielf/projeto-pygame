@@ -6,8 +6,7 @@ pygame.init()
 windowSize = (1000,600)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
-version = "v0.5"
-
+version = "v0.8"
 
 
 class MenuItem(pygame.font.Font):
@@ -83,6 +82,7 @@ class MainMenu():
         
  
     def run(self):
+        pygame.display.update()
         self.reloadItems()
         running = True
         
@@ -166,7 +166,10 @@ class MainMenu():
 #                    self.langButton.set_font_color((255,255,255))
             
             ############ DISPLAY ##############
-            pygame.display.flip()
+            #pygame.display.flip()
+            pygame.display.update()
+
+            
             
             
 #### Running
@@ -176,6 +179,8 @@ if __name__ == "__main__":
     gm = MainMenu(screen)
     pygame.display.set_caption('PyMarket')
     gm.run()
+
+
 
 
 #while (running):
