@@ -67,7 +67,7 @@ class Game ():
      
     
     def run(self):
-        main_music = pygame.mixer.music.load("../media/megalovania.wav")
+        main_music = pygame.mixer.music.load("../media/Sons/megalovania.wav")
         pygame.mixer.music.play()
         
         bob = self.player
@@ -83,21 +83,38 @@ class Game ():
         all_sprite_list.add(wall)
         obstacles.append(wall)
 
-        wall = objects.Wall("", 10, 40, 980, 10, 1)
+        wall = objects.Wall("", 190, 40, 10, 590, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
         obstacles.append(wall)
         
-        wall = objects.Wall("", 990, 40, 10, 590, 1)
+        wall = objects.Wall("", 380, 40, 10, 590, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
         obstacles.append(wall)
         
-        wall = objects.Wall("", 10, 590, 980, 10, 1)
+        wall = objects.Wall("", 570, 40, 10, 590, 1)
+        wall_list.add(wall)
+        all_sprite_list.add(wall)
+        obstacles.append(wall)
+
+        wall = objects.Wall("", 760, 40, 10, 590, 1)
+        wall_list.add(wall)
+        all_sprite_list.add(wall)
+        obstacles.append(wall)
+
+        wall = objects.Wall("", 930, 40, 10, 590, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
         obstacles.append(wall)
         
+        ##ATM 
+        atm_list = pygame.sprite.Group()
+
+        atm = objects.ATM("",0, 450, 10, 590, 1)
+        atm_list.add(atm)
+        all_sprite_list.add(atm)
+       
         ## Monsters
         monster_list = pygame.sprite.Group()
         
@@ -120,15 +137,14 @@ class Game ():
         
         ##
         bob.walls = wall_list
+
         all_sprite_list.add(bob)
         
         
         bob.updateValues()
         #pygame.draw.rect(self.screen, (255,0,0) ,((bob.position),(bob.collisionWidth, bob.collisionHeight)),0)
         pygame.draw.rect(self.screen, (255,0,0) ,bob.rect,0)
-        for wall in obstacles:
-            pygame.draw.rect(self.screen, (0,0,0), wall.rect, 0)
-        
+      
         time_decrement = pygame.USEREVENT+1
         T1 = 1000 # second
         pygame.time.set_timer(time_decrement, T1)
@@ -149,8 +165,14 @@ class Game ():
             
             cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
             monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
-            
+            atm_hit_list = pygame.sprite.spritecollide(bob,atm_list,False)    
         
+            for atm in atm_hit_list:
+                if(event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and bob.c_card > 0):
+                        bob.c_card -= 1
+                        bob.cash += 15
+                        
+
             for monster in monster_hit_list:
                 #end.text = "Derrota"
                 #end.endText()
@@ -231,11 +253,11 @@ class Game ():
                     elif (event.key == pygame.K_RIGHT):
                         bob.acceleration = 5    
                         bob.direction = "right"
-                        
+                        '''
                     elif (event.key == pygame.K_RETURN and bob.c_card > 0):
                         bob.c_card -= 1
                         bob.cash += 15
-                        
+                        '''
                 
                 if (event.type == pygame.KEYUP):
                     bob.acceleration = 0
