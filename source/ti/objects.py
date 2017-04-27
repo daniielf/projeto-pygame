@@ -22,7 +22,7 @@ class GameObject (pygame.sprite.Sprite):
         self.rect.y = pos_y
         self.rect.x = pos_x
         
-        self.objType = obj_type
+        self.obj_type = obj_type
         self.acceleration = 0
         self.direction = ""
         
@@ -35,7 +35,7 @@ class Player (GameObject, pygame.font.Font):
         self.c_card = 0
         self.time = 180
         
-        self.rect = pygame.Rect (500,300, 50,50)
+        self.rect = pygame.Rect (500,300, 30,30)
         pygame.font.Font.__init__(self, font, font_size)
         
         self.walls = walls
@@ -91,16 +91,21 @@ class Player (GameObject, pygame.font.Font):
     def updateValues(self):
         self.timeLabel = self.render("Tempo:" + str(self.time), 1, (0,0,0))
         self.cashLabel = self.render("Dinheiro:" + str(self.cash), 1, (0,0,0))
-        self.c_cardLabel = self.render("Cartoes:" + str(self.c_card), 1,(0,0,0))
+        self.c_cardLabel = self.render("Cartoes:" + str(self.c_card), 1, (0,0,0))
         
 
 class Wall (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
-        GameObject.__init__(self,image,pos_x,pos_y,width,height,1)
+        GameObject.__init__(self,image,pos_x,pos_y,width,height,obj_type)
+        if (obj_type == 8):
+            self.image = pygame.image.load('../media/gondula-x.png')
+        elif (obj_type == 9):
+            self.image = pygame.image.load('../media/gondula-y.png')
         
         #obstacles.append(self)
         #self.image = pygame.Surface([width,height])
         
+
         
 class Cash (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
@@ -112,10 +117,10 @@ class Cash (GameObject):
 
 class FastFood (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
-        GameObject.__init__(self,image,pos_x,pos_y, width, height, 2)
+        GameObject.__init__(self,image,pos_x,pos_y, width, height, obj_type)
         
         self.image = pygame.image.load('../media/steve.png')
-        self.rect = pygame.Rect (pos_x, pos_y, 45,45)
+        self.rect = pygame.Rect (pos_x, pos_y, 32,40)
         self.movingPositive = True
         #self.image = pygame.image.load('../media/bob_cima.png')
         

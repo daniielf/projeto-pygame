@@ -7,6 +7,10 @@ obstacles = []
 cards_list = []
 monster_list = []
 
+pygame.mixer.init(44100, -16, 2, 2048)
+go_sound = pygame.mixer.Sound("../media/go_sound.wav")
+go_sound.set_volume(0.3)
+
 gameRunning = True
 
 class GameEnd(pygame.font.Font):
@@ -67,7 +71,7 @@ class Game ():
      
     
     def run(self):
-        main_music = pygame.mixer.music.load("../media/megalovania.wav")
+        main_music = pygame.mixer.music.load("../media/megalovania.mp3")
         pygame.mixer.music.play()
         
         bob = self.player
@@ -98,25 +102,56 @@ class Game ():
         all_sprite_list.add(wall)
         obstacles.append(wall)
         
+        
+        ## Gondulas
+        wall = objects.Wall("", 100, 200, 226, 40, 8)
+        wall_list.add(wall)
+        all_sprite_list.add(wall)
+        obstacles.append(wall)
+        
+        wall = objects.Wall("", 100, 400, 226, 40, 8)
+        wall_list.add(wall)
+        all_sprite_list.add(wall)
+        obstacles.append(wall)
+        
+        wall = objects.Wall("", 620, 200, 226, 40, 8)
+        wall_list.add(wall)
+        all_sprite_list.add(wall)
+        obstacles.append(wall)
+        
+        wall = objects.Wall("", 620, 400, 226, 40, 8)
+        wall_list.add(wall)
+        all_sprite_list.add(wall)
+        obstacles.append(wall)
+        
+        wall = objects.Wall("", 450, 220, 40, 226, 9)
+        wall_list.add(wall)
+        all_sprite_list.add(wall)
+        obstacles.append(wall)
+        
+        
         ## Monsters
         monster_list = pygame.sprite.Group()
         
-        fFood = objects.FastFood("", 800, 400, 40, 40, 3)
+        fFood = objects.FastFood("", 850, 400, 30, 30, 3)
         monster_list.add(fFood)
         all_sprite_list.add(fFood)
         
-        fFood2 = objects.FastFood("", 500, 130, 40, 40, 3)
+        fFood2 = objects.FastFood("", 500, 130, 30, 30, 3)
         monster_list.add(fFood2)
         all_sprite_list.add(fFood2)
         
-        fFood = objects.FastFood("", 100, 200, 40, 40, 3)
+        fFood = objects.FastFood("", 100, 100, 30, 30, 3)
         monster_list.add(fFood)
         all_sprite_list.add(fFood)
         
-        fFood = objects.FastFood("", 320, 500, 40, 40, 3)
+        fFood = objects.FastFood("", 270, 450, 30, 30, 3)
         monster_list.add(fFood)
         all_sprite_list.add(fFood)
         
+        fFood = objects.FastFood("", 450, 470, 30, 30, 4)
+        monster_list.add(fFood)
+        all_sprite_list.add(fFood)
         
         ##
         bob.walls = wall_list
@@ -152,6 +187,9 @@ class Game ():
             
         
             for monster in monster_hit_list:
+                pygame.mixer.music.fadeout(1000)
+                pygame.mixer.Sound.play(go_sound)
+                pygame.time.delay(1500)
                 #end.text = "Derrota"
                 #end.endText()
                 gameRunning = False
@@ -185,16 +223,30 @@ class Game ():
                         monsterCollision = pygame.sprite.spritecollide(monster, wall_list, False)
                         if(monster.movingPositive):
                             if (len(monsterCollision) == 0):
-                                monster.rect.top -= 15
+                                if monster.obj_type == 4:
+                                    monster.rect.left -= 15
+                                else:
+                                    monster.rect.top -= 15
                             else:
-                                monster.rect.bottom += 15
-                                monster.movingPositive = False
+                                if monster.obj_type == 4:
+                                    monster.rect.right += 15
+                                    monster.movingPositive = False
+                                else:
+                                    monster.rect.bottom += 15
+                                    monster.movingPositive = False
                         else:
                             if (len(monsterCollision) == 0):
-                                monster.rect.bottom += 15
+                                if monster.obj_type == 4:
+                                    monster.rect.right += 15
+                                else:
+                                    monster.rect.bottom += 15
                             else:
-                                monster.rect.top -= 15
-                                monster.movingPositive = True
+                                if monster.obj_type == 4:
+                                    monster.rect.left -= 15
+                                    monster.movingPositive = True
+                                else:
+                                    monster.rect.top -= 15
+                                    monster.movingPositive = True
                     
 #                    if (monsterMovingUp):
 #                        #if (fFood.rect.top - 20 >= 30):
@@ -284,7 +336,10 @@ class Game ():
             ##Display
             pygame.display.flip()
         pygame.event.set_allowed(pygame.KEYDOWN)
-        pygame.mixer.music.stop()
+        pygame.mixer.music.fadeout(1000)
+        pygame.mixer.music.load("../media/crimson.mp3")
+        pygame.mixer.music.play()
+        
         ge = GameEnd(self.screen)
         ge.defScore(bob.cash)
         ge.defResult(bob.cash)
