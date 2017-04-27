@@ -13,6 +13,11 @@ go_sound.set_volume(0.3)
 
 gameRunning = True
 
+class BackGround():
+    def __init__(self,screen):
+        self.screen = screen
+        self.image = pygame.image.load('../media/background.png')
+
 class GameEnd(pygame.font.Font):
     def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=40):
         self.screen = screen
@@ -65,8 +70,9 @@ class Game ():
         self.screen = screen
         self.width = screen.get_rect().width
         self.height = screen.get_rect().height
+        self.image = pygame.image.load('../media/background.png')
         self.bg_color = (255,255,255)
-        #self.image
+        self.image
         self.player = objects.Player("image", 300 , 500, 50 , 50, 0)
      
     
@@ -178,8 +184,14 @@ class Game ():
         
         cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
         
+        bground = BackGround(self.screen)
+        
+        
         gameRunning = True
+        
         while (gameRunning):
+            self.screen.fill((255,255,255))
+            self.screen.blit (self.image, (0,40))
             clock.tick(60)
             
             cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
@@ -190,8 +202,7 @@ class Game ():
                 pygame.mixer.music.fadeout(1000)
                 pygame.mixer.Sound.play(go_sound)
                 pygame.time.delay(1500)
-                #end.text = "Derrota"
-                #end.endText()
+
                 gameRunning = False
                 
                 
@@ -248,20 +259,6 @@ class Game ():
                                     monster.rect.top -= 15
                                     monster.movingPositive = True
                     
-#                    if (monsterMovingUp):
-#                        #if (fFood.rect.top - 20 >= 30):
-#                        if (len(walls_and_monsters_hit_list) == 0):
-#                            fFood.rect.top -= 20
-#                        else:
-#                            fFood.rect.bottom += 20
-#                            monsterMovingUp = False
-#                    else:
-#                        #if (fFood.rect.bottom + 20 <= 590):
-#                        if (len(walls_and_monsters_hit_list) == 0):
-#                            fFood.rect.bottom += 20
-#                        else:
-#                            fFood.rect.top -=20
-#                            monsterMovingUp = True
                    
                 ## Player Input
                 if (event.type == pygame.KEYDOWN):
@@ -310,15 +307,15 @@ class Game ():
                 #end.text = "Vitoria"
                 #end.endText()
                 gameRunning = False
-
+  
             
-            
-            
+            #self.screen.fill((255,255,255))
+           
             all_sprite_list.update()
-            self.screen.fill((255,255,255))
             all_sprite_list.draw(self.screen)
             
            
+            
             
             self.screen.blit (bob.timeLabel, (450,0))
             # Player Interface Draw

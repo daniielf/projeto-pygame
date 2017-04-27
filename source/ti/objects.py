@@ -123,4 +123,10 @@ class FastFood (GameObject):
         self.rect = pygame.Rect (pos_x, pos_y, 32,40)
         self.movingPositive = True
         #self.image = pygame.image.load('../media/bob_cima.png')
-        
+
+class ATM(GameObject):
+    def __init__(self,image,pos_x,pos_y,width,height,obj_type):
+        GameObject.__init__(self,image,pos_x,pos_y,width,height,2)
+
+        self.image = pygame.image.load('../media/imagens/atm.png')
+        self.rect = pygame.Rect(pos_x, pos_y, 40, 64)
