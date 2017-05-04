@@ -30,10 +30,11 @@ class GameObject (pygame.sprite.Sprite):
 class Player (GameObject, pygame.font.Font):
     def __init__(self, image, pos_x, pos_y, width, height, obj_type):
         GameObject.__init__(self,image,pos_x, pos_y ,width,height,0)
-        self.image = pygame.image.load('../media/bob_cima.png')
+        self.image = pygame.image.load('../media/sprites/bob_cima.png')
         self.cash = 0
         self.c_card = 0
         self.time = 180
+        self.score = 0
         
         self.rect = pygame.Rect (500,300, 30,30)
         pygame.font.Font.__init__(self, font, font_size)
@@ -43,10 +44,11 @@ class Player (GameObject, pygame.font.Font):
         self.timeLabel = self.render("Tempo:" + str(self.time), 1, (0,0,0))
         self.cashLabel = self.render("Dinheiro:" + str(self.cash), 1, (0,0,0))
         self.c_cardLabel = self.render("Cartoes:" + str(self.c_card),1,(0,0,0))
+        self.scoreLabel = self.render("Media Pontos:"+ str(self.score),1,(0,0,0))
         
     def moveUp(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
-        self.image = pygame.image.load('../media/bob_cima.png')
+        self.image = pygame.image.load('../media/sprites/bob_cima.png')
         self.rect.top -= self.acceleration
         for wall in block_hit_list:
             if self.rect.top - 10 < wall.rect.bottom:          
@@ -58,7 +60,7 @@ class Player (GameObject, pygame.font.Font):
     def moveDown(self): 
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
         
-        self.image = pygame.image.load('../media/bob_baixo.png')
+        self.image = pygame.image.load('../media/sprites/bob_baixo.png')
         self.rect.bottom += self.acceleration
         #print len(block_hit_list)
         for wall in block_hit_list:
@@ -69,7 +71,7 @@ class Player (GameObject, pygame.font.Font):
         
     def moveLeft(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
-        self.image = pygame.image.load('../media/bob_esquerda.png')
+        self.image = pygame.image.load('../media/sprites/bob_esquerda.png')
         self.rect.left -= self.acceleration
         for wall in block_hit_list:
             if self.rect.left - 10 < wall.rect.right:            
@@ -79,7 +81,7 @@ class Player (GameObject, pygame.font.Font):
         
     def moveRight(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
-        self.image = pygame.image.load('../media/bob_direita.png')
+        self.image = pygame.image.load('../media/sprites/bob_direita.png')
         self.rect.right += self.acceleration
         for wall in block_hit_list:
             if self.rect.right + 10> wall.rect.left:          
@@ -93,14 +95,26 @@ class Player (GameObject, pygame.font.Font):
         self.cashLabel = self.render("Dinheiro:" + str(self.cash), 1, (0,0,0))
         self.c_cardLabel = self.render("Cartoes:" + str(self.c_card), 1, (0,0,0))
         
+        score_color = (0,0,0)
+        if self.score >= 7:
+            score_color = (0,200,0)
+        if self.score < 7:
+            score_color = (150,180,0)
+        if self.score < 5:
+            score_color = (180,150,0)
+        if self.score < 3:
+            score_color = (200,0,0) 
+     
+        self.scoreLabel = self.render("Media Pontos:"+ str(self.score),1,score_color)
+        
 
 class Wall (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
         GameObject.__init__(self,image,pos_x,pos_y,width,height,obj_type)
         if (obj_type == 8):
-            self.image = pygame.image.load('../media/gondula-x.png')
+            self.image = pygame.image.load('../media/sprites/gondula-x.png')
         elif (obj_type == 9):
-            self.image = pygame.image.load('../media/gondula-y.png')
+            self.image = pygame.image.load('../media/sprites/gondula-y.png')
         
         #obstacles.append(self)
         #self.image = pygame.Surface([width,height])
@@ -119,7 +133,7 @@ class FastFood (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
         GameObject.__init__(self,image,pos_x,pos_y, width, height, obj_type)
         
-        self.image = pygame.image.load('../media/steve.png')
+        self.image = pygame.image.load('../media/sprites/steve.png')
         self.rect = pygame.Rect (pos_x, pos_y, 32,40)
         self.movingPositive = True
         #self.image = pygame.image.load('../media/bob_cima.png')
@@ -128,5 +142,10 @@ class ATM(GameObject):
     def __init__(self,image,pos_x,pos_y,width,height,obj_type):
         GameObject.__init__(self,image,pos_x,pos_y,width,height,2)
 
-        self.image = pygame.image.load('../media/imagens/atm.png')
-        self.rect = pygame.Rect(pos_x, pos_y, 40, 64)
+        self.image = pygame.image.load('../media/sprites/atm.png')
+        self.rect = pygame.Rect(pos_x, pos_y, 13, 35)
+        
+class Food():
+	def _init_(self,value,food_type):
+		self.value = value
+		self.food_type = food_type

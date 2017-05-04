@@ -8,15 +8,15 @@ cards_list = []
 monster_list = []
 
 pygame.mixer.init(44100, -16, 2, 2048)
-go_sound = pygame.mixer.Sound("../media/go_sound.wav")
-go_sound.set_volume(0.3)
+go_sound = pygame.mixer.Sound("../media/sounds/dying_sound.wav")
+go_sound.set_volume(0.0)
 
 gameRunning = True
 
 class BackGround():
     def __init__(self,screen):
         self.screen = screen
-        self.image = pygame.image.load('../media/background.png')
+        self.image = pygame.image.load('../media/sprites/background.png')
 
 class GameEnd(pygame.font.Font):
     def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=40):
@@ -70,15 +70,17 @@ class Game ():
         self.screen = screen
         self.width = screen.get_rect().width
         self.height = screen.get_rect().height
-        self.image = pygame.image.load('../media/background.png')
+        self.image = pygame.image.load('../media/sprites/background.png')
         self.bg_color = (255,255,255)
         self.image
         self.player = objects.Player("image", 300 , 500, 50 , 50, 0)
      
     
     def run(self):
-        main_music = pygame.mixer.music.load("../media/megalovania.mp3")
+        main_music = pygame.mixer.music.load("../media/sounds/megalovania.mp3")
         pygame.mixer.music.play()
+        
+        pygame.mixer.music.set_volume(0.0)
         
         bob = self.player
         
@@ -135,6 +137,12 @@ class Game ():
         all_sprite_list.add(wall)
         obstacles.append(wall)
         
+        ## ATM 
+        atm_list = pygame.sprite.Group()
+        atm = objects.ATM("",600, 40, 13, 35, 1)
+        atm_list.add(atm)
+        all_sprite_list.add(atm)
+        
         
         ## Monsters
         monster_list = pygame.sprite.Group()
@@ -166,7 +174,7 @@ class Game ():
         
         bob.updateValues()
         #pygame.draw.rect(self.screen, (255,0,0) ,((bob.position),(bob.collisionWidth, bob.collisionHeight)),0)
-        pygame.draw.rect(self.screen, (255,0,0) ,bob.rect,0)
+        
         for wall in obstacles:
             pygame.draw.rect(self.screen, (0,0,0), wall.rect, 0)
         
@@ -196,6 +204,12 @@ class Game ():
             
             cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
             monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
+            atm_hit_list = pygame.sprite.spritecollide(bob,atm_list,False)    
+          		          
+            for atm in atm_hit_list:
+                if(event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and bob.c_card > 0):
+                    bob.c_card -= 1
+                    bob.cash += 15
             
         
             for monster in monster_hit_list:
@@ -216,6 +230,7 @@ class Game ():
             for event in pygame.event.get():
                 if (event.type == time_decrement):
                     bob.time -= 1
+                    #bob.score += 1
                  
                 ## Credit Card Generator
                 if (event.type == card_generator and len(cards_list) < 5):
@@ -281,9 +296,6 @@ class Game ():
                         bob.acceleration = 5    
                         bob.direction = "right"
                         
-                    elif (event.key == pygame.K_RETURN and bob.c_card > 0):
-                        bob.c_card -= 1
-                        bob.cash += 15
                         
                 
                 if (event.type == pygame.KEYUP):
@@ -314,27 +326,28 @@ class Game ():
             all_sprite_list.update()
             all_sprite_list.draw(self.screen)
             
-           
-            
             
             self.screen.blit (bob.timeLabel, (450,0))
+            
             # Player Interface Draw
             cash_x = 0
-            cash_y = 0
+            cash_y = 20
             
            
             self.screen.blit (bob.cashLabel, (cash_x,cash_y))
             
-            cCard_x = self.width - bob.c_cardLabel.get_rect().width - 50
+            cCard_x = 0
             cCard_y = 0
             
             self.screen.blit (bob.c_cardLabel,(cCard_x,cCard_y))
+            
+            self.screen.blit(bob.scoreLabel,(self.width - bob.scoreLabel.get_rect().width - 50, 0))
             
             ##Display
             pygame.display.flip()
         pygame.event.set_allowed(pygame.KEYDOWN)
         pygame.mixer.music.fadeout(1000)
-        pygame.mixer.music.load("../media/crimson.mp3")
+        pygame.mixer.music.load("../media/sounds/crimson.mp3")
         pygame.mixer.music.play()
         
         ge = GameEnd(self.screen)
