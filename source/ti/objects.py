@@ -34,7 +34,6 @@ class Player (GameObject, pygame.font.Font):
         self.cash = 0
         self.c_card = 0
         self.time = 180
-        self.score = 0
         
         self.rect = pygame.Rect (500,300, 30,30)
         pygame.font.Font.__init__(self, font, font_size)
@@ -43,8 +42,30 @@ class Player (GameObject, pygame.font.Font):
         
         self.timeLabel = self.render("Tempo:" + str(self.time), 1, (0,0,0))
         self.cashLabel = self.render("Dinheiro:" + str(self.cash), 1, (0,0,0))
-        self.c_cardLabel = self.render("Cartoes:" + str(self.c_card),1,(0,0,0))
-        self.scoreLabel = self.render("Media Pontos:"+ str(self.score),1,(0,0,0))
+        self.c_cardLabel = self.render("Cartoes:" + str(self.c_card), 1,(0,0,0))
+        self.scoreLabel = self.render("Media Pontos:"+ str(self.score), 1,(0,0,0))
+        
+        self.doce=0
+        self.proteina=0
+        self.vegetais=0
+        self.carboidrato=0
+        self.score=0
+        
+    def updateScore(self):
+        foodSum = (self.doce + self.proteina + self.vegetais + self.carboidrato)
+        self.score = ((self.doce*1)+(self.proteina*2)+(self.vegetais*3)+(self.carboidrato*4))/foodSum
+        
+    def funcao1(self,food):
+        if food.type == 'doce':
+            self.doce += food.value
+        elif food.type == 'proteina':
+            self.proteina += food.value
+        elif food.type == 'vegetais':
+            self.vegetais += food.value
+        elif food.type == 'carboidrato':
+            self.carboidrato += food.value
+            
+        self.updateScore()
         
     def moveUp(self):
         block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
