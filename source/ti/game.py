@@ -8,8 +8,8 @@ cards_list = []
 monster_list = []
 
 pygame.mixer.init(44100, -16, 2, 2048)
-go_sound = pygame.mixer.Sound("../media/sounds/dying_sound.wav")
-go_sound.set_volume(0.0)
+go_sound = pygame.mixer.Sound("../media/sounds/go_sound.wav")
+go_sound.set_volume(0.8)
 
 gameRunning = True
 
@@ -89,6 +89,9 @@ class Game ():
 
         # Make the walls. (x_pos, y_pos, width, height)
         wall_list = pygame.sprite.Group()
+        
+        # List of Foods
+        food_list = pygame.sprite.Group()
 
         wall = objects.Wall("", 0, 40, 10, 590, 1)
         wall_list.add(wall)
@@ -190,6 +193,10 @@ class Game ():
         T3 = 100 # 0,1 second
         pygame.time.set_timer(monster_move, T3)
         
+        food_time = pygame.USEREVENT+4
+        T4 = 10000 # 20 seconds
+        pygame.time.set_timer(food_time, T4)
+        
         cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
         
         bground = BackGround(self.screen)
@@ -204,7 +211,8 @@ class Game ():
             
             cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
             monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
-            atm_hit_list = pygame.sprite.spritecollide(bob,atm_list,False)    
+            atm_hit_list = pygame.sprite.spritecollide(bob,atm_list,False)
+            food_hit_list = pygame.sprite.spritecollide(bob,food_list,False)
           		          
             for atm in atm_hit_list:
                 if(event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and bob.c_card > 0):
@@ -215,7 +223,7 @@ class Game ():
             for monster in monster_hit_list:
                 pygame.mixer.music.fadeout(1000)
                 pygame.mixer.Sound.play(go_sound)
-                pygame.time.delay(1500)
+                pygame.time.delay(3500)
 
                 gameRunning = False
                 
@@ -225,6 +233,11 @@ class Game ():
                 cards_list.remove(card)
                 all_sprite_list.remove(card)
                 
+            for food in food_hit_list:
+                if (event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and bob.cash >= food.value):
+                    bob.buyFood(food)
+                    food_list.empty()
+                
             #####  FRAME EVENTS      
             ## Time Decrementer    
             for event in pygame.event.get():
@@ -232,10 +245,25 @@ class Game ():
                     bob.time -= 1
                     #bob.score += 1
                  
+                
+                if (event.type == food_time):
+                    food_list.empty()
+                    newFood1 = objects.Food(5, "vegetal")
+                    food_list.add(newFood1)
+                    
+                    newFood2 = objects.Food(5, "carbohidrato")
+                    food_list.add(newFood2)
+                    
+                    newFood3 = objects.Food(5, "doce")
+                    food_list.add(newFood3)
+                    
+                    newFood4 = objects.Food(5, "proteina")
+                    food_list.add(newFood4)
+                    
                 ## Credit Card Generator
-                if (event.type == card_generator and len(cards_list) < 5):
+                if (event.type == card_generator and len(cards_list) < 2):
                     cashGenerator = random.randint(0,100)
-                    if (cashGenerator <= 10):
+                    if (cashGenerator <= 100):
                         x = random.randint(50,800)
                         y = random.randint(50,400)
                         cash = objects.Cash("",x,y,20,20,2)
@@ -325,6 +353,7 @@ class Game ():
            
             all_sprite_list.update()
             all_sprite_list.draw(self.screen)
+            food_list.draw(self.screen)
             
             
             self.screen.blit (bob.timeLabel, (450,0))

@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 from pygame.locals import*
 
 font = None
@@ -34,6 +34,11 @@ class Player (GameObject, pygame.font.Font):
         self.cash = 0
         self.c_card = 0
         self.time = 180
+        self.doce=0
+        self.proteina=0
+        self.vegetal=0
+        self.carbohidrato=0
+        self.score=0
         
         self.rect = pygame.Rect (500,300, 30,30)
         pygame.font.Font.__init__(self, font, font_size)
@@ -45,25 +50,23 @@ class Player (GameObject, pygame.font.Font):
         self.c_cardLabel = self.render("Cartoes:" + str(self.c_card), 1,(0,0,0))
         self.scoreLabel = self.render("Media Pontos:"+ str(self.score), 1,(0,0,0))
         
-        self.doce=0
-        self.proteina=0
-        self.vegetais=0
-        self.carboidrato=0
-        self.score=0
+
         
     def updateScore(self):
-        foodSum = (self.doce + self.proteina + self.vegetais + self.carboidrato)
-        self.score = ((self.doce*1)+(self.proteina*2)+(self.vegetais*3)+(self.carboidrato*4))/foodSum
+#        foodSum = (self.doce + self.proteina + self.vegetal + self.carbohidrato)
+#        self.score = ((self.doce*1)+(self.proteina*2)+(self.vegetal*3)+(self.carbohidrato*4))/foodSum
+        self.score += 1
         
-    def funcao1(self,food):
-        if food.type == 'doce':
-            self.doce += food.value
-        elif food.type == 'proteina':
-            self.proteina += food.value
-        elif food.type == 'vegetais':
-            self.vegetais += food.value
-        elif food.type == 'carboidrato':
-            self.carboidrato += food.value
+    def buyFood(self,food):
+        self.cash -= food.value
+        if food.food_type == 'doce':
+            self.doce += 1
+        elif food.food_type == 'proteina':
+            self.proteina += 1
+        elif food.food_type == 'vegetal':
+            self.vegetal += 1
+        elif food.food_type == 'carbohidrato':
+            self.carbohidrato += 1
             
         self.updateScore()
         
@@ -166,7 +169,53 @@ class ATM(GameObject):
         self.image = pygame.image.load('../media/sprites/atm.png')
         self.rect = pygame.Rect(pos_x, pos_y, 13, 35)
         
-class Food():
-	def _init_(self,value,food_type):
-		self.value = value
-		self.food_type = food_type
+class Food(GameObject):
+    def __init__(self,value,food_type):
+        GameObject.__init__(self,"",0,0,0,0,10)
+        
+        self.value = value
+        self.food_type = food_type
+        self.prepareSprite()
+        
+    def prepareSprite(self):
+        if (self.food_type == "vegetal"):
+            self.prepareVegetable()
+        elif (self.food_type == "proteina"):
+            self.prepareProtein()
+        elif (self.food_type == "carbohidrato"):
+            self.prepareCarbo()
+        elif (self.food_type == "doce"):
+            self.prepareCandy()
+
+    
+    def prepareVegetable (self):
+        basePath = '../media/sprites/frutasEvegetais/'
+        randomImg = random.randint(0,5)
+        if (randomImg == 0):
+            self.image = pygame.image.load(basePath + 'banana.png')
+        elif (randomImg == 1):
+            self.image = pygame.image.load(basePath + 'brocolis.png')
+        elif (randomImg == 2):
+            self.image = pygame.image.load(basePath + 'cenoura.png')
+        elif (randomImg == 3):
+            self.image = pygame.image.load(basePath + 'ervilha.png')
+        elif (randomImg == 4):
+            self.image = pygame.image.load(basePath + 'maca.png')
+        elif (randomImg == 5):
+            self.image = pygame.image.load(basePath + 'tomate.png')
+        
+        self.rect = pygame.Rect (170, 160, 70,80)
+    
+    def prepareProtein(self):
+        #INSERIR CODIGO AQUI
+        self.rect = pygame.Rect (670, 160, 70,80)
+        
+    def prepareCarbo(self):
+        #INSERIR CODIGO AQUI
+
+        self.rect = pygame.Rect (670, 360, 70,80)
+    
+    def prepareCandy(self):
+        #INSERIR CODIGO AQUI
+
+        self.rect = pygame.Rect (170, 360, 70,80)
