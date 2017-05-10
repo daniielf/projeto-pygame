@@ -156,9 +156,8 @@ class Wall (GameObject):
 class Cash (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
         GameObject.__init__(self,image,pos_x ,pos_y , width, height, 2)
-        
-        self.image.fill((0,255,0))
-        #cards_list.append(self)
+        self.image = pygame.image.load('../media/sprites/c_card.png')
+        self.rect = pygame.Rect(pos_x, pos_y, 60, 60)
     
 
 class FastFood (GameObject):
@@ -175,7 +174,7 @@ class ATM(GameObject):
         GameObject.__init__(self,image,pos_x,pos_y,width,height,2)
 
         self.image = pygame.image.load('../media/sprites/atm.png')
-        self.rect = pygame.Rect(pos_x, pos_y, 13, 35)
+        self.rect = pygame.Rect(pos_x, pos_y, 37, 60)
         
 class Food(GameObject):
     def __init__(self,value,food_type):
@@ -215,12 +214,22 @@ class Food(GameObject):
         self.rect = pygame.Rect (170, 160, 70,80)
     
     def prepareProtein(self):
-        #INSERIR CODIGO AQUI
-        self.rect = pygame.Rect (670, 160, 70,80)
+        basePath = '../media/sprites/proteinas/'
+        randomImg = random.randint(0,3)
+        if (randomImg == 0):
+            self.image = pygame.image.load(basePath + 'egg.png')
+        elif (randomImg == 1):
+            self.image = pygame.image.load(basePath + 'espeto.png')
+        elif (randomImg == 2):
+            self.image = pygame.image.load(basePath + 'meat.png')
+        elif (randomImg == 3):
+            self.image = pygame.image.load(basePath + 'milk.png')
+        
+        self.rect = pygame.Rect (670, 150, 70,70)
         
     def prepareCarbo(self):
         basePath = '../media/sprites/carbohidratos/'
-        randomImg = random.randint(0,5)
+        randomImg = random.randint(0,3)
         if (randomImg == 0):
             self.image = pygame.image.load(basePath + 'bread.png')
         elif (randomImg == 1):
@@ -235,6 +244,15 @@ class Food(GameObject):
         self.rect = pygame.Rect (670, 360, 70,80)
     
     def prepareCandy(self):
-        #INSERIR CODIGO AQUI
-
-        self.rect = pygame.Rect (170, 360, 70,80)
+        basePath = '../media/sprites/docesEgorduras/'
+        randomImg = random.randint(0,3)
+        if (randomImg == 0):
+            self.image = pygame.image.load(basePath + 'cookie.png')
+        elif (randomImg == 1):
+            self.image = pygame.image.load(basePath + 'donut.png')
+        elif (randomImg == 2):
+            self.image = pygame.image.load(basePath + 'picole.png')
+        elif (randomImg == 3):
+            self.image = pygame.image.load(basePath + 'pizza.png')
+        
+        self.rect = pygame.Rect (170, 350, 70,70)

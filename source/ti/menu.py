@@ -6,7 +6,7 @@ pygame.init()
 windowSize = (1000,600)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
-version = "v0.8"
+version = "v0.95"
 
 
 class MenuItem(pygame.font.Font):
@@ -85,8 +85,8 @@ class MainMenu():
         pygame.display.update()
         self.reloadItems()
         running = True
-        #main_music = pygame.mixer.music.load("../media/sounds/crimson.mp3")
-        #pygame.mixer.music.play()
+        main_music = pygame.mixer.music.load("../media/sounds/crimson.wav")
+        pygame.mixer.music.play()
         
         while running:
             # Limit frame speed to 50 FPS

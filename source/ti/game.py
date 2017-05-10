@@ -1,4 +1,4 @@
-import pygame, random, objects
+import pygame, random, objects, math
 from pygame.locals import*
 
 
@@ -12,6 +12,12 @@ go_sound = pygame.mixer.Sound("../media/sounds/go_sound.wav")
 go_sound.set_volume(0.8)
 
 gameRunning = True
+
+def dist(x1, y1, x2, y2):
+    result = math.sqrt( math.pow((x1 - x2 ),2) + math.pow((y1 - y2), 2))
+    result = math.floor(result)
+    print (result)
+    return result
 
 class BackGround():
     def __init__(self,screen):
@@ -39,9 +45,9 @@ class GameEnd(pygame.font.Font):
         self.textLabel = self.textFont.render(self.text, 1, (255,255,255))
         
     def defResult(self, score):
-        if (score < 50):
+        if (score < 3):
             self.result += " ruim :("
-        elif (score <= 50 and score < 80):
+        elif (score <= 3 and score <= 7):
             self.result += " bom :)"
         else:
             self.result += " otimo :D"
@@ -77,10 +83,10 @@ class Game ():
      
     
     def run(self):
-        main_music = pygame.mixer.music.load("../media/sounds/megalovania.mp3")
+        main_music = pygame.mixer.music.load("../media/sounds/megalovania.wav")
         pygame.mixer.music.play()
         
-        pygame.mixer.music.set_volume(0.0)
+        pygame.mixer.music.set_volume(0.8)
         
         bob = self.player
         
@@ -142,7 +148,7 @@ class Game ():
         
         ## ATM 
         atm_list = pygame.sprite.Group()
-        atm = objects.ATM("",600, 40, 13, 35, 1)
+        atm = objects.ATM("",940, 45, 13, 35, 1)
         atm_list.add(atm)
         all_sprite_list.add(atm)
         
@@ -213,12 +219,18 @@ class Game ():
             monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
             atm_hit_list = pygame.sprite.spritecollide(bob,atm_list,False)
             food_hit_list = pygame.sprite.spritecollide(bob,food_list,False)
+            
+            
+            
+            
           		          
             for atm in atm_hit_list:
-                if(event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and bob.c_card > 0):
-                    bob.c_card -= 1
-                    bob.cash += 15
-            
+                if(bob.direction == "up"):
+                    bob.rect.top = atm.rect.bottom
+                elif (bob.direction == "right"):
+                    bob.rect.right = atm.rect.left
+                elif (bob.direction == "left"):
+                    bob.rect.left = atm.rect.right
         
             for monster in monster_hit_list:
                 pygame.mixer.music.fadeout(1000)
@@ -323,7 +335,11 @@ class Game ():
                     elif (event.key == pygame.K_RIGHT):
                         bob.acceleration = 5    
                         bob.direction = "right"
-                        
+                    elif (event.key == pygame.K_RETURN):
+                        if (dist(bob.rect.x,bob.rect.y,atm.rect.x, atm.rect.y) <= 65 and bob.c_card >= 1):
+                            print 'close'
+                            bob.c_card -= 1
+                            bob.cash += 15
                         
                 
                 if (event.type == pygame.KEYUP):
@@ -376,11 +392,11 @@ class Game ():
             pygame.display.flip()
         pygame.event.set_allowed(pygame.KEYDOWN)
         pygame.mixer.music.fadeout(1000)
-        pygame.mixer.music.load("../media/sounds/crimson.mp3")
+        pygame.mixer.music.load("../media/sounds/crimson.wav")
         pygame.mixer.music.play()
         
         ge = GameEnd(self.screen)
-        ge.defScore(bob.cash)
-        ge.defResult(bob.cash)
+        ge.defScore(bob.score)
+        ge.defResult(bob.score)
         ge.run()
         #pygame.display.update()
