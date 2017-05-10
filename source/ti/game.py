@@ -200,7 +200,7 @@ class Game ():
         pygame.time.set_timer(monster_move, T3)
         
         food_time = pygame.USEREVENT+4
-        T4 = 10000 # 20 seconds
+        T4 = 8000 # 8 seconds
         pygame.time.set_timer(food_time, T4)
         
         cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
@@ -275,7 +275,7 @@ class Game ():
                 ## Credit Card Generator
                 if (event.type == card_generator and len(cards_list) < 2):
                     cashGenerator = random.randint(0,100)
-                    if (cashGenerator <= 100):
+                    if (cashGenerator <= 35):
                         x = random.randint(50,800)
                         y = random.randint(50,400)
                         cash = objects.Cash("",x,y,20,20,2)
