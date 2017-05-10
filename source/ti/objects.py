@@ -53,20 +53,28 @@ class Player (GameObject, pygame.font.Font):
 
         
     def updateScore(self):
-#        foodSum = (self.doce + self.proteina + self.vegetal + self.carbohidrato)
-#        self.score = ((self.doce*1)+(self.proteina*2)+(self.vegetal*3)+(self.carbohidrato*4))/foodSum
-        self.score += 1
+        foodSum = (self.doce + self.proteina + self.vegetal + self.carbohidrato)
+        self.score = ((self.doce)+(self.proteina)+(self.vegetal)+(self.carbohidrato))/10
+        
         
     def buyFood(self,food):
         self.cash -= food.value
         if food.food_type == 'doce':
-            self.doce += 1
+            self.doce += 3
+            if (self.doce >= 10):
+                self.doce = 10
         elif food.food_type == 'proteina':
-            self.proteina += 1
+            self.proteina += 5
+            if (self.proteina >= 20):
+                self.proteina = 20
         elif food.food_type == 'vegetal':
-            self.vegetal += 1
+            self.vegetal += 6
+            if (self.vegetal >= 30):
+                self.vegetal = 30
         elif food.food_type == 'carbohidrato':
-            self.carbohidrato += 1
+            self.carbohidrato += 8
+            if (self.carbohidrato >= 40):
+                self.carbohidrato = 40
             
         self.updateScore()
         
@@ -211,7 +219,18 @@ class Food(GameObject):
         self.rect = pygame.Rect (670, 160, 70,80)
         
     def prepareCarbo(self):
-        #INSERIR CODIGO AQUI
+        basePath = '../media/sprites/carbohidratos/'
+        randomImg = random.randint(0,5)
+        if (randomImg == 0):
+            self.image = pygame.image.load(basePath + 'bread.png')
+        elif (randomImg == 1):
+            self.image = pygame.image.load(basePath + 'corn.png')
+        elif (randomImg == 2):
+            self.image = pygame.image.load(basePath + 'rice.png')
+        elif (randomImg == 3):
+            self.image = pygame.image.load(basePath + 'pasta.png')
+        
+
 
         self.rect = pygame.Rect (670, 360, 70,80)
     
