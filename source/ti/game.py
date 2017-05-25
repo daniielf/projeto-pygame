@@ -195,11 +195,11 @@ class Game ():
         monster_list.add(fFood2)
         all_sprite_list.add(fFood2)
         
-        fFood = objects.FastFood("", 100, 100, 30, 30, 3)
+        fFood = objects.FastFood("", 270, 100, 30, 30, 3)
         monster_list.add(fFood)
         all_sprite_list.add(fFood)
         
-        fFood = objects.FastFood("", 270, 450, 30, 30, 3)
+        fFood = objects.FastFood("", 220, 450, 30, 30, 3)
         monster_list.add(fFood)
         all_sprite_list.add(fFood)
         

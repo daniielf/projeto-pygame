@@ -42,7 +42,7 @@ class Player (GameObject, pygame.font.Font):
         
         self.score=0
         
-        self.rect = pygame.Rect (500,300, 30,30)
+        self.rect = pygame.Rect (550,300, 30,30)
         pygame.font.Font.__init__(self, font, font_size)
         
         self.walls = walls
@@ -212,16 +212,22 @@ class Food(GameObject):
         randomImg = random.randint(0,5)
         if (randomImg == 0):
             self.image = pygame.image.load(basePath + 'banana.png')
+            self.setPrice(2)
         elif (randomImg == 1):
             self.image = pygame.image.load(basePath + 'brocolis.png')
+            self.setPrice(4)
         elif (randomImg == 2):
             self.image = pygame.image.load(basePath + 'cenoura.png')
+            self.setPrice(3)
         elif (randomImg == 3):
             self.image = pygame.image.load(basePath + 'ervilha.png')
+            self.setPrice(5)
         elif (randomImg == 4):
             self.image = pygame.image.load(basePath + 'maca.png')
+            self.setPrice(5)
         elif (randomImg == 5):
             self.image = pygame.image.load(basePath + 'tomate.png')
+            self.setPrice(7)
         
         self.rect = pygame.Rect (170, 170, 70,90)
     
@@ -230,12 +236,16 @@ class Food(GameObject):
         randomImg = random.randint(0,3)
         if (randomImg == 0):
             self.image = pygame.image.load(basePath + 'egg.png')
+            self.setPrice(2)
         elif (randomImg == 1):
             self.image = pygame.image.load(basePath + 'espeto.png')
+            self.setPrice(7)
         elif (randomImg == 2):
             self.image = pygame.image.load(basePath + 'meat.png')
+            self.setPrice(9)
         elif (randomImg == 3):
             self.image = pygame.image.load(basePath + 'milk.png')
+            self.setPrice(3)
         
         self.rect = pygame.Rect (670, 170, 70,90)
         
@@ -244,12 +254,16 @@ class Food(GameObject):
         randomImg = random.randint(0,3)
         if (randomImg == 0):
             self.image = pygame.image.load(basePath + 'bread.png')
+            self.setPrice(7)
         elif (randomImg == 1):
             self.image = pygame.image.load(basePath + 'corn.png')
+            self.setPrice(6)
         elif (randomImg == 2):
             self.image = pygame.image.load(basePath + 'rice.png')
+            self.setPrice(5)
         elif (randomImg == 3):
             self.image = pygame.image.load(basePath + 'pasta.png')
+            self.setPrice(8)
         
 
 
@@ -260,11 +274,15 @@ class Food(GameObject):
         randomImg = random.randint(0,3)
         if (randomImg == 0):
             self.image = pygame.image.load(basePath + 'cookie.png')
+            self.setPrice(6)
         elif (randomImg == 1):
             self.image = pygame.image.load(basePath + 'donut.png')
+            self.setPrice(7)
         elif (randomImg == 2):
             self.image = pygame.image.load(basePath + 'picole.png')
+            self.setPrice(3)
         elif (randomImg == 3):
             self.image = pygame.image.load(basePath + 'pizza.png')
+            self.setPrice(10)
         
         self.rect = pygame.Rect (170, 370, 70,90)
