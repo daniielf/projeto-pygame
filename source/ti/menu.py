@@ -3,10 +3,10 @@ import pygame, sys, math, game
 pygame.init()
 
 ### Definitions
-windowSize = (1000,600)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
+windowSize = (1000,670)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
-version = "v0.95"
+version = "v1.00"
 
 
 class MenuItem(pygame.font.Font):
@@ -86,6 +86,7 @@ class MainMenu():
         self.reloadItems()
         running = True
         main_music = pygame.mixer.music.load("../media/sounds/crimson.wav")
+        pygame.mixer.music.set_volume(0.6)
         pygame.mixer.music.play()
         
         while running:

@@ -34,10 +34,12 @@ class Player (GameObject, pygame.font.Font):
         self.cash = 0
         self.c_card = 0
         self.time = 180
+        
         self.doce=0
         self.proteina=0
         self.vegetal=0
         self.carbohidrato=0
+        
         self.score=0
         
         self.rect = pygame.Rect (500,300, 30,30)
@@ -49,6 +51,11 @@ class Player (GameObject, pygame.font.Font):
         self.cashLabel = self.render("Dinheiro:" + str(self.cash), 1, (0,0,0))
         self.c_cardLabel = self.render("Cartoes:" + str(self.c_card), 1,(0,0,0))
         self.scoreLabel = self.render("Media Pontos:"+ str(self.score), 1,(0,0,0))
+        
+        self.carboLabel = self.render("Carbohidratos:", 1, (0,0,0))
+        self.vegLabel = self.render("Vegetais e Frutas:", 1, (0,0,0))
+        self.protLabel = self.render("Proteinas:", 1, (0,0,0))
+        self.doceLabel = self.render("Doces e Gorduras:" , 1, (0,0,0))
         
 
         
@@ -139,6 +146,8 @@ class Player (GameObject, pygame.font.Font):
      
         self.scoreLabel = self.render("Media Pontos:"+ str(self.score),1,score_color)
         
+    
+        
 
 class Wall (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
@@ -184,6 +193,9 @@ class Food(GameObject):
         self.food_type = food_type
         self.prepareSprite()
         
+    def setPrice(self, value):
+        self.value = value
+        
     def prepareSprite(self):
         if (self.food_type == "vegetal"):
             self.prepareVegetable()
@@ -211,7 +223,7 @@ class Food(GameObject):
         elif (randomImg == 5):
             self.image = pygame.image.load(basePath + 'tomate.png')
         
-        self.rect = pygame.Rect (170, 160, 70,80)
+        self.rect = pygame.Rect (170, 170, 70,90)
     
     def prepareProtein(self):
         basePath = '../media/sprites/proteinas/'
@@ -225,7 +237,7 @@ class Food(GameObject):
         elif (randomImg == 3):
             self.image = pygame.image.load(basePath + 'milk.png')
         
-        self.rect = pygame.Rect (670, 150, 70,70)
+        self.rect = pygame.Rect (670, 170, 70,90)
         
     def prepareCarbo(self):
         basePath = '../media/sprites/carbohidratos/'
@@ -241,7 +253,7 @@ class Food(GameObject):
         
 
 
-        self.rect = pygame.Rect (670, 360, 70,80)
+        self.rect = pygame.Rect (670, 370, 70,90)
     
     def prepareCandy(self):
         basePath = '../media/sprites/docesEgorduras/'
@@ -255,4 +267,4 @@ class Food(GameObject):
         elif (randomImg == 3):
             self.image = pygame.image.load(basePath + 'pizza.png')
         
-        self.rect = pygame.Rect (170, 350, 70,70)
+        self.rect = pygame.Rect (170, 370, 70,90)

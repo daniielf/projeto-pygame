@@ -9,14 +9,17 @@ monster_list = []
 
 pygame.mixer.init(44100, -16, 2, 2048)
 go_sound = pygame.mixer.Sound("../media/sounds/go_sound.wav")
+cash_sound = pygame.mixer.Sound("../media/sounds/cash_sound.wav")
+card_sound = pygame.mixer.Sound("../media/sounds/card_sound.wav")
+card_sound.set_volume(1.0)
 go_sound.set_volume(0.8)
+cash_sound.set_volume(0.8)
 
 gameRunning = True
 
 def dist(x1, y1, x2, y2):
     result = math.sqrt( math.pow((x1 - x2 ),2) + math.pow((y1 - y2), 2))
     result = math.floor(result)
-    print (result)
     return result
 
 class BackGround():
@@ -63,7 +66,7 @@ class GameEnd(pygame.font.Font):
             self.screen.blit (self.textLabel, (380,250))
             self.screen.blit (self.resultLabel, (380,300))
             exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
-            self.screen.blit (exitLabel, (0,580))
+            self.screen.blit (exitLabel, (0,650))
             for event in pygame.event.get():
                 if (event.type == pygame.QUIT or event.type == pygame.KEYDOWN):
                     if (event.key == pygame.K_ESCAPE):
@@ -80,13 +83,41 @@ class Game ():
         self.bg_color = (255,255,255)
         self.image
         self.player = objects.Player("image", 300 , 500, 50 , 50, 0)
+        
+    def drawBar(self,value, posX, posY):
+        progress = value * 10
+        if (progress == 100):
+            color = (0,200,0)
+        elif (progress > 70):
+            color = (150,180,0)
+        elif (progress > 50):
+            color = (165,165,0)
+        elif (progress > 30):
+            color = (180,150,0)
+        else:
+            color = (200,0,0)
+            
+        
+        pygame.draw.rect(self.screen, color, (posX, posY, progress, 20))
+            
      
+    def progressBars(self, player):
+        progressCarbo = (player.carbohidrato/4)
+        progressVege =  (player.vegetal/3)
+        progressProte = (player.proteina/2)
+        progressDoce =  (player.doce/1)
+        
+        self.drawBar(progressCarbo, 190, 610)
+        self.drawBar(progressVege, 190, 640)
+        self.drawBar(progressProte, 660, 610)
+        self.drawBar(progressDoce, 660, 640)
+        
     
     def run(self):
         main_music = pygame.mixer.music.load("../media/sounds/megalovania.wav")
         pygame.mixer.music.play()
         
-        pygame.mixer.music.set_volume(0.8)
+        pygame.mixer.music.set_volume(0.6)
         
         bob = self.player
         
@@ -99,7 +130,7 @@ class Game ():
         # List of Foods
         food_list = pygame.sprite.Group()
 
-        wall = objects.Wall("", 0, 40, 10, 590, 1)
+        wall = objects.Wall("", 0, 40, 10, 560, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
         obstacles.append(wall)
@@ -109,7 +140,7 @@ class Game ():
         all_sprite_list.add(wall)
         obstacles.append(wall)
         
-        wall = objects.Wall("", 990, 40, 10, 590, 1)
+        wall = objects.Wall("", 990, 40, 10, 560, 1)
         wall_list.add(wall)
         all_sprite_list.add(wall)
         obstacles.append(wall)
@@ -242,6 +273,7 @@ class Game ():
                 
             for card in cards_hit_list:    
                 bob.c_card += 1
+                pygame.mixer.Sound.play(card_sound)
                 cards_list.remove(card)
                 all_sprite_list.remove(card)
                 
@@ -337,7 +369,7 @@ class Game ():
                         bob.direction = "right"
                     elif (event.key == pygame.K_RETURN):
                         if (dist(bob.rect.x,bob.rect.y,atm.rect.x, atm.rect.y) <= 65 and bob.c_card >= 1):
-                            print 'close'
+                            pygame.mixer.Sound.play(cash_sound)
                             bob.c_card -= 1
                             bob.cash += 15
                         
@@ -387,6 +419,15 @@ class Game ():
             self.screen.blit (bob.c_cardLabel,(cCard_x,cCard_y))
             
             self.screen.blit(bob.scoreLabel,(self.width - bob.scoreLabel.get_rect().width - 50, 0))
+            
+            ##BARS
+            
+            self.screen.blit(bob.carboLabel, (55, 610))
+            self.screen.blit(bob.vegLabel, (30,640))
+            self.screen.blit(bob.protLabel, (565,610))
+            self.screen.blit(bob.doceLabel, (500,640))
+            
+            self.progressBars(bob)
             
             ##Display
             pygame.display.flip()
