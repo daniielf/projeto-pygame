@@ -1,7 +1,14 @@
 import pygame, random, objects, math
 from pygame.locals import*
 
+from pygaze.libscreen import Screen,Display  # Criar Display e telas para o experimento
+from pygaze import eyetracker  # Capturar o posicionamento visual do usuario e criar logs dos resultado
+from pygaze import liblog  # Criar logs de saida com os resultados do experimento
+from pygaze import libinput  # Obter interacao do usuario atraves do mouse e teclado
+from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
 
+
+disp = Display()
 clock = pygame.time.Clock()
 obstacles = []
 cards_list = []
@@ -20,7 +27,7 @@ gameRunning = True
 def dist(x1, y1, x2, y2):
     result = math.sqrt( math.pow((x1 - x2 ),2) + math.pow((y1 - y2), 2))
     result = math.floor(result)
-    return result
+    return result        
 
 class BackGround():
     def __init__(self,screen):
@@ -29,9 +36,10 @@ class BackGround():
 
 class GameEnd(pygame.font.Font):
     def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=40):
-        self.screen = screen
-        self.width = screen.get_rect().width
-        self.height = screen.get_rect().height
+        self.screen = screen.screen
+        self.canvas = screen
+        self.width = self.screen.get_rect().width
+        self.height = self.screen.get_rect().height
         self.bg_color = (0,0,0)
         pygame.font.Font.__init__(self, None, 40)
         
@@ -58,6 +66,7 @@ class GameEnd(pygame.font.Font):
         self.resultLabel = self.textFont.render(self.result, 1, (255,255,255))
             
     def run(self):
+        
         running = True
         #pygame.display.update()
         while (running):
@@ -77,8 +86,8 @@ class Game ():
     def __init__(self,screen):
         
         self.screen = screen
-        self.width = screen.get_rect().width
-        self.height = screen.get_rect().height
+        self.width = self.screen.get_rect().width
+        self.height = self.screen.get_rect().height
         self.image = pygame.image.load('../media/sprites/background.png')
         self.bg_color = (255,255,255)
         self.image
@@ -114,6 +123,18 @@ class Game ():
         
     
     def run(self):
+        #Eye tracker configure
+        eyetracker = EyeTracker(disp)
+        eyetracker.calibrate()
+        disp.fill(screen)
+        disp.show()
+        disp.mousevis = True
+        log = liblog.Logfile()
+
+        eyetracker.start_recording()
+        
+        ##END
+        
         main_music = pygame.mixer.music.load("../media/sounds/megalovania.wav")
         pygame.mixer.music.play()
         
@@ -242,6 +263,7 @@ class Game ():
         gameRunning = True
         
         while (gameRunning):
+            #self.canvas.clear()
             self.screen.fill((255,255,255))
             self.screen.blit (self.image, (0,40))
             clock.tick(60)
@@ -429,6 +451,9 @@ class Game ():
             
             self.progressBars(bob)
             
+            
+            tracker.setPosition(EYETRACKER.sample())
+            self.screen.blit(tracker, (tracker.rect.x,tracker.rect.y))
             ##Display
             pygame.display.flip()
         pygame.event.set_allowed(pygame.KEYDOWN)

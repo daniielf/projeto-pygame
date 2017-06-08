@@ -1,9 +1,15 @@
+#from psychopy import *
 import pygame, sys, math, game
-
+from pygaze.libscreen import Screen,Display
+from pygaze.eyetracker import EyeTracker
+from pygaze import liblog  # Criar logs de saida com os resultados do experimento
+from pygaze import libinput  # Obter interacao do usuario atraves do mouse e teclado
+from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
 pygame.init()
-
+pygame.mouse.set_visible(True)
+disp = Display()
 ### Definitions
-windowSize = (1000,670)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
+windowSize = (1366,768)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
 version = "v1.00"
@@ -41,9 +47,10 @@ class MenuItem(pygame.font.Font):
 class MainMenu():
     def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=30,
                     font_color=(255, 255, 255)):
-        self.screen = screen
-        self.scr_width = self.screen.get_rect().width
-        self.scr_height = self.screen.get_rect().height
+        self.canvas = screen
+        self.screen = screen.screen
+        self.scr_width = screen.screen.get_rect().width
+        self.scr_height = screen.screen.get_rect().height
         
         self.bg_color = bg_color
         self.clock = pygame.time.Clock()
@@ -63,7 +70,7 @@ class MainMenu():
         self.version = self.versionFont.render (version, 1, font_color
                                                )
         self.langButton = MenuItem(self.langLabel, 100)
-        self.langButton.set_position(0,self.screen.get_rect().height - self.langButton.height)
+        self.langButton.set_position(0,self.scr_height - self.langButton.height)
         self.langButton.index = 2
         
     def reloadItems(self):
@@ -78,11 +85,13 @@ class MainMenu():
             menu_item.set_position(pos_x, pos_y)
             self.items.append(menu_item)
 
-            
-        
- 
     def run(self):
-        pygame.display.update()
+        eyetracker = EyeTracker(disp)
+        eyetracker.calibrate()
+        disp.fill(screen)
+        disp.show()
+        disp.mousevis = True
+        
         self.reloadItems()
         running = True
         main_music = pygame.mixer.music.load("../media/sounds/crimson.wav")
@@ -90,6 +99,7 @@ class MainMenu():
         pygame.mixer.music.play()
         
         while running:
+            self.canvas.clear()
             # Limit frame speed to 50 FPS
             self.clock.tick(50)
             for event in pygame.event.get():
@@ -98,11 +108,11 @@ class MainMenu():
  
             # Redraw the background
             self.screen.fill(self.bg_color)
-        
+            #display.show()
             # Draw Menu Title
             
-            title_x = self.screen.get_rect().width/2 - self.title.get_rect().width/2
-            title_y = self.screen.get_rect().height/10
+            title_x = self.scr_width/2 - self.title.get_rect().width/2 #screen.get_rect().width/2 - self.title.get_rect().width/2
+            title_y = self.scr_height/10 #.get_rect().height/10
             
             self.screen.blit (self.title, (title_x ,title_y))
              
@@ -114,7 +124,7 @@ class MainMenu():
                     if ((1,0,0) == pygame.mouse.get_pressed()):
                         if (item.index == 0):
                             print "loading"
-                            startGame = game.Game(self.screen)
+                            startGame = game.Game(self.canvas)
                             startGame.run()
                             print ("GAME START")
                         elif (item.index == 1):
@@ -170,26 +180,48 @@ class MainMenu():
             
             ############ DISPLAY ##############
             #pygame.display.flip()
-            pygame.display.update()
+            x,y = eyetracker.sample()
+            
+            self.canvas.draw_circle(colour=(255,0,0),pos=(x,y), r=5 ,fill=True)
+            disp.fill(self)
+            disp.show()
 
-            
-            
-            
+
+        
 #### Running
 if __name__ == "__main__":
-    screen  = pygame.display.set_mode(windowSize, 0 ,32)
-    pygame.display.set_caption('Game Menu')
+    
+    screen = Screen()
     gm = MainMenu(screen)
-    pygame.display.set_caption('PyMarket')
+    ##eyetracker = EyeTracker(disp)
+    ##eyetracker.calibrate()
     gm.run()
 
+   # clock = pygame.time.Clock()
+  #  flag = True
+   # while (flag):
+   #     
+#
+#        for event in pygame.event.get():
+#            if (event.type == pygame.KEYDOWN):
+#                if (event.key == pygame.K_ESCAPE):
+#                    flag = False
+        
+#        disp.fill(screen)
+#        disp.show()
+#    while (flag):
+ #       clock.tick(60)
+  #      
+   #     x,y = eyetracker.sample()
+    #    screen.draw_circle(colour=(255,0,0),pos=(x,y), r=13 ,fill=True)
+        
+        #disp.fill(screen=screen)
+        #disp.show
+    #screen  = libscreen.Screen(disptype='pygame', dispsize=(windowSize), bgc=(200,200,200), mousevisible=True) #pygame.display.set_mode(windowSize, 0 ,32)
+    #pygame.display.set_caption('Game Menu')
+    #gm = MainMenu(screen)
+    #pygame.display.set_caption('PyMarket')
+    #gm.run()
 
-
-
-#while (running):
-#    
-#    for event in pygame.event.get():
-#        if (event.type == pygame.QUIT) or ((event.type == pygame.KEYDOWN) and (event.key == pygame.K_ESCAPE)):
-#            running = false
-            
+     
        

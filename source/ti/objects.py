@@ -286,3 +286,12 @@ class Food(GameObject):
             self.setPrice(10)
         
         self.rect = pygame.Rect (170, 370, 70,90)
+        
+class EyeTracker(GameObject):
+    def __init__(self, x, y, width, height):
+        GameObject.__init__(self,"",x,y,width,height,100)
+        self.image.fill((255,0,0))
+        
+    def setPosition(self,(x,y)):
+        self.rect.y = y
+        self.rect.x = x
