@@ -6,7 +6,6 @@ from pygaze import liblog  # Criar logs de saida com os resultados do experiment
 from pygaze import libinput  # Obter interacao do usuario atraves do mouse e teclado
 from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
 pygame.init()
-pygame.mouse.set_visible(True)
 disp = Display()
 ### Definitions
 windowSize = (1366,768)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
@@ -45,8 +44,7 @@ class MenuItem(pygame.font.Font):
         self.label = self.render(self.text, 1, self.font_color)
 
 class MainMenu():
-    def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=30,
-                    font_color=(255, 255, 255)):
+    def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=30,font_color=(255, 255, 255)):
         self.canvas = screen
         self.screen = screen.screen
         self.scr_width = screen.screen.get_rect().width
@@ -90,7 +88,6 @@ class MainMenu():
         eyetracker.calibrate()
         disp.fill(screen)
         disp.show()
-        disp.mousevis = True
         
         self.reloadItems()
         running = True
@@ -124,11 +121,13 @@ class MainMenu():
                     if ((1,0,0) == pygame.mouse.get_pressed()):
                         if (item.index == 0):
                             print "loading"
-                            startGame = game.Game(self.canvas)
+                            startGame = game.Game(self.canvas, disp)
+                            self.canvas.clear()
                             startGame.run()
                             print ("GAME START")
                         elif (item.index == 1):
                             print ("Saindo do jogo")
+                            log.close()
                             running = False
                         elif (item.index == 2):
                             if (self.lang == "pt"):
@@ -157,26 +156,6 @@ class MainMenu():
             # Draw languageButton
             
             self.screen.blit (self.langButton.label, self.langButton.position)
-#                if (self.langButton.is_mouse_over(pygame.mouse.get_pos())):
-#
-#                    self.langButton.set_font_color((255,0,0))
-#
-#                    if ((1,0,0) == pygame.mouse.get_pressed()):
-#                        if (self.lang == "pt"):
-#                            self.langButton.text = "Pt-BR"
-#                            self.labels = ["Start","Exit"]
-#                            self.lang = "en"
-#                            self.reloadItems()
-#                            pygame.mouse.set_pos(self.screen.get_rect().width/2 , self.screen.get_rect().height/2)
-#                        else:
-#                            self.langButton.text = "En-US"
-#                            self.labels = ["Iniciar","Sair"]
-#                            self.lang = "pt"
-#                            self.reloadItems()
-#                            pygame.mouse.set_pos(self.screen.get_rect().width/2 , self.screen.get_rect().height/2)
-#
-#                else:
-#                    self.langButton.set_font_color((255,255,255))
             
             ############ DISPLAY ##############
             #pygame.display.flip()
@@ -193,35 +172,8 @@ if __name__ == "__main__":
     
     screen = Screen()
     gm = MainMenu(screen)
-    ##eyetracker = EyeTracker(disp)
-    ##eyetracker.calibrate()
     gm.run()
 
-   # clock = pygame.time.Clock()
-  #  flag = True
-   # while (flag):
-   #     
-#
-#        for event in pygame.event.get():
-#            if (event.type == pygame.KEYDOWN):
-#                if (event.key == pygame.K_ESCAPE):
-#                    flag = False
-        
-#        disp.fill(screen)
-#        disp.show()
-#    while (flag):
- #       clock.tick(60)
-  #      
-   #     x,y = eyetracker.sample()
-    #    screen.draw_circle(colour=(255,0,0),pos=(x,y), r=13 ,fill=True)
-        
-        #disp.fill(screen=screen)
-        #disp.show
-    #screen  = libscreen.Screen(disptype='pygame', dispsize=(windowSize), bgc=(200,200,200), mousevisible=True) #pygame.display.set_mode(windowSize, 0 ,32)
-    #pygame.display.set_caption('Game Menu')
-    #gm = MainMenu(screen)
-    #pygame.display.set_caption('PyMarket')
-    #gm.run()
 
      
        

@@ -1,14 +1,12 @@
 import pygame, random, objects, math
 from pygame.locals import*
 
-from pygaze.libscreen import Screen,Display  # Criar Display e telas para o experimento
-from pygaze import eyetracker  # Capturar o posicionamento visual do usuario e criar logs dos resultado
+from pygaze.libscreen import Screen,Display
+from pygaze.eyetracker import EyeTracker
 from pygaze import liblog  # Criar logs de saida com os resultados do experimento
 from pygaze import libinput  # Obter interacao do usuario atraves do mouse e teclado
 from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
 
-
-disp = Display()
 clock = pygame.time.Clock()
 obstacles = []
 cards_list = []
@@ -35,9 +33,10 @@ class BackGround():
         self.image = pygame.image.load('../media/sprites/background.png')
 
 class GameEnd(pygame.font.Font):
-    def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=40):
+    def __init__(self, screen, display ,bg_color=(0,0,0), font=None, font_size=40):
         self.screen = screen.screen
         self.canvas = screen
+        self.disp = display
         self.width = self.screen.get_rect().width
         self.height = self.screen.get_rect().height
         self.bg_color = (0,0,0)
@@ -80,12 +79,16 @@ class GameEnd(pygame.font.Font):
                 if (event.type == pygame.QUIT or event.type == pygame.KEYDOWN):
                     if (event.key == pygame.K_ESCAPE):
                         running = False
-            pygame.display.flip()
+            self.disp.fill(self)
+            self.disp.show()
+            
+
         
 class Game ():
-    def __init__(self,screen):
-        
-        self.screen = screen
+    def __init__(self,screen,display):
+        self.disp = display
+        self.canvas = screen
+        self.screen = screen.screen
         self.width = self.screen.get_rect().width
         self.height = self.screen.get_rect().height
         self.image = pygame.image.load('../media/sprites/background.png')
@@ -105,7 +108,6 @@ class Game ():
             color = (180,150,0)
         else:
             color = (200,0,0)
-            
         
         pygame.draw.rect(self.screen, color, (posX, posY, progress, 20))
             
@@ -124,14 +126,17 @@ class Game ():
     
     def run(self):
         #Eye tracker configure
-        eyetracker = EyeTracker(disp)
+        eyetracker = EyeTracker(self.disp)
         eyetracker.calibrate()
-        disp.fill(screen)
-        disp.show()
-        disp.mousevis = True
+        self.disp.fill(self.canvas)
+        self.disp.show()
+        #self.disp.mousevis = True
+        
         log = liblog.Logfile()
 
         eyetracker.start_recording()
+        
+        etObject = objects.EyeTracker(0,0,20,20)
         
         ##END
         
@@ -255,6 +260,10 @@ class Game ():
         T4 = 8000 # 8 seconds
         pygame.time.set_timer(food_time, T4)
         
+        eyeTracker_time = pygame.USEREVENT+5
+        T5 = 1000 # 1 seconds
+        pygame.time.set_timer(eyeTracker_time, T5)
+        
         cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
         
         bground = BackGround(self.screen)
@@ -263,7 +272,7 @@ class Game ():
         gameRunning = True
         
         while (gameRunning):
-            #self.canvas.clear()
+            self.canvas.clear()
             self.screen.fill((255,255,255))
             self.screen.blit (self.image, (0,40))
             clock.tick(60)
@@ -273,8 +282,11 @@ class Game ():
             atm_hit_list = pygame.sprite.spritecollide(bob,atm_list,False)
             food_hit_list = pygame.sprite.spritecollide(bob,food_list,False)
             
+            etSawList = pygame.sprite.spritecollide(etObject,food_list,False)
             
             
+            for food in etSawList:
+                etObject.startStaring(food,log)
             
           		          
             for atm in atm_hit_list:
@@ -310,7 +322,8 @@ class Game ():
                 if (event.type == time_decrement):
                     bob.time -= 1
                     #bob.score += 1
-                 
+                if (event.type == eyeTracker_time):
+                    etObject.setPosition(eyetracker.sample())
                 
                 if (event.type == food_time):
                     food_list.empty()
@@ -440,7 +453,7 @@ class Game ():
             
             self.screen.blit (bob.c_cardLabel,(cCard_x,cCard_y))
             
-            self.screen.blit(bob.scoreLabel,(self.width - bob.scoreLabel.get_rect().width - 50, 0))
+            self.screen.blit(bob.scoreLabel,(1000 - bob.scoreLabel.get_rect().width - 50, 0))
             
             ##BARS
             
@@ -451,17 +464,22 @@ class Game ():
             
             self.progressBars(bob)
             
+            #x,y = eyetracker.sample()
+            #etObject.setPosition(eyetracker.sample())
             
-            tracker.setPosition(EYETRACKER.sample())
-            self.screen.blit(tracker, (tracker.rect.x,tracker.rect.y))
+            #self.canvas.draw_circle(colour=(255,0,0),pos=(x,y), r=5 ,fill=True)
+            
             ##Display
-            pygame.display.flip()
+            #pygame.display.flip()
+            self.disp.fill(self.canvas)
+            self.disp.show()
+            
         pygame.event.set_allowed(pygame.KEYDOWN)
         pygame.mixer.music.fadeout(1000)
         pygame.mixer.music.load("../media/sounds/crimson.wav")
         pygame.mixer.music.play()
         
-        ge = GameEnd(self.screen)
+        ge = GameEnd(self.canvas,self.disp)
         ge.defScore(bob.score)
         ge.defResult(bob.score)
         ge.run()

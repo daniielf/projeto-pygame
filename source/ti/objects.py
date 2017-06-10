@@ -1,6 +1,9 @@
 import pygame, random
 from pygame.locals import*
 
+from pygaze import liblog  # Criar logs de saida com os resultados do experimento
+from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
+
 font = None
 font_size = 25
 walls = []
@@ -290,8 +293,12 @@ class Food(GameObject):
 class EyeTracker(GameObject):
     def __init__(self, x, y, width, height):
         GameObject.__init__(self,"",x,y,width,height,100)
-        self.image.fill((255,0,0))
+        self.image.fill((0,0,0))
         
     def setPosition(self,(x,y)):
         self.rect.y = y
         self.rect.x = x
+        
+    def startStaring(self,Food,log):
+        log.write(["Observou", Food.food_type, libtime.get_time()])
+        
