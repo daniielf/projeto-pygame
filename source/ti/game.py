@@ -49,6 +49,8 @@ class GameEnd(pygame.font.Font):
         self.text = "Pontuacao: "  
         self.result = "Resultado: "
         
+        self.dataToLog = []
+        self.log = liblog.Logfile()
         
     def defScore(self, score):
         self.text += str(score)
@@ -63,11 +65,24 @@ class GameEnd(pygame.font.Font):
             self.result += " otimo :D"
             
         self.resultLabel = self.textFont.render(self.result, 1, (255,255,255))
+        
+    def storeData(self,array):
+        self.dataToLog = array
+        
+    def logTheData(self):
+        for data in self.dataToLog:
+            self.log.write([data])
             
     def run(self):
         
         running = True
         #pygame.display.update()
+        self.screen.fill(self.bg_color)
+        self.screen.blit (self.textLabel, (380,250))
+        self.screen.blit (self.resultLabel, (380,300))
+        exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
+        self.screen.blit (exitLabel, (0,650))
+        self.logTheData()
         while (running):
             clock.tick(60)
             self.screen.fill(self.bg_color)
@@ -131,8 +146,6 @@ class Game ():
         self.disp.fill(self.canvas)
         self.disp.show()
         #self.disp.mousevis = True
-        
-        log = liblog.Logfile()
 
         eyetracker.start_recording()
         
@@ -264,13 +277,17 @@ class Game ():
         T5 = 1000 # 1 seconds
         pygame.time.set_timer(eyeTracker_time, T5)
         
+        logRecord_time = pygame.USEREVENT+6
+        T6 = 500 # 1 seconds
+        pygame.time.set_timer(logRecord_time, T6)
+        
         cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
         
         bground = BackGround(self.screen)
         
         
         gameRunning = True
-        
+        staring = False
         while (gameRunning):
             self.canvas.clear()
             self.screen.fill((255,255,255))
@@ -284,11 +301,9 @@ class Game ():
             
             etSawList = pygame.sprite.spritecollide(etObject,food_list,False)
             
-            
-            for food in etSawList:
-                etObject.startStaring(food,log)
-            
-          		          
+            if (len(etSawList) == 0):
+                staring = False
+          
             for atm in atm_hit_list:
                 if(bob.direction == "up"):
                     bob.rect.top = atm.rect.bottom
@@ -324,6 +339,10 @@ class Game ():
                     #bob.score += 1
                 if (event.type == eyeTracker_time):
                     etObject.setPosition(eyetracker.sample())
+                    
+                if (event.type == logRecord_time):
+                    for food in etSawList:
+                        etObject.startStaring(food)
                 
                 if (event.type == food_time):
                     food_list.empty()
@@ -464,10 +483,6 @@ class Game ():
             
             self.progressBars(bob)
             
-            #x,y = eyetracker.sample()
-            #etObject.setPosition(eyetracker.sample())
-            
-            #self.canvas.draw_circle(colour=(255,0,0),pos=(x,y), r=5 ,fill=True)
             
             ##Display
             #pygame.display.flip()
@@ -480,7 +495,9 @@ class Game ():
         pygame.mixer.music.play()
         
         ge = GameEnd(self.canvas,self.disp)
+        
         ge.defScore(bob.score)
         ge.defResult(bob.score)
+        ge.storeData(etObject.log)
         ge.run()
         #pygame.display.update()

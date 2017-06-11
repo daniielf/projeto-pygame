@@ -294,11 +294,13 @@ class EyeTracker(GameObject):
     def __init__(self, x, y, width, height):
         GameObject.__init__(self,"",x,y,width,height,100)
         self.image.fill((0,0,0))
+        self.log = []
         
     def setPosition(self,(x,y)):
         self.rect.y = y
         self.rect.x = x
         
-    def startStaring(self,Food,log):
-        log.write(["Observou", Food.food_type, libtime.get_time()])
+    def startStaring(self,Food):
+        self.log.append("Observou " + Food.food_type + " " + str(libtime.get_time()))   
+        #log.write(["Observou", Food.food_type, libtime.get_time()])
         
