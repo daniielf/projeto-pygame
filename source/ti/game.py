@@ -50,7 +50,10 @@ class GameEnd(pygame.font.Font):
         self.result = "Resultado: "
         
         self.dataToLog = []
-        self.log = liblog.Logfile()
+        self.dataToLog2 = []
+        self.log = liblog.Logfile(filename="log")
+        self.log2 = liblog.Logfile(filename="log2")
+        
         
     def defScore(self, score):
         self.text += str(score)
@@ -69,9 +72,36 @@ class GameEnd(pygame.font.Font):
     def storeData(self,array):
         self.dataToLog = array
         
+    def storeData2(self,array):
+        self.dataToLog2 = array
+        
+        
     def logTheData(self):
+        initialTime = 0
+        endTime = 0
+        analyzing = ""
         for data in self.dataToLog:
-            self.log.write([data])
+            if (initialTime == 0):
+                analyzing = data.text
+                initialTime = data.time
+                
+            endTime = data.time
+            if (data.text != analyzing):
+                finalTime = (endTime - initialTime)/1000
+                line = analyzing + str(finalTime)
+                self.log.write([line])
+                ##Reset
+                initialTime = 0
+                endTime = 0
+                analyzing = data.text
+        finalTime = (endTime - initialTime)/1000
+        line = analyzing + str(finalTime)
+        self.log.write([line])
+        
+        ##Log 2
+        
+        for data in self.dataToLog2:
+            self.log2.write([data])
             
     def run(self):
         
@@ -96,7 +126,7 @@ class GameEnd(pygame.font.Font):
                         running = False
             self.disp.fill(self)
             self.disp.show()
-            
+        self.log.close()
 
         
 class Game ():
@@ -137,6 +167,7 @@ class Game ():
         self.drawBar(progressVege, 190, 640)
         self.drawBar(progressProte, 660, 610)
         self.drawBar(progressDoce, 660, 640)
+    
         
     
     def run(self):
@@ -145,7 +176,6 @@ class Game ():
         eyetracker.calibrate()
         self.disp.fill(self.canvas)
         self.disp.show()
-        #self.disp.mousevis = True
 
         eyetracker.start_recording()
         
@@ -485,7 +515,7 @@ class Game ():
             
             
             ##Display
-            #pygame.display.flip()
+            #PREENCHIMENTO DO DISPLAY PARA CADA TICK DO JOGO
             self.disp.fill(self.canvas)
             self.disp.show()
             
@@ -499,5 +529,6 @@ class Game ():
         ge.defScore(bob.score)
         ge.defResult(bob.score)
         ge.storeData(etObject.log)
+        ge.storeData2(etObject.log2)
         ge.run()
         #pygame.display.update()

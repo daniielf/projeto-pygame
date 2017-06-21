@@ -67,6 +67,7 @@ class Player (GameObject, pygame.font.Font):
         self.score = ((self.doce)+(self.proteina)+(self.vegetal)+(self.carbohidrato))/10
         
         
+		### TODO: INTEGRACAO (CHECAGEM DE ALIMENTO)
     def buyFood(self,food):
         self.cash -= food.value
         if food.food_type == 'doce':
@@ -76,6 +77,7 @@ class Player (GameObject, pygame.font.Font):
         elif food.food_type == 'proteina':
             self.proteina += 5
             if (self.proteina >= 20):
+								#
                 self.proteina = 20
         elif food.food_type == 'vegetal':
             self.vegetal += 6
@@ -295,12 +297,62 @@ class EyeTracker(GameObject):
         GameObject.__init__(self,"",x,y,width,height,100)
         self.image.fill((0,0,0))
         self.log = []
+        self.log2 = []
         
     def setPosition(self,(x,y)):
         self.rect.y = y
         self.rect.x = x
+        self.getQuadrant((x,y))
         
     def startStaring(self,Food):
-        self.log.append("Observou " + Food.food_type + " " + str(libtime.get_time()))   
-        #log.write(["Observou", Food.food_type, libtime.get_time()])
+        data = LogData("Observou " + Food.food_type + " ", (libtime.get_time()))
+        self.log.append(data)
+    
+    def getQuadrant(self,(x,y)):
+        quadrant = ""
+        ## QUADRANTE A
+        if ((0 <= x <= 250 ) and (0 <= y <= 150)):
+            quadrant = "A1"
+        elif ((250 <= x <= 500 ) and (0 <= y <= 150)):
+            quadrant = "A2"
+        elif ((0 <= x <= 250 ) and (150 <= y <= 300)):
+            quadrant = "A3"
+        elif ((250 <= x <= 500 ) and (150 <= y <= 300)):
+            quadrant = "A4"
+        ## QUADRANTE B
+        elif ((500 <= x <= 750 ) and (0 <= y <= 150)):
+            quadrant = "B1"
+        elif ((750 <= x <= 1000 ) and (0 <= y <= 150)):
+            quadrant = "B2"
+        elif ((500 <= x <= 750 ) and (150 <= y <= 300)):
+            quadrant = "B3"
+        elif ((750 <= x <= 1000 ) and (150 <= y <= 300)):
+            quadrant = "B4"
+        ## QUADRANTE C
+        elif ((0 <= x <= 250 ) and (300 <= y <= 450)):
+            quadrant = "C1"
+        elif ((250 <= x <= 500 ) and (300 <= y <= 450)):
+            quadrant = "C2"
+        elif ((0 <= x <= 250 ) and (450 <= y <= 600)):
+            quadrant = "C3"
+        elif ((250 <= x <= 500 ) and (450 <= y <= 600)):
+            quadrant = "C4"
+        ## QUADRANTE D
+        elif ((500 <= x <= 750 ) and (300 <= y <= 450)):
+            quadrant = "D1"
+        elif ((750 <= x <= 1000 ) and (300 <= y <= 450)):
+            quadrant = "D2"
+        elif ((500 <= x <= 750 ) and (450 <= y <= 600)):
+            quadrant = "D3"
+        elif ((750 <= x <= 1000 ) and (450 <= y <= 600)):
+            quadrant = "D4"
+            
+        line = "Observou " + quadrant
+        self.log2.append(line)
+        
+class LogData():
+    def __init__(self,text,time):
+        self.text = text
+        self.time = time
+        
         

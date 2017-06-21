@@ -6,6 +6,8 @@ from pygaze import liblog  # Criar logs de saida com os resultados do experiment
 from pygaze import libinput  # Obter interacao do usuario atraves do mouse e teclado
 from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
 pygame.init()
+
+
 disp = Display()
 ### Definitions
 windowSize = (1366,768)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
@@ -86,7 +88,10 @@ class MainMenu():
     def run(self):
         eyetracker = EyeTracker(disp)
         eyetracker.calibrate()
+								
+				# PREENCHIMENTO DO DISPLAY
         disp.fill(screen)
+				# MOSTRAR DISPLAY
         disp.show()
         
         self.reloadItems()
@@ -96,17 +101,17 @@ class MainMenu():
         pygame.mixer.music.play()
         
         while running:
+						# LIMPAR TELA
             self.canvas.clear()
-            # Limit frame speed to 50 FPS
+												
+
             self.clock.tick(50)
             for event in pygame.event.get():
                 if (event.type == pygame.QUIT) or ((event.type == pygame.KEYDOWN) and (event.key == pygame.K_ESCAPE)):
                     running = False
- 
-            # Redraw the background
+
+									
             self.screen.fill(self.bg_color)
-            #display.show()
-            # Draw Menu Title
             
             title_x = self.scr_width/2 - self.title.get_rect().width/2 #screen.get_rect().width/2 - self.title.get_rect().width/2
             title_y = self.scr_height/10 #.get_rect().height/10
@@ -127,7 +132,6 @@ class MainMenu():
                             print ("GAME START")
                         elif (item.index == 1):
                             print ("Saindo do jogo")
-                            log.close()
                             running = False
                         elif (item.index == 2):
                             if (self.lang == "pt"):
@@ -170,6 +174,7 @@ class MainMenu():
 #### Running
 if __name__ == "__main__":
     
+    ## CRIAcaoO DE TELA
     screen = Screen()
     gm = MainMenu(screen)
     gm.run()
