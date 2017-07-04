@@ -100,8 +100,29 @@ class GameEnd(pygame.font.Font):
         
         ##Log 2
         
+        initialTime = 0
+        endTime = 0
+        analyzing = ""
         for data in self.dataToLog2:
-            self.log2.write([data])
+            if (initialTime == 0):
+                analyzing = data.text
+                initialTime = data.time
+                
+            endTime = data.time
+            if (data.text != analyzing):
+                finalTime = (endTime - initialTime)/1000
+                line = analyzing + str(finalTime)
+                self.log2.write([line])
+                ##Reset
+                initialTime = 0
+                endTime = 0
+                analyzing = data.text
+        finalTime = (endTime - initialTime)/1000
+        line = analyzing + str(finalTime)
+        self.log2.write([line])
+        
+        #for data in self.dataToLog2:
+        #    self.log2.write([data])
             
     def run(self):
         

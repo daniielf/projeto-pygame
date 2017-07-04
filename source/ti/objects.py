@@ -309,6 +309,7 @@ class EyeTracker(GameObject):
         self.log.append(data)
     
     def getQuadrant(self,(x,y)):
+        time = libtime.get_time()
         quadrant = ""
         ## QUADRANTE A
         if ((0 <= x <= 250 ) and (0 <= y <= 150)):
@@ -346,9 +347,12 @@ class EyeTracker(GameObject):
             quadrant = "D3"
         elif ((750 <= x <= 1000 ) and (450 <= y <= 600)):
             quadrant = "D4"
+        else:
+            quadrant = "FORA"
             
-        line = "Observou " + quadrant
-        self.log2.append(line)
+        data = LogData("Observou " + quadrant + " ", time)
+       # line = "Observou " + quadrant + " ", time
+        self.log2.append(data)
         
 class LogData():
     def __init__(self,text,time):

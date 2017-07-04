@@ -1,1 +1,6 @@
-0
+Observou doce 43.9797063574
+Observou carbohidrato 9.499047985
+Observou doce 7.50263518079
+Observou proteina 12.500712677
+Observou vegetal 4.49227344794
+Observou carbohidrato 1.01972300838
