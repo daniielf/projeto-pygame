@@ -1,0 +1,1 @@
+from .avalgame import Avalgame

@@ -10,7 +10,7 @@ DISPSIZE = (1366, 768)
 SCREENSIZE = (36.3, 23.8)
 BGC = (255, 255, 255)
 FGC = (0, 0, 0)
-FULLSCREEN = True
+FULLSCREEN = False
 
 
 # Sound
