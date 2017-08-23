@@ -1,4 +1,4 @@
-import pygame, random, objects, math
+import pygame, random, objects, math, pygaze
 from pygame.locals import*
 
 from pygaze.libscreen import Screen,Display
@@ -54,8 +54,12 @@ class GameEnd(pygame.font.Font):
 
         self.dataToLog = []
         self.dataToLog2 = []
+        self.dataToLogBlink = []
+        self.DataToLogFixation = []
         self.log = liblog.Logfile(filename="log")
         self.log2 = liblog.Logfile(filename="log2")
+        self.log_blink = liblog.Logfile(filename="log_blink")
+        self.log_fixation = liblog.Logfile(filename="log_fixation")
 
     def defScore(self, score):
         self.text += str(score)
@@ -71,11 +75,18 @@ class GameEnd(pygame.font.Font):
 
         self.resultLabel = self.textFont.render(self.result, 1, (255,255,255))
 
-    def storeData(self,array):
+    def storeData(self, array):
         self.dataToLog = array
 
-    def storeData2(self,array):
+    def storeData2(self, array):
         self.dataToLog2 = array
+
+    def storeDataBlink(self, array):
+        self.dataToLogBlink = array
+
+    def storeDataFixation(self, array):
+        self.DataToLogFixation = array
+
 
     def logTheData(self):
         initialTime = 0
@@ -109,7 +120,7 @@ class GameEnd(pygame.font.Font):
                 analyzing = data.text
                 initialTime = data.time
 
-            endTime = data.time
+            endTime2 = data.time
             if (data.text != analyzing):
                 finalTime = (endTime - initialTime)/1000
                 line = analyzing + str(finalTime)
@@ -121,6 +132,53 @@ class GameEnd(pygame.font.Font):
         finalTime = (endTime - initialTime)/1000
         line = analyzing + str(finalTime)
         self.log2.write([line])
+
+        #log_blink
+
+        initialTime = 0
+        endTime = 0
+        analyzing = ""
+        for data in self.dataToLogBlink:
+            if (initialTime == 0):
+                analyzing = data.text
+                initialTime = data.time
+
+            endTime = data.time
+            if (data.text != analyzing):
+                finalTime = (endTime - initialTime) / 1000
+                line = analyzing + str(finalTime)
+                self.log_blink.write([line])
+                ##Reset
+                initialTime = 0
+                endTime = 0
+                analyzing = data.text
+        finalTime = (endTime - initialTime) / 1000
+        line = analyzing + str(finalTime)
+        self.log_blink.write([line])
+
+        #log Fixation
+
+        initialTime = 0
+        endTime = 0
+        analyzing = ""
+        for data in self.DataToLogFixation:
+            if (initialTime == 0):
+                analyzing = data.text
+                initialTime = data.time
+
+            endTime = data.time
+            if (data.text != analyzing):
+                finalTime = (endTime - initialTime) / 1000
+                line = analyzing + str(finalTime)
+                self.log_fixation.write([line])
+                ##Reset
+                initialTime = 0
+                endTime = 0
+                analyzing = data.text
+        finalTime = (endTime - initialTime) / 1000
+        line = analyzing + str(finalTime)
+        self.log_fixation.write([line])
+
 
     def run(self):
 
@@ -336,17 +394,29 @@ class Game ():
         pygame.time.set_timer(eyeTracker_time, T5)
 
         logRecord_time = pygame.USEREVENT+6
-        T6 = 500 # 1 seconds
+        T6 = 1000 # 1 seconds
         pygame.time.set_timer(logRecord_time, T6)
+
+        #gravar tempo que comeca uma fixacao
+        logRecord_fixation = pygame.USEREVENT+7
+        T7 = 1000 #2seconds
+        pygame.time.set_timer(logRecord_fixation, T7)
+
+
+
 
         cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
 
         bground = BackGround(self.screen)
 
-
+        cont_blinks = 0
         gameRunning = True
         staring = False
+
+        #comeco do game
         while (gameRunning):
+
+
             self.canvas.clear()
             self.screen.fill((255,255,255))
             self.screen.blit (self.image, (0,40))
@@ -396,11 +466,23 @@ class Game ():
                     bob.time -= 1
                     #bob.score += 1
                 if (event.type == eyeTracker_time):
+                    #verificar se houve fixacao
                     etObject.setPosition(eyetracker.sample())
+
+                if(event.type == logRecord_fixation):
+                    #verificar fixacao
+                    if eyetracker.wait_for_fixation_start() == True:
+                        start_time_fix, (pos_x, pos_y) = eyetracker.wait_for_fixation_start()
+                        etObject.startFixation(start_time_fix, (pos_x, pos_y))
 
                 if (event.type == logRecord_time):
                     for food in etSawList:
                         etObject.startStaring(food)
+
+                if (event.type == MOUSEBUTTONDOWN):
+                    cont_blinks += 1
+                    etObject.startBlinking(str(cont_blinks))
+
 
                 if (event.type == food_time):
                     food_list.empty()
@@ -479,6 +561,9 @@ class Game ():
                     elif (event.key == pygame.K_RIGHT):
                         bob.acceleration = 5
                         bob.direction = "right"
+
+
+
                     elif (event.key == pygame.K_RETURN):
                         if (dist(bob.rect.x,bob.rect.y,atm.rect.x, atm.rect.y) <= 65 and bob.c_card >= 1):
                             pygame.mixer.Sound.play(cash_sound)
@@ -501,6 +586,8 @@ class Game ():
                 bob.moveLeft()
             elif (bob.direction == "right"):
                 bob.moveRight()
+
+
 
 
             if bob.time <= 0:
@@ -560,5 +647,8 @@ class Game ():
         ge.defScore(bob.score)
         ge.defResult(bob.score)
         ge.storeData(etObject.log)
+        ge.storeData2(etObject.log2)
+        ge.storeDataBlink(etObject.log_blink)
+        ge.storeDataFixation(etObject.log_fixation)
         ge.run()
         #pygame.display.update()

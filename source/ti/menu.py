@@ -1,5 +1,5 @@
 #from psychopy import *
-import pygame, sys, math, game, gameSettings
+import pygame, sys, math, game, gameSettings, objects
 from pygaze.libscreen import Screen,Display
 from pygaze.eyetracker import EyeTracker
 from pygaze import liblog  # Criar logs de saida com os resultados do experimento
@@ -154,7 +154,7 @@ class MainMenu():
                             print ("settings START")
                         elif (item.index == 2):
                             print ("Saindo do jogo")
-                            log.close()
+                            #log.close()
                             running = False
                         elif (item.index == 3):
                             if (self.lang == "pt"):

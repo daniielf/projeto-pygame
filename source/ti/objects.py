@@ -167,14 +167,14 @@ class Wall (GameObject):
 
 class Cash (GameObject):
     def __init__(self,image,pos_x,pos_y,width,height, obj_type):
-        GameObject.__init__(self,image,pos_x ,pos_y , width, height, 2)
+        GameObject.__init__(self, image,pos_x, pos_y, width, height, 2)
         self.image = pygame.image.load('../media/sprites/c_card.png')
         self.rect = pygame.Rect(pos_x, pos_y, 60, 60)
 
 
 class FastFood (GameObject):
-    def __init__(self,image,pos_x,pos_y,width,height, obj_type):
-        GameObject.__init__(self,image,pos_x,pos_y, width, height, obj_type)
+    def __init__(self, image, pos_x, pos_y, width, height, obj_type):
+        GameObject.__init__(self, image,pos_x, pos_y, width, height, obj_type)
 
         self.image = pygame.image.load('../media/sprites/steve.png')
         self.rect = pygame.Rect (pos_x, pos_y, 32,40)
@@ -182,15 +182,15 @@ class FastFood (GameObject):
         #self.image = pygame.image.load('../media/bob_cima.png')
 
 class ATM(GameObject):
-    def __init__(self,image,pos_x,pos_y,width,height,obj_type):
-        GameObject.__init__(self,image,pos_x,pos_y,width,height,2)
+    def __init__(self,image,pos_x, pos_y, width, height, obj_type):
+        GameObject.__init__(self, image, pos_x, pos_y, width, height, 2)
 
         self.image = pygame.image.load('../media/sprites/atm.png')
         self.rect = pygame.Rect(pos_x, pos_y, 37, 60)
 
 class Food(GameObject):
-    def __init__(self,value,food_type):
-        GameObject.__init__(self,"",0,0,0,0,10)
+    def __init__(self, value, food_type):
+        GameObject.__init__(self, "", 0, 0, 0, 0, 10)
 
         self.value = value
         self.food_type = food_type
@@ -292,19 +292,31 @@ class Food(GameObject):
 
 class EyeTracker(GameObject):
     def __init__(self, x, y, width, height):
-        GameObject.__init__(self,"",x,y,width,height,100)
+        GameObject.__init__(self,"",x, y, width,height,100)
         self.image.fill((0,0,0))
         self.log = []
         self.log2 = []
+        self.log_blink = []
+        self.log_fixation = []
 
-    def setPosition(self,(x,y)):
+    def setPosition(self, (x, y)):
         self.rect.y = y
         self.rect.x = x
-        self.getQuadrant((x,y))
+        self.getQuadrant((x, y))
 
-    def startStaring(self,Food):
+    def startStaring(self, Food):
         data = LogData("Observou " + Food.food_type + " ", (libtime.get_time()))
         self.log.append(data)
+
+    def startBlinking(self, cont_blink):
+        data = LogData("Qtde de Piscada:" + cont_blink + "Tempo:" + " ", libtime.get_time())
+        self.log_blink.append(data)
+
+    def StartFixation(self,start_time_fix, (pos_x, pos_y)):
+        data = LogData("Tempo Inicio:" + start_time_fix + "Posicao"+(pos_x, pos_y))
+        self.log_fixation.append(data)
+
+
 
     def getQuadrant(self,(x,y)):
         time = libtime.get_time()
@@ -351,6 +363,7 @@ class EyeTracker(GameObject):
         data = LogData("Observou " + quadrant + " ", time)
        # line = "Observou " + quadrant + " ", time
         self.log2.append(data)
+
 
 class LogData():
     def __init__(self,text,time):
