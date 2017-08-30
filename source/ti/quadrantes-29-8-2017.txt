@@ -8,3 +8,4 @@ Observou B3 3.73523715063
 Observou D1 0.0
 Observou B4 0.939051545274
 Observou B1 13.23891878
+Observou C2 8.68218317995

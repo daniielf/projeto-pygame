@@ -1,4 +1,5 @@
 import pygame, random, objects, math, pygaze
+from datetime import datetime
 from pygame.locals import*
 
 from pygaze.libscreen import Screen,Display
@@ -117,7 +118,7 @@ class GameEnd(pygame.font.Font):
         #
         # #log Fixation
         #
-        
+
         initialTime = 0
         endTime = 0
         analyzing = ""
@@ -213,9 +214,12 @@ class Game ():
     def run(self):
         # f = open("testeFile.txt", 'w')
         # f.writelines([])
-        f = open("testeFile.txt", 'a')
-        f.writelines(["COMECOU A jogar\n"])
-        f.close()
+        dt = datetime.now()
+
+        dateString = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
+        filename = 'posicoes-' + dateString + '.txt'
+
+        f = open(filename, 'a+')
         #Eye tracker configure
         eyetracker = EyeTracker(self.disp)
         eyetracker.calibrate()
@@ -427,6 +431,10 @@ class Game ():
                     #bob.score += 1
                 if (event.type == eyeTracker_time):
                     #verificar se houve fixacao
+                    time = libtime.get_time()
+                    getX, getY = eyetracker.sample()
+                    text = '(' + str(getX) + ',' + str(getY) + ')  ' + str(time) + '\n'
+                    f.write(text)
                     etObject.setPosition(eyetracker.sample())
 
                 if(event.type == logRecord_fixation):
