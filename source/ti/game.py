@@ -44,6 +44,7 @@ class GameEnd(pygame.font.Font):
         self.height = self.screen.get_rect().height
         self.bg_color = (0,0,0)
         pygame.font.Font.__init__(self, None, 40)
+        self.avalgame = Avalgame()
 
 
         self.textFont = pygame.font.SysFont(font,font_size)
@@ -89,50 +90,8 @@ class GameEnd(pygame.font.Font):
 
 
     def logTheData(self):
-        initialTime = 0
-        endTime = 0
-        analyzing = ""
-        for data in self.dataToLog:
-            if (initialTime == 0):
-                analyzing = data.text
-                initialTime = data.time
-
-            endTime = data.time
-            if (data.text != analyzing):
-                finalTime = (endTime - initialTime)/1000
-                line = analyzing + str(finalTime)
-                self.log.write([line])
-                ##Reset
-                initialTime = 0
-                endTime = 0
-                analyzing = data.text
-        finalTime = (endTime - initialTime)/1000
-        line = analyzing + str(finalTime)
-        self.log.write([line])
-
-        ##Log 2
-
-        initialTime = 0
-        endTime = 0
-        analyzing = ""
-        for data in self.dataToLog2:
-            if (initialTime == 0):
-                analyzing = data.text
-                initialTime = data.time
-
-            endTime2 = data.time
-            if (data.text != analyzing):
-                finalTime = (endTime - initialTime)/1000
-                line = analyzing + str(finalTime)
-                self.log2.write([line])
-                ##Reset
-                initialTime = 0
-                endTime = 0
-                analyzing = data.text
-        finalTime = (endTime - initialTime)/1000
-        line = analyzing + str(finalTime)
-        self.log2.write([line])
-
+        self.avalgame.recordProducts(self.dataToLog)
+        self.avalgame.recordQuadrants(self.dataToLog2)
         #log_blink
 
         initialTime = 0
@@ -155,9 +114,10 @@ class GameEnd(pygame.font.Font):
         finalTime = (endTime - initialTime) / 1000
         line = analyzing + str(finalTime)
         self.log_blink.write([line])
-
-        #log Fixation
-
+        #
+        # #log Fixation
+        #
+        
         initialTime = 0
         endTime = 0
         analyzing = ""

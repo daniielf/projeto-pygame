@@ -174,3 +174,60 @@ class Avalgame:
               )
 
         f.close()
+
+
+    def recordProducts(self, data):
+        dt = datetime.now()
+        dateString = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
+        filename = 'produtos-' + dateString + '.txt'
+        f = open(filename, 'a+')
+        initialTime = 0
+        endTime = 0
+        analyzing = ""
+        for item in data:
+            if (initialTime == 0):
+                analyzing = item.text
+                initialTime = item.time
+
+            endTime = item.time
+            if (item.text != analyzing):
+                finalTime = (endTime - initialTime)/1000
+                line = analyzing + str(finalTime)
+                f.write(line + '\n')
+                ##Reset
+                initialTime = 0
+                endTime = 0
+                analyzing = item.text
+        finalTime = (endTime - initialTime)/1000
+        line = analyzing + str(finalTime)
+        f.write(line + '\n')
+        f.close()
+
+    def recordQuadrants(self, data):
+        dt = datetime.now()
+
+        dateString = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
+        filename = 'quadrantes-' + dateString + '.txt'
+
+        f = open(filename, 'a+')
+        initialTime = 0
+        endTime = 0
+        analyzing = ""
+        for item in data:
+            if (initialTime == 0):
+                analyzing = item.text
+                initialTime = item.time
+
+            endTime = item.time
+            if (item.text != analyzing):
+                finalTime = (endTime - initialTime)/1000
+                line = analyzing + str(finalTime)
+                f.write(line + '\n')
+                ##Reset
+                initialTime = 0
+                endTime = 0
+                analyzing = item.text
+        finalTime = (endTime - initialTime)/1000
+        line = analyzing + str(finalTime)
+        f.write(line + '\n')
+        f.close()
