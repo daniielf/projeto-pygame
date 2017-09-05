@@ -1,7 +1,8 @@
+import os.path
+
 import pygame
 import pygame.locals as pl
-import os.path
-from menu import MenuItem
+
 pygame.font.init()
 
 
