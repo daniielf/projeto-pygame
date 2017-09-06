@@ -179,7 +179,7 @@ class Avalgame:
     def recordProducts(self, data):
         dt = datetime.now()
         dateString = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
-        filename = 'produtos-' + dateString + '.txt'
+        filename = './logs/produtos-' + dateString + '.txt'
         f = open(filename, 'a+')
         initialTime = 0
         endTime = 0
@@ -207,7 +207,7 @@ class Avalgame:
         dt = datetime.now()
 
         dateString = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
-        filename = 'quadrantes-' + dateString + '.txt'
+        filename = './logs/quadrantes-' + dateString + '.txt'
 
         f = open(filename, 'a+')
         initialTime = 0
