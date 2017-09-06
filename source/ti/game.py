@@ -1,14 +1,14 @@
-import pygame, random, objects, math, pygaze
 from datetime import datetime
-from pygame.locals import*
 
-from pygaze.libscreen import Screen,Display
-from pygaze.eyetracker import EyeTracker
-from pygaze import liblog  # Criar logs de saida com os resultados do experimento
-from pygaze import libinput  # Obter interacao do usuario atraves do mouse e teclado
-from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
-
+import math
+import objects
+import pygame
+import random
 from avalgame import Avalgame
+from logs import log
+from pygame.locals import *
+from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
+from pygaze.eyetracker import EyeTracker
 
 clock = pygame.time.Clock()
 obstacles = []
@@ -26,7 +26,7 @@ cash_sound.set_volume(0.8)
 gameRunning = True
 
 def dist(x1, y1, x2, y2):
-    result = math.sqrt( math.pow((x1 - x2 ),2) + math.pow((y1 - y2), 2))
+    result = math.sqrt(math.pow((x1 - x2 ),2) + math.pow((y1 - y2), 2))
     result = math.floor(result)
     return result
 
@@ -54,14 +54,6 @@ class GameEnd(pygame.font.Font):
         self.text = "Pontuacao: "
         self.result = "Resultado: "
 
-        self.dataToLog = []
-        self.dataToLog2 = []
-        self.dataToLogBlink = []
-        self.DataToLogFixation = []
-        self.log = liblog.Logfile(filename="log")
-        self.log2 = liblog.Logfile(filename="log2")
-        self.log_blink = liblog.Logfile(filename="log_blink")
-        self.log_fixation = liblog.Logfile(filename="log_fixation")
 
     def defScore(self, score):
         self.text += str(score)
@@ -77,80 +69,18 @@ class GameEnd(pygame.font.Font):
 
         self.resultLabel = self.textFont.render(self.result, 1, (255,255,255))
 
-    def storeData(self, array):
-        self.dataToLog = array
 
-    def storeData2(self, array):
-        self.dataToLog2 = array
-
-    def storeDataBlink(self, array):
-        self.dataToLogBlink = array
-
-    def storeDataFixation(self, array):
-        self.DataToLogFixation = array
-
-
-    def logTheData(self):
-        self.avalgame.recordProducts(self.dataToLog)
-        self.avalgame.recordQuadrants(self.dataToLog2)
-        #log_blink
-
-        initialTime = 0
-        endTime = 0
-        analyzing = ""
-        for data in self.dataToLogBlink:
-            if (initialTime == 0):
-                analyzing = data.text
-                initialTime = data.time
-
-            endTime = data.time
-            if (data.text != analyzing):
-                finalTime = (endTime - initialTime) / 1000
-                line = analyzing + str(finalTime)
-                self.log_blink.write([line])
-                ##Reset
-                initialTime = 0
-                endTime = 0
-                analyzing = data.text
-        finalTime = (endTime - initialTime) / 1000
-        line = analyzing + str(finalTime)
-        self.log_blink.write([line])
-        #
-        # #log Fixation
-        #
-
-        initialTime = 0
-        endTime = 0
-        analyzing = ""
-        for data in self.DataToLogFixation:
-            if (initialTime == 0):
-                analyzing = data.text
-                initialTime = data.time
-
-            endTime = data.time
-            if (data.text != analyzing):
-                finalTime = (endTime - initialTime) / 1000
-                line = analyzing + str(finalTime)
-                self.log_fixation.write([line])
-                ##Reset
-                initialTime = 0
-                endTime = 0
-                analyzing = data.text
-        finalTime = (endTime - initialTime) / 1000
-        line = analyzing + str(finalTime)
-        self.log_fixation.write([line])
 
 
     def run(self):
-
         running = True
         #pygame.display.update()
         self.screen.fill(self.bg_color)
-        self.screen.blit (self.textLabel, (380,250))
-        self.screen.blit (self.resultLabel, (380,300))
+        self.screen.blit(self.textLabel, (380,250))
+        self.screen.blit(self.resultLabel, (380,300))
         exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
-        self.screen.blit (exitLabel, (0,650))
-        self.logTheData()
+        self.screen.blit(exitLabel, (0,650))
+        # self.logTheData()
         while (running):
             clock.tick(60)
             self.screen.fill(self.bg_color)
@@ -172,6 +102,7 @@ class GameEnd(pygame.font.Font):
 class Game ():
     def __init__(self,screen,display, avalgame = None):
         self.avalgame = avalgame
+        self.log_gen = log.GenerateInfo()
         self.disp = display
         self.canvas = screen
         self.screen = screen.screen
@@ -180,7 +111,9 @@ class Game ():
         self.image = pygame.image.load('../media/sprites/background.png')
         self.bg_color = (255,255,255)
         self.image
-        self.player = objects.Player("image", 300 , 500, 50 , 50, 0)
+        self.player = objects.Player("image", 300, 500, 50, 50, 0)
+
+        self.dataGenerator = log.GenerateInfo()
 
     def drawBar(self,value, posX, posY):
         progress = value * 10
@@ -229,7 +162,7 @@ class Game ():
 
         eyetracker.start_recording()
 
-        etObject = objects.EyeTracker(0,0,20,20)
+        etObject = objects.EyeTracker(0, 0, 20, 20)
 
         ##END
 
@@ -298,7 +231,7 @@ class Game ():
 
         ## ATM
         atm_list = pygame.sprite.Group()
-        atm = objects.ATM("",940, 45, 13, 35, 1)
+        atm = objects.ATM("", 940, 45, 13, 35, 1)
         atm_list.add(atm)
         all_sprite_list.add(atm)
 
@@ -393,6 +326,8 @@ class Game ():
 
             etSawList = pygame.sprite.spritecollide(etObject,food_list,False)
 
+            self.log_gen.get_quadrant(eyetracker.sample())
+
             if (len(etSawList) == 0):
                 staring = False
 
@@ -433,23 +368,26 @@ class Game ():
                     #verificar se houve fixacao
                     time = libtime.get_time()
                     getX, getY = eyetracker.sample()
-                    text = '(' + str(getX) + ',' + str(getY) + ')  ' + str(time) + '\n'
+                    text = 'Fixacao:(' + str(getX) + ',' + str(getY) + ') Tempo: ' + str(time) + '\n'
                     f.write(text)
                     etObject.setPosition(eyetracker.sample())
 
-                if(event.type == logRecord_fixation):
-                    #verificar fixacao
-                    if eyetracker.wait_for_fixation_start() == True:
-                        start_time_fix, (pos_x, pos_y) = eyetracker.wait_for_fixation_start()
-                        etObject.startFixation(start_time_fix, (pos_x, pos_y))
+                # if(event.type == logRecord_fixation):
+                #     #verificar fixacao
+                #     if eyetracker.wait_for_fixation_start():
+                #         pos_tup = ()
+                #         start_time_fix, pos_tup = eyetracker.wait_for_fixation_start()
+                #         start_time_fix = str(start_time_fix)
+                #         etObject.startFixation(start_time_fix, pos_tup)
 
                 if (event.type == logRecord_time):
                     for food in etSawList:
-                        etObject.startStaring(food)
+                        self.log_gen.start_staring(food)
 
                 if (event.type == MOUSEBUTTONDOWN):
                     cont_blinks += 1
-                    etObject.startBlinking(str(cont_blinks))
+                    self.log_gen.start_blinking(str(cont_blinks))
+                    #etObject.startBlinking(str(cont_blinks))
 
 
                 if (event.type == food_time):
@@ -472,7 +410,7 @@ class Game ():
                     if (cashGenerator <= 35):
                         x = random.randint(50,800)
                         y = random.randint(50,400)
-                        cash = objects.Cash("",x,y,20,20,2)
+                        cash = objects.Cash("", x, y, 20, 20, 2)
                         cards_list.append(cash)
                         pygame.draw.rect(self.screen, (0,255,0), cash.rect , 0)
                         all_sprite_list.add(cash)
@@ -609,14 +547,19 @@ class Game ():
         pygame.mixer.music.fadeout(1000)
         pygame.mixer.music.load("../media/sounds/crimson.wav")
         pygame.mixer.music.play()
+        self.log_gen.log_gen.data_to_log_blink(self.log_gen.blink_log)
+        self.log_gen.log_gen.data_to_log_staring(self.log_gen.staring_log)
+        self.log_gen.log_gen.data_to_log_quadrant(self.log_gen.staring_log)
+        # self.log_gen.log_gen.data(self.log_gen.staring_log)
 
-        ge = GameEnd(self.canvas,self.disp)
+        ge = GameEnd(self.canvas, self.disp)
 
         ge.defScore(bob.score)
         ge.defResult(bob.score)
-        ge.storeData(etObject.log)
-        ge.storeData2(etObject.log2)
-        ge.storeDataBlink(etObject.log_blink)
-        ge.storeDataFixation(etObject.log_fixation)
+        #ge.storeData(etObject.log)
+        #ge.storeData2(etObject.log2)
+        #ge.storeDataBlink(etObject.log_blink)
+        #ge.storeDataFixation(etObject.log_fixation)
+
         ge.run()
         #pygame.display.update()

@@ -1,21 +1,20 @@
-#from psychopy import *
-import pygame, sys, math, game, gameSettings, objects
-from pygaze.libscreen import Screen,Display
-from pygaze.eyetracker import EyeTracker
-from pygaze import liblog  # Criar logs de saida com os resultados do experimento
-from pygaze import libinput  # Obter interacao do usuario atraves do mouse e teclado
-from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
-
+# from psychopy import *
+import game
+import gameSettings
+import pygame
 from avalgame import Avalgame
+from pygaze.eyetracker import EyeTracker
+from pygaze.libscreen import Screen, Display
 
 pygame.init()
 disp = Display()
 ### Definitions
-windowSize = (1366,768)  #Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
+windowSize = (1366, 768)  # Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
 version = "v1.00"
 avalgame = Avalgame()
+
 
 class MenuItem(pygame.font.Font):
     def __init__(self, text, index, font=None, font_size=30,
@@ -38,7 +37,8 @@ class MenuItem(pygame.font.Font):
         self.pos_y = y
 
     def is_mouse_over(self, (posx, posy)):
-        if (posx >= self.pos_x and posx <= self.pos_x + self.width) and (posy >= self.pos_y and posy <= self.pos_y + self.height):
+        if (posx >= self.pos_x and posx <= self.pos_x + self.width) and (
+                posy >= self.pos_y and posy <= self.pos_y + self.height):
             return True
         return False
 
@@ -46,8 +46,9 @@ class MenuItem(pygame.font.Font):
         self.font_color = rgb_tuple
         self.label = self.render(self.text, 1, self.font_color)
 
+
 class MainMenu():
-    def __init__(self, screen, bg_color=(0,0,0), font=None, font_size=30,font_color=(255, 255, 255)):
+    def __init__(self, screen, bg_color=(0, 0, 0), font=None, font_size=30, font_color=(255, 255, 255)):
         self.canvas = screen
         self.screen = screen.screen
         self.scr_width = screen.screen.get_rect().width
@@ -59,26 +60,24 @@ class MainMenu():
         self.font_color = font_color
         self.items = []
 
-
         self.lang = "en"
-        self.labels = ["Start","Settings","Exit"]
+        self.labels = ["Start", "Settings", "Exit"]
         self.langLabel = "Pt-BR"
 
-        self.titleFont = pygame.font.SysFont(font,font_size*2)
-        self.title = self.titleFont.render ("PyGame", 1, font_color)
+        self.titleFont = pygame.font.SysFont(font, font_size * 2)
+        self.title = self.titleFont.render("PyGame", 1, font_color)
 
         self.versionFont = pygame.font.SysFont(font, 20)
-        self.version = self.versionFont.render (version, 1, font_color
+        self.version = self.versionFont.render(version, 1, font_color
                                                )
         self.langButton = MenuItem(self.langLabel, 100)
-        self.langButton.set_position(0,self.scr_height - self.langButton.height)
+        self.langButton.set_position(0, self.scr_height - self.langButton.height)
         self.langButton.index = 2
 
     def reloadItems(self):
         self.items = []
         self.items.append(self.langButton)
         for index, item in enumerate(self.labels):
-
             menu_item = MenuItem(item, index)
             t_h = len(self.labels) * menu_item.height
             pos_x = (self.scr_width / 2) - (menu_item.width / 2)
@@ -111,31 +110,31 @@ class MainMenu():
 
             # Redraw the background
             self.screen.fill(self.bg_color)
-            #display.show()
+            # display.show()
             # Draw Menu Title
 
-            title_x = self.scr_width/2 - self.title.get_rect().width/2 #screen.get_rect().width/2 - self.title.get_rect().width/2
-            title_y = self.scr_height/10 #.get_rect().height/10
+            title_x = self.scr_width / 2 - self.title.get_rect().width / 2  # screen.get_rect().width/2 - self.title.get_rect().width/2
+            title_y = self.scr_height / 10  # .get_rect().height/10
 
-            self.screen.blit (self.title, (title_x ,title_y))
+            self.screen.blit(self.title, (title_x, title_y))
 
             # Menu Options
 
             for item in self.items:
                 if item.is_mouse_over(pygame.mouse.get_pos()):
                     item.set_font_color((255, 0, 0))
-                    if ((1,0,0) == pygame.mouse.get_pressed()):
+                    if ((1, 0, 0) == pygame.mouse.get_pressed()):
                         if (item.index == 0):
                             print "loading "
 
                             if avalgame.isEnabled():
                                 playercode = gameSettings.SetGamerId(self.canvas,
-                                disp, avalgame = avalgame)
+                                                                     disp, avalgame=avalgame)
                                 self.canvas.clear()
                                 playercode.run()
                                 print ("playercode START")
                                 if avalgame._done:
-                                    startGame = game.Game(self.canvas, disp, avalgame = avalgame)
+                                    startGame = game.Game(self.canvas, disp, avalgame=avalgame)
                                     self.canvas.clear()
                                     startGame.run()
                                     print ("GAME START")
@@ -148,55 +147,54 @@ class MainMenu():
                         elif (item.index == 1):
                             print "settings"
                             settingsGame = gameSettings.GameSettings(
-                            self.canvas, disp, avalgame = avalgame)
+                                self.canvas, disp, avalgame=avalgame)
                             self.canvas.clear()
                             settingsGame.run()
                             print ("settings START")
                         elif (item.index == 2):
                             print ("Saindo do jogo")
-                            #log.close()
+                            # log.close()
                             running = False
                         elif (item.index == 3):
                             if (self.lang == "pt"):
                                 self.langButton.text = "Pt-BR"
-                                self.labels = ["Start","Settings","Exit"]
+                                self.labels = ["Start", "Settings", "Exit"]
                                 self.lang = "en"
                                 self.reloadItems()
-                                pygame.mouse.set_pos(self.screen.get_rect().width/2, self.screen.get_rect().height/2 - 30)
+                                pygame.mouse.set_pos(self.screen.get_rect().width / 2,
+                                                     self.screen.get_rect().height / 2 - 30)
                             else:
                                 self.langButton.text = "En-US"
-                                self.labels = ["Iniciar","Configuracoes","Sair"]
+                                self.labels = ["Iniciar", "Configuracoes", "Sair"]
                                 self.lang = "pt"
                                 self.reloadItems()
-                                pygame.mouse.set_pos(self.screen.get_rect().width/2, self.screen.get_rect().height/2 - 30)
+                                pygame.mouse.set_pos(self.screen.get_rect().width / 2,
+                                                     self.screen.get_rect().height / 2 - 30)
                 else:
                     item.set_font_color((255, 255, 255))
 
                 self.screen.blit(item.label, item.position)
 
-
             # Draw version
             version_x = self.screen.get_rect().width - self.version.get_rect().width
             version_y = self.screen.get_rect().height - self.version.get_rect().height
-            self.screen.blit (self.version, (version_x,version_y))
+            self.screen.blit(self.version, (version_x, version_y))
 
             # Draw languageButton
 
-            self.screen.blit (self.langButton.label, self.langButton.position)
+            self.screen.blit(self.langButton.label, self.langButton.position)
 
             ############ DISPLAY ##############
-            #pygame.display.flip()
-            x,y = eyetracker.sample()
+            # pygame.display.flip()
+            x, y = eyetracker.sample()
 
-            self.canvas.draw_circle(colour=(255,0,0),pos=(x,y), r=5 ,fill=True)
+            self.canvas.draw_circle(colour=(255, 0, 0), pos=(x, y), r=5, fill=True)
             disp.fill(self)
             disp.show()
 
 
-
 #### Running
 if __name__ == "__main__":
-
     screen = Screen()
     gm = MainMenu(screen)
     gm.run()

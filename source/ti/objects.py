@@ -304,65 +304,65 @@ class EyeTracker(GameObject):
         self.rect.x = x
         self.getQuadrant((x, y))
 
-    def startStaring(self, Food):
-        data = LogData("Observou " + Food.food_type + " ", (libtime.get_time()))
-        self.log.append(data)
-
-    def startBlinking(self, cont_blink):
-        data = LogData("Qtde de Piscada:" + cont_blink + "Tempo:" + " ", libtime.get_time())
-        self.log_blink.append(data)
-
-    def StartFixation(self,start_time_fix, (pos_x, pos_y)):
-        data = LogData("Tempo Inicio:" + start_time_fix + "Posicao"+(pos_x, pos_y))
-        self.log_fixation.append(data)
-
-
-
-    def getQuadrant(self,(x,y)):
-        time = libtime.get_time()
-        quadrant = ""
-        ## QUADRANTE A
-        if ((0 <= x <= 250 ) and (0 <= y <= 150)):
-            quadrant = "A1"
-        elif ((250 <= x <= 500 ) and (0 <= y <= 150)):
-            quadrant = "A2"
-        elif ((0 <= x <= 250 ) and (150 <= y <= 300)):
-            quadrant = "A3"
-        elif ((250 <= x <= 500 ) and (150 <= y <= 300)):
-            quadrant = "A4"
-        ## QUADRANTE B
-        elif ((500 <= x <= 750 ) and (0 <= y <= 150)):
-            quadrant = "B1"
-        elif ((750 <= x <= 1000 ) and (0 <= y <= 150)):
-            quadrant = "B2"
-        elif ((500 <= x <= 750 ) and (150 <= y <= 300)):
-            quadrant = "B3"
-        elif ((750 <= x <= 1000 ) and (150 <= y <= 300)):
-            quadrant = "B4"
-        ## QUADRANTE C
-        elif ((0 <= x <= 250 ) and (300 <= y <= 450)):
-            quadrant = "C1"
-        elif ((250 <= x <= 500 ) and (300 <= y <= 450)):
-            quadrant = "C2"
-        elif ((0 <= x <= 250 ) and (450 <= y <= 600)):
-            quadrant = "C3"
-        elif ((250 <= x <= 500 ) and (450 <= y <= 600)):
-            quadrant = "C4"
-        ## QUADRANTE D
-        elif ((500 <= x <= 750 ) and (300 <= y <= 450)):
-            quadrant = "D1"
-        elif ((750 <= x <= 1000 ) and (300 <= y <= 450)):
-            quadrant = "D2"
-        elif ((500 <= x <= 750 ) and (450 <= y <= 600)):
-            quadrant = "D3"
-        elif ((750 <= x <= 1000 ) and (450 <= y <= 600)):
-            quadrant = "D4"
-        else:
-            quadrant = "FORA"
-
-        data = LogData("Observou " + quadrant + " ", time)
-       # line = "Observou " + quadrant + " ", time
-        self.log2.append(data)
+    # def startStaring(self, Food):
+    #     # data = LogData("Observou " + Food.food_type + " ", (libtime.get_time()))
+    #     # self.log.append(data)
+    #
+    # def startBlinking(self, cont_blink):
+    #     data = LogData("Qtde de Piscada:" + cont_blink + "Tempo:" + " ", libtime.get_time())
+    #     self.log_blink.append(data)
+    # # '''
+    # # def startFixation(self, start_time_fix, pos_tup):
+    # #     data = LogData("Posicao:" + str(pos_tup)) + "Tempo Inicio:" + libtime.get_time())
+    # #     self.log_fixation.append(data)
+    # # '''
+    #
+    #
+    # def getQuadrant(self,(x,y)):
+    #     time = libtime.get_time()
+    #     quadrant = ""
+    #     ## QUADRANTE A
+    #     if ((0 <= x <= 250 ) and (0 <= y <= 150)):
+    #         quadrant = "A1"
+    #     elif ((250 <= x <= 500 ) and (0 <= y <= 150)):
+    #         quadrant = "A2"
+    #     elif ((0 <= x <= 250 ) and (150 <= y <= 300)):
+    #         quadrant = "A3"
+    #     elif ((250 <= x <= 500 ) and (150 <= y <= 300)):
+    #         quadrant = "A4"
+    #     ## QUADRANTE B
+    #     elif ((500 <= x <= 750 ) and (0 <= y <= 150)):
+    #         quadrant = "B1"
+    #     elif ((750 <= x <= 1000 ) and (0 <= y <= 150)):
+    #         quadrant = "B2"
+    #     elif ((500 <= x <= 750 ) and (150 <= y <= 300)):
+    #         quadrant = "B3"
+    #     elif ((750 <= x <= 1000 ) and (150 <= y <= 300)):
+    #         quadrant = "B4"
+    #     ## QUADRANTE C
+    #     elif ((0 <= x <= 250 ) and (300 <= y <= 450)):
+    #         quadrant = "C1"
+    #     elif ((250 <= x <= 500 ) and (300 <= y <= 450)):
+    #         quadrant = "C2"
+    #     elif ((0 <= x <= 250 ) and (450 <= y <= 600)):
+    #         quadrant = "C3"
+    #     elif ((250 <= x <= 500 ) and (450 <= y <= 600)):
+    #         quadrant = "C4"
+    #     ## QUADRANTE D
+    #     elif ((500 <= x <= 750 ) and (300 <= y <= 450)):
+    #         quadrant = "D1"
+    #     elif ((750 <= x <= 1000 ) and (300 <= y <= 450)):
+    #         quadrant = "D2"
+    #     elif ((500 <= x <= 750 ) and (450 <= y <= 600)):
+    #         quadrant = "D3"
+    #     elif ((750 <= x <= 1000 ) and (450 <= y <= 600)):
+    #         quadrant = "D4"
+    #     else:
+    #         quadrant = "FORA"
+    #
+    #     data = LogData("Observou " + quadrant + " ", time)
+    #    # line = "Observou " + quadrant + " ", time
+    #     self.log2.append(data)
 
 
 class LogData():
