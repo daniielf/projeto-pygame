@@ -302,7 +302,7 @@ class EyeTracker(GameObject):
     def setPosition(self, (x, y)):
         self.rect.y = y
         self.rect.x = x
-        self.getQuadrant((x, y))
+        # self.getQuadrant((x, y))
 
     # def startStaring(self, Food):
     #     # data = LogData("Observou " + Food.food_type + " ", (libtime.get_time()))

@@ -94,7 +94,6 @@ class GameEnd(pygame.font.Font):
                         running = False
             self.disp.fill(self)
             self.disp.show()
-        self.log.close()
 ###injetar aqui
 
 
@@ -110,7 +109,6 @@ class Game ():
         self.height = self.screen.get_rect().height
         self.image = pygame.image.load('../media/sprites/background.png')
         self.bg_color = (255,255,255)
-        self.image
         self.player = objects.Player("image", 300, 500, 50, 50, 0)
 
         self.dataGenerator = log.GenerateInfo()
@@ -150,7 +148,7 @@ class Game ():
         dt = datetime.now()
 
         dateString = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
-        filename = 'posicoes-' + dateString + '.txt'
+        filename = './logs/posicoes-' + dateString + '.txt'
 
         f = open(filename, 'a+')
         #Eye tracker configure
@@ -326,7 +324,7 @@ class Game ():
 
             etSawList = pygame.sprite.spritecollide(etObject,food_list,False)
 
-            self.log_gen.get_quadrant(eyetracker.sample())
+
 
             if (len(etSawList) == 0):
                 staring = False
@@ -368,6 +366,7 @@ class Game ():
                     #verificar se houve fixacao
                     time = libtime.get_time()
                     getX, getY = eyetracker.sample()
+                    self.log_gen.get_quadrant((getX, getY))
                     text = 'Fixacao:(' + str(getX) + ',' + str(getY) + ') Tempo: ' + str(time) + '\n'
                     f.write(text)
                     etObject.setPosition(eyetracker.sample())
@@ -386,7 +385,7 @@ class Game ():
 
                 if (event.type == MOUSEBUTTONDOWN):
                     cont_blinks += 1
-                    self.log_gen.start_blinking(str(cont_blinks))
+                    # self.log_gen.start_blinking(str(cont_blinks))
                     #etObject.startBlinking(str(cont_blinks))
 
 
@@ -547,10 +546,14 @@ class Game ():
         pygame.mixer.music.fadeout(1000)
         pygame.mixer.music.load("../media/sounds/crimson.wav")
         pygame.mixer.music.play()
-        self.log_gen.log_gen.data_to_log_blink(self.log_gen.blink_log)
-        self.log_gen.log_gen.data_to_log_staring(self.log_gen.staring_log)
-        self.log_gen.log_gen.data_to_log_quadrant(self.log_gen.staring_log)
-        # self.log_gen.log_gen.data(self.log_gen.staring_log)
+
+        for item in self.quadrantPosLog:
+            self.log_gen.get_quadrant(item)
+
+
+        self.log_gen.log_gen.record_log(self.log_gen.blink_log, 'blink-')
+        self.log_gen.log_gen.record_log(self.log_gen.staring_log, 'products-')
+        self.log_gen.log_gen.record_log(self.log_gen.staring_log, 'quadrants')
 
         ge = GameEnd(self.canvas, self.disp)
 

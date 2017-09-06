@@ -1,0 +1,14 @@
+Fixacao:(381,412) Tempo: 9133.30018991
+Fixacao:(381,412) Tempo: 10150.913141
+Fixacao:(381,412) Tempo: 11142.0083436
+Fixacao:(291,721) Tempo: 15275.3401443
+Fixacao:(291,721) Tempo: 15275.725221
+Fixacao:(291,721) Tempo: 15275.9177594
+Fixacao:(291,721) Tempo: 15276.1107083
+Fixacao:(386,412) Tempo: 10302.5110453
+Fixacao:(386,412) Tempo: 11287.759075
+Fixacao:(386,412) Tempo: 12309.2687729
+Fixacao:(602,427) Tempo: 16323.0432723
+Fixacao:(602,427) Tempo: 16323.2908216
+Fixacao:(602,427) Tempo: 16323.4932127
+Fixacao:(602,427) Tempo: 16323.691909

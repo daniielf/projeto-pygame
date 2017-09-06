@@ -1,5 +1,0 @@
-Fixacao:(799,352) Tempo: 18241.172998
-Fixacao:(799,352) Tempo: 22454.2862984
-Fixacao:(799,352) Tempo: 22454.4997738
-Fixacao:(799,352) Tempo: 22454.6919016
-Fixacao:(799,352) Tempo: 22457.5569877
