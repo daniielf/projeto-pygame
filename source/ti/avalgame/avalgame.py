@@ -152,13 +152,101 @@ class Avalgame:
 
         dt = datetime.now()
 
-        f = open('LogAEEJ_%s.%s_%s.txt' % (self._playerCode, self._date.replace('-', ''), self._time.replace(':', '')),
+        f = open('./logs/LogAEEJ_%s.%s_%s.txt' % (self._playerCode, self._date.replace('-', ''), self._time.replace(':', '')),
                  'a+')
 
         f.write("%s;%s;%s;%s;%d;%d;%d;'%s';%s;%d;%04d-%02d-%02d;%02d:%02d\n" %
                 (self._playerCode,
                  self._date,
                  self._time,
+                 self._code,
+                 nv_Jogo,
+                 fs_jogo,
+                 et_jogo,
+                 tipo_AEEJ,
+                 codigo_AEEJ,
+                 valor_AEEJ,
+                 dt.year,
+                 dt.month,
+                 dt.day,
+                 dt.hour,
+                 dt.minute)
+              )
+
+        f.close()
+
+    def storeCreditCollection(self, dateStart, tipo_AEEJ='A', codigo_AEEJ=1, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=1):
+        dt = datetime.now()
+        print(dateStart.minute)
+        f = open('./logs/CreditCard_LOG.txt',
+                 'a+')
+
+        f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %d %04d-%02d-%02d %02d:%02d\n" %
+                (self._playerCode,
+                 dateStart.year,
+                 dateStart.month,
+                 dateStart.day,
+                 dateStart.hour,
+                 dateStart.minute,
+                 self._code,
+                 nv_Jogo,
+                 fs_jogo,
+                 et_jogo,
+                 tipo_AEEJ,
+                 codigo_AEEJ,
+                 valor_AEEJ,
+                 dt.year,
+                 dt.month,
+                 dt.day,
+                 dt.hour,
+                 dt.minute)
+              )
+
+        f.close()
+
+
+    def storePyramidCompletion(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
+        dt = datetime.now()
+        print(dateStart.minute)
+        f = open('./logs/PyramidCompletion_LOG.txt',
+                 'a+')
+
+        f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %.1f %04d-%02d-%02d %02d:%02d\n" %
+                (self._playerCode,
+                 dateStart.year,
+                 dateStart.month,
+                 dateStart.day,
+                 dateStart.hour,
+                 dateStart.minute,
+                 self._code,
+                 nv_Jogo,
+                 fs_jogo,
+                 et_jogo,
+                 tipo_AEEJ,
+                 codigo_AEEJ,
+                 valor_AEEJ,
+                 dt.year,
+                 dt.month,
+                 dt.day,
+                 dt.hour,
+                 dt.minute)
+              )
+
+        f.close()
+
+    def storeFoodQuantity(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
+        dt = datetime.now()
+        print(dateStart.minute)
+        f = open('./logs/FoodQuantity_LOG.txt',
+                 'a+')
+
+        f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %d %04d-%02d-%02d %02d:%02d\n" %
+                (self._playerCode,
+                 dateStart.year,
+                 dateStart.month,
+                 dateStart.day,
+                 dateStart.hour,
+                 dateStart.minute,
                  self._code,
                  nv_Jogo,
                  fs_jogo,

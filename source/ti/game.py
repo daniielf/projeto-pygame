@@ -110,6 +110,7 @@ class Game ():
         self.image = pygame.image.load('../media/sprites/background.png')
         self.bg_color = (255,255,255)
         self.player = objects.Player("image", 300, 500, 50, 50, 0)
+        self.startTime = datetime.now()
 
         self.dataGenerator = log.GenerateInfo()
 
@@ -350,11 +351,13 @@ class Game ():
                 pygame.mixer.Sound.play(card_sound)
                 cards_list.remove(card)
                 all_sprite_list.remove(card)
+                self.avalgame.storeCreditCollection(self.startTime)
 
             for food in food_hit_list:
                 if (event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and bob.cash >= food.value):
                     bob.buyFood(food)
                     food_list.empty()
+                    self.player.total_produtos += 1
 
             #####  FRAME EVENTS
             ## Time Decrementer
@@ -381,7 +384,7 @@ class Game ():
 
                 if (event.type == logRecord_time):
                     for food in etSawList:
-                        self.log_gen.start_staring(food)
+                        self.log_gen.start_staring(food.food_type)
 
                 if (event.type == MOUSEBUTTONDOWN):
                     cont_blinks += 1
@@ -406,7 +409,7 @@ class Game ():
                 ## Credit Card Generator
                 if (event.type == card_generator and len(cards_list) < 2):
                     cashGenerator = random.randint(0,100)
-                    if (cashGenerator <= 35):
+                    if (cashGenerator <= 100):
                         x = random.randint(50,800)
                         y = random.randint(50,400)
                         cash = objects.Cash("", x, y, 20, 20, 2)
@@ -547,13 +550,31 @@ class Game ():
         pygame.mixer.music.load("../media/sounds/crimson.wav")
         pygame.mixer.music.play()
 
-        for item in self.quadrantPosLog:
-            self.log_gen.get_quadrant(item)
+        pyramidCompletion = 0.0
+        if (self.player.doce == 10):
+            pyramidCompletion += 2.5
+        if (self.player.proteina == 20):
+            pyramidCompletion += 2.5
+        if (self.player.vegetal == 30):
+            pyramidCompletion += 2.5
+        if (self.player.carbohidrato == 40):
+            pyramidCompletion += 2.5
+
+        self.avalgame.storePyramidCompletion(self.startTime, valor_AEEJ=pyramidCompletion)
+
+        foodTotal=0
+        if (0 < self.player.total_produtos <= 5):
+            foodTotal = 1
+        elif ( 5 < self.player.total_produtos <= 10):
+            foodTotal = 2
+        elif (self.player.total_produtos > 10):
+            foodTotal = 3
+        self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
 
 
         self.log_gen.log_gen.record_log(self.log_gen.blink_log, 'blink-')
         self.log_gen.log_gen.record_log(self.log_gen.staring_log, 'products-')
-        self.log_gen.log_gen.record_log(self.log_gen.staring_log, 'quadrants')
+        self.log_gen.log_gen.record_log(self.log_gen.quadrant_log, 'quadrants')
 
         ge = GameEnd(self.canvas, self.disp)
 

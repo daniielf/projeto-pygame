@@ -42,6 +42,7 @@ class Player (GameObject, pygame.font.Font):
         self.proteina=0
         self.vegetal=0
         self.carbohidrato=0
+        self.total_produtos=0
 
         self.score=0
 
