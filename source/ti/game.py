@@ -360,7 +360,6 @@ class Game ():
                     self.player.total_produtos += 1
 
             #####  FRAME EVENTS
-
             ## Time Decrementer
             for event in pygame.event.get():
                 if (event.type == time_decrement):
@@ -388,10 +387,9 @@ class Game ():
                         self.log_gen.start_staring(food.food_type)
 
                 if (event.type == MOUSEBUTTONDOWN):
-                    start_time = eyetracker.wait_for_event(3)
-                    time_end = eyetracker.wait_for_event(4)
                     cont_blinks += 1
-                    self.log_gen.start_blinking(str(cont_blinks), start_time, time_end)
+                    # self.log_gen.start_blinking(str(cont_blinks))
+                    #etObject.startBlinking(str(cont_blinks))
 
 
                 if (event.type == food_time):
@@ -572,6 +570,7 @@ class Game ():
         elif (self.player.total_produtos > 10):
             foodTotal = 3
         self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
+
 
         self.log_gen.log_gen.record_log(self.log_gen.blink_log, 'blink-')
         self.log_gen.log_gen.record_log(self.log_gen.staring_log, 'products-')
