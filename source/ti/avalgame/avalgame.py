@@ -94,8 +94,8 @@ class Avalgame:
 
     def initial(self, playerCode):
 
-        if type(playerCode) is not int or playerCode < 0 or playerCode > 999999:
-            raise Exception("Valor invalido no argumento Codigo do Jogador ( int ) 0-999999")
+        if type(playerCode) is not int or playerCode < 0 or playerCode > 999999999:
+            raise Exception("Valor invalido no argumento Codigo do Jogador ( int ) 0-999999999")
 
         self._playerCode = playerCode
         dt = datetime.now()
