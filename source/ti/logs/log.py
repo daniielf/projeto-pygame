@@ -15,8 +15,9 @@ class GenerateInfo:
         data = LogData("Observou " + str(food_type) + " ", (libtime.get_time()))
         self.staring_log.append(data)
 
-    def start_blinking(self, cont_blink):
-        data = LogData("Qtd de Piscada:" + str(cont_blink) + "Tempo:", (libtime.get_time()))
+    def start_blinking(self, cont_blink, start_time, time_end):
+        time = int(start_time[0]) - int(time_end[0])
+        data = LogData("Qtd de Piscada:" + str(cont_blink) + "Tempo:", (time, ), 'Posicao_inicio:', start_time[1], 'PosicaoFinal:', time_end[1])
         self.blink_log.append(data)
 
     def get_quadrant(self, (x, y)):
@@ -77,7 +78,7 @@ class LogGenerator:
         self.data_to_log_blink = []
         self.data_to_log_fixation = []
 
-    def record_log(self, data,file_name ,log_option):
+    def record_log(self, data, file_name):
         file_name = file_name
         dt = datetime.now()
         date_string = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
@@ -120,6 +121,7 @@ class LogGenerator:
 
 
 class LogData:
-    def __init__(self, text, time):
+    def __init__(self, text, time, *args):
         self.text = text
         self.time = time
+        self.args = args

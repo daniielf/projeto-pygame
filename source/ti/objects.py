@@ -295,10 +295,6 @@ class EyeTracker(GameObject):
     def __init__(self, x, y, width, height):
         GameObject.__init__(self,"",x, y, width,height,100)
         self.image.fill((0,0,0))
-        self.log = []
-        self.log2 = []
-        self.log_blink = []
-        self.log_fixation = []
 
     def setPosition(self, (x, y)):
         self.rect.y = y

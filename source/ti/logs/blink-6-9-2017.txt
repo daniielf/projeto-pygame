@@ -1,8 +1,0 @@
-Qtd de Piscada:1Tempo:0.78036560166
-Qtd de Piscada:3Tempo:0.504647843192
-Qtd de Piscada:5Tempo:0.528399048928
-Qtd de Piscada:7Tempo:0.251060672154
-Qtd de Piscada:9Tempo:0.531103378928
-Qtd de Piscada:11Tempo:0.726798159294
-Qtd de Piscada:13Tempo:0.446188167848
-Qtd de Piscada:14Tempo:0
