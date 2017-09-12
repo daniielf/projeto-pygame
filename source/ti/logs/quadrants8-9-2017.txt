@@ -1,0 +1,10 @@
+Observou C1 10.9976706551
+0
+Observou C2 2.00811575949
+Observou C2 0.960087492067
+Observou C2 1.00297387636
+Observou A2 0.0
+Observou C2 4.43769310286
+Observou FORA 2.9481472389
+Observou C2 0.0
+Observou C2 0.0
