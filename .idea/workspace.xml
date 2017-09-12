@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60faa4ef-b717-4163-a583-20113b6ad9da" name="Default" comment="" />
+    <list default="true" id="60faa4ef-b717-4163-a583-20113b6ad9da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/projeto-pygame.iml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/CreditCard_LOG.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/LogAEEJ_123.20170908_1806.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/LogAEEJ_13.20170908_1802.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/LogAEEJ_234.20170908_1804.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/LogAEEJ_4132.20170908_1805.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/blink-6-9-2017.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/blink-8-9-2017.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/posicoes-6-9-2017.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/posicoes-8-9-2017.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/products-8-9-2017.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/ti/logs/quadrants8-9-2017.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/game.py" afterPath="$PROJECT_DIR$/source/ti/game.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/log.py" afterPath="$PROJECT_DIR$/source/ti/logs/log.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/testeFile.txt" afterPath="$PROJECT_DIR$/source/ti/testeFile.txt" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,7 +32,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/projeto_pygame$menu.coverage" NAME="menu Coverage Results" MODIFIED="1505179704739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
-    <SUITE FILE_PATH="coverage/projetopygame$menu.coverage" NAME="menu Coverage Results" MODIFIED="1505246323483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
+    <SUITE FILE_PATH="coverage/projetopygame$menu.coverage" NAME="menu Coverage Results" MODIFIED="1505249140535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -19,10 +40,11 @@
       <file leaf-file-name="game.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/ti/game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6460">
-              <caret line="390" column="53" lean-forward="false" selection-start-line="390" selection-start-column="53" selection-end-line="390" selection-end-column="53" />
+            <state relative-caret-position="188">
+              <caret line="383" column="67" lean-forward="true" selection-start-line="383" selection-start-column="67" selection-end-line="383" selection-end-column="88" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
+                <marker date="1505248902248" expanded="true" signature="19303:19638" ph="..." />
               </folding>
             </state>
           </provider>
@@ -31,13 +53,52 @@
       <file leaf-file-name="log.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/ti/logs/log.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
+            <state relative-caret-position="464">
+              <caret line="122" column="24" lean-forward="false" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-                <element signature="e#796#2389#0" expanded="false" />
-                <element signature="e#2443#2579#0" expanded="false" />
+                <element signature="e#775#2354#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FoodQuantity_LOG.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blink-12-9-2017.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-12-9-2017.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PyramidCompletion_LOG.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/ti/constants.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -57,6 +118,7 @@
                 <element signature="e#6733#10301#0" expanded="false" />
                 <element signature="e#8977#9618#0" expanded="false" />
                 <element signature="e#9656#10301#0" expanded="false" />
+                <marker date="1505247566955" expanded="true" signature="10377:10470" ph="..." />
               </folding>
             </state>
           </provider>
@@ -89,7 +151,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -114,6 +176,7 @@
     <option name="width" value="1696" />
     <option name="height" value="1026" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -197,8 +260,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,18 +480,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.50476193" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22633298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.4952381" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.49761903" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -437,7 +501,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -458,10 +521,125 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/source/ti/game.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1505248902248" expanded="true" signature="19303:19638" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#775#2354#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#833#5257#0" expanded="false" />
+            <element signature="e#5291#5723#0" expanded="false" />
+            <element signature="e#5756#6012#0" expanded="false" />
+            <element signature="e#6048#6416#0" expanded="false" />
+            <element signature="e#6445#6703#0" expanded="false" />
+            <element signature="e#6733#10301#0" expanded="false" />
+            <element signature="e#8977#9618#0" expanded="false" />
+            <element signature="e#9656#10301#0" expanded="false" />
+            <marker date="1505247566955" expanded="true" signature="10377:10470" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="124" column="43" lean-forward="false" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1505248902248" expanded="true" signature="19303:19638" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#775#2354#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#833#5257#0" expanded="false" />
+            <element signature="e#5291#5723#0" expanded="false" />
+            <element signature="e#5756#6012#0" expanded="false" />
+            <element signature="e#6048#6416#0" expanded="false" />
+            <element signature="e#6445#6703#0" expanded="false" />
+            <element signature="e#6733#10301#0" expanded="false" />
+            <element signature="e#8977#9618#0" expanded="false" />
+            <element signature="e#9656#10301#0" expanded="false" />
+            <marker date="1505247566955" expanded="true" signature="10377:10470" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="124" column="43" lean-forward="false" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/game.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6460">
           <caret line="390" column="53" lean-forward="false" selection-start-line="390" selection-start-column="53" selection-end-line="390" selection-end-column="53" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+            <marker date="1505248902248" expanded="true" signature="19303:19638" ph="..." />
           </folding>
         </state>
       </provider>
@@ -480,6 +658,7 @@
             <element signature="e#6733#10301#0" expanded="false" />
             <element signature="e#8977#9618#0" expanded="false" />
             <element signature="e#9656#10301#0" expanded="false" />
+            <marker date="1505247566955" expanded="true" signature="10377:10470" ph="..." />
           </folding>
         </state>
       </provider>
@@ -498,8 +677,7 @@
           <caret line="104" column="27" lean-forward="true" selection-start-line="104" selection-start-column="27" selection-end-line="104" selection-end-column="27" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#796#2389#0" expanded="false" />
-            <element signature="e#2443#2579#0" expanded="false" />
+            <element signature="e#775#2354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -510,6 +688,7 @@
           <caret line="370" column="19" lean-forward="true" selection-start-line="370" selection-start-column="19" selection-end-line="370" selection-end-column="52" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+            <marker date="1505248902248" expanded="true" signature="19303:19638" ph="..." />
           </folding>
         </state>
       </provider>
@@ -528,6 +707,7 @@
             <element signature="e#6733#10301#0" expanded="false" />
             <element signature="e#8977#9618#0" expanded="false" />
             <element signature="e#9656#10301#0" expanded="false" />
+            <marker date="1505247566955" expanded="true" signature="10377:10470" ph="..." />
           </folding>
         </state>
       </provider>
@@ -546,8 +726,7 @@
           <caret line="18" column="67" lean-forward="false" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#796#2389#0" expanded="false" />
-            <element signature="e#2443#2579#0" expanded="false" />
+            <element signature="e#775#2354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -558,6 +737,7 @@
           <caret line="497" column="0" lean-forward="false" selection-start-line="497" selection-start-column="0" selection-end-line="497" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+            <marker date="1505248902248" expanded="true" signature="19303:19638" ph="..." />
           </folding>
         </state>
       </provider>
@@ -575,8 +755,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#796#2389#0" expanded="false" />
-            <element signature="e#2443#2579#0" expanded="false" />
+            <element signature="e#775#2354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -615,13 +794,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/logs/LogAEEJ_4132.20170908_1805.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/posicoes-6-9-2017.txt" />
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-8-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-6-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/gameSettings.py">
@@ -634,20 +806,6 @@
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-11-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/posicoes-11-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/products-11-9-2017.txt" />
-    <entry file="file://$PROJECT_DIR$/source/ti/constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="17" lean-forward="true" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/quadrants12-9-2017.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2023">
@@ -670,28 +828,8 @@
             <element signature="e#6733#10301#0" expanded="false" />
             <element signature="e#8977#9618#0" expanded="false" />
             <element signature="e#9656#10301#0" expanded="false" />
+            <marker date="1505247566955" expanded="true" signature="10377:10470" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/posicoes-12-9-2017.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-12-9-2017.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -709,24 +847,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/fixation-12-9-2017.txt" />
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/posicoes-12-9-2017.txt" />
+    <entry file="file://$PROJECT_DIR$/source/ti/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/quadrants12-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6460">
-          <caret line="390" column="53" lean-forward="false" selection-start-line="390" selection-start-column="53" selection-end-line="390" selection-end-column="53" />
+        <state relative-caret-position="188">
+          <caret line="383" column="67" lean-forward="true" selection-start-line="383" selection-start-column="67" selection-end-line="383" selection-end-column="88" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+            <marker date="1505248902248" expanded="true" signature="19303:19638" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-12-9-2017.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/logs/log.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
+        <state relative-caret-position="464">
+          <caret line="122" column="24" lean-forward="false" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#796#2389#0" expanded="false" />
-            <element signature="e#2443#2579#0" expanded="false" />
+            <element signature="e#775#2354#0" expanded="false" />
           </folding>
         </state>
       </provider>

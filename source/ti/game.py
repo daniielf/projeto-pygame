@@ -101,7 +101,7 @@ class GameEnd(pygame.font.Font):
 class Game ():
     def __init__(self,screen,display, avalgame = None):
         self.avalgame = avalgame
-        self.log_gen = log.GenerateInfo()
+        self.dataStore = log.GenerateInfo()
         self.disp = display
         self.canvas = screen
         self.screen = screen.screen
@@ -111,8 +111,6 @@ class Game ():
         self.bg_color = (255,255,255)
         self.player = objects.Player("image", 300, 500, 50, 50, 0)
         self.startTime = datetime.now()
-
-        self.dataGenerator = log.GenerateInfo()
 
     def drawBar(self,value, posX, posY):
         progress = value * 10
@@ -147,11 +145,6 @@ class Game ():
         # f = open("testeFile.txt", 'w')
         # f.writelines([])
         dt = datetime.now()
-
-        dateString = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
-        filename = './logs/posicoes-' + dateString + '.txt'
-
-        f = open(filename, 'a+')
         #Eye tracker configure
         eyetracker = EyeTracker(self.disp)
         eyetracker.calibrate()
@@ -369,10 +362,8 @@ class Game ():
                     #verificar se houve fixacao
                     time = libtime.get_time()
                     getX, getY = eyetracker.sample()
-                    self.log_gen.get_quadrant((getX, getY))
-                    text = 'Fixacao:(' + str(getX) + ',' + str(getY) + ') Tempo: ' + str(time) + '\n'
-                    f.write(text)
-                    etObject.setPosition(eyetracker.sample())
+                    self.dataStore.get_quadrant((getX, getY))
+                    self.dataStore.start_fixation((getX, getY))
 
                 # if(event.type == logRecord_fixation):
                 #     #verificar fixacao
@@ -384,12 +375,14 @@ class Game ():
 
                 if (event.type == logRecord_time):
                     for food in etSawList:
-                        self.log_gen.start_staring(food.food_type)
+                        self.dataStore.start_staring(food.food_type)
 
                 if (event.type == MOUSEBUTTONDOWN):
+                    start_time = eyetracker.wait_for_event(3)
+                    time_end = eyetracker.wait_for_event(4)
                     cont_blinks += 1
-                    # self.log_gen.start_blinking(str(cont_blinks))
-                    #etObject.startBlinking(str(cont_blinks))
+                    self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
+
 
 
                 if (event.type == food_time):
@@ -571,10 +564,11 @@ class Game ():
             foodTotal = 3
         self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
 
-
-        self.log_gen.log_gen.record_log(self.log_gen.blink_log, 'blink-')
-        self.log_gen.log_gen.record_log(self.log_gen.staring_log, 'products-')
-        self.log_gen.log_gen.record_log(self.log_gen.quadrant_log, 'quadrants')
+        self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
+        self.dataStore.log_gen.recordLog(self.dataStore.blink_log, 'blink-', 4, self.avalgame._playerCode)
+        self.dataStore.log_gen.recordLog(self.dataStore.staring_log, 'products-', 3, self.avalgame._playerCode)
+        self.dataStore.log_gen.recordLog(self.dataStore.quadrant_log, 'quadrants', 2, self.avalgame._playerCode)
+        self.dataStore.log_gen.recordLog(self.dataStore.position_log, 'fixation-', 1, self.avalgame._playerCode)
 
         ge = GameEnd(self.canvas, self.disp)
 
