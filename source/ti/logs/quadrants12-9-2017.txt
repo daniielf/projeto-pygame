@@ -1,0 +1,5 @@
+Observou B4 2.00492604112
+Observou A2 0.998339099496
+Observou D4 0.985674135827
+Observou D1 0.993559487954
+Observou B3 0
