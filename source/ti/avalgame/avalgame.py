@@ -177,7 +177,6 @@ class Avalgame:
 
     def storeCreditCollection(self, dateStart, tipo_AEEJ='A', codigo_AEEJ=1, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=1):
         dt = datetime.now()
-        print(dateStart.minute)
         f = open('./logs/CreditCard_LOG.txt',
                  'a+')
 
@@ -207,7 +206,6 @@ class Avalgame:
 
     def storePyramidCompletion(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
         dt = datetime.now()
-        print(dateStart.minute)
         f = open('./logs/PyramidCompletion_LOG.txt',
                  'a+')
 
@@ -236,7 +234,6 @@ class Avalgame:
 
     def storeFoodQuantity(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
         dt = datetime.now()
-        print(dateStart.minute)
         f = open('./logs/FoodQuantity_LOG.txt',
                  'a+')
 

@@ -12,13 +12,19 @@ class GenerateInfo:
         self.fixation_log = []
 
     def start_staring(self, food_type):
-        data = LogData(str(food_type), (libtime.get_time()))
+        data = LogData(str(food_type) + " ", (libtime.get_time()))
         self.staring_log.append(data)
 
-    def start_blinking(self, cont_blink, start_time, time_end):
-        time = int(start_time[0]) - int(time_end[0])
-        data = LogData("Qtd de Piscada:" + str(cont_blink) + "Tempo:", (time,), 'Posicao_inicio:', start_time[1], 'PosicaoFinal:', time_end[1])
+    def start_blinkingTest(self, position, blinkCount):
+        # data = LogData( "(" + position[0] + "," + position[1] + ") " + str(blinkCount), (libtime.get_time()))
+        data = LogData( str(position) + " " + str(blinkCount) + " ", (libtime.get_time()))
         self.blink_log.append(data)
+
+    def start_blinking(self, cont_blink, start_time, time_end):
+        a = 1
+        # time = int(start_time[0]) - int(time_end[0])
+        # data = LogData("Qtd de Piscada:" + str(cont_blink) + "Tempo:", (time,), 'Posicao_inicio:', start_time[1], 'PosicaoFinal:', time_end[1])
+        # self.blink_log.append(data)
 
     def get_quadrant(self, (x, y)):
         ## QUADRANTE A
@@ -116,8 +122,29 @@ class LogGenerator:
         f.write(line + '\n')
         f.close()
 
+    def recordBlinkLog(self, data, file_name, data_type, student_id=0):
+        dt = datetime.now()
+        date_string = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
+        filename = './logs/' + file_name + date_string + '.txt'
+        lineNumber = 0
+        header = str(data_type) + " " + str(student_id) + " " + str(lineNumber) + " "
+
+        f = open(filename, 'a+')
+        initial_time = 0
+        end_time = 0
+
+        analyzing = ""
+        for item in data:
+            analyzing = item.text
+            lineNumber += 1
+            header = str(data_type) + " " + str(student_id) + " " + str(lineNumber) + " "
+            line = header + analyzing + str(item.time)
+            f.write(line + '\n')
+
+        f.close()
+
 class LogData:
-    def __init__(self, text, time, *args):
+    def __init__(self, text, time):
         self.text = text
         self.time = time
-        self.args = args
+        # self.args = args

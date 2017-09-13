@@ -302,6 +302,9 @@ class Game ():
         gameRunning = True
         staring = False
 
+        blinkCount = 0
+        lastBlinkPos = (0,0)
+
         #comeco do game
         while (gameRunning):
 
@@ -310,6 +313,7 @@ class Game ():
             self.screen.fill((255,255,255))
             self.screen.blit (self.image, (0,40))
             clock.tick(60)
+
 
             cards_hit_list = pygame.sprite.spritecollide(bob, cards_list, False)
             monster_hit_list = pygame.sprite.spritecollide(bob, monster_list, False)
@@ -374,16 +378,24 @@ class Game ():
                 #         etObject.startFixation(start_time_fix, pos_tup)
 
                 if (event.type == logRecord_time):
+                    etObject.setPosition(eyetracker.sample())
                     for food in etSawList:
                         self.dataStore.start_staring(food.food_type)
 
+                # if (event.type == MOUSEBUTTONDOWN):
+                #     start_time = eyetracker.wait_for_event(3)
+                #     time_end = eyetracker.wait_for_event(4)
+                #     cont_blinks += 1
+                #     self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
+
                 if (event.type == MOUSEBUTTONDOWN):
-                    start_time = eyetracker.wait_for_event(3)
-                    time_end = eyetracker.wait_for_event(4)
-                    cont_blinks += 1
-                    self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
-
-
+                    tracker_pos = eyetracker.sample()
+                    if (tracker_pos != lastBlinkPos):
+                        self.dataStore.start_blinkingTest(lastBlinkPos, blinkCount)
+                        lastBlinkPos = tracker_pos
+                        blinkCount = 1
+                    else:
+                        blinkCount += 1
 
                 if (event.type == food_time):
                     food_list.empty()
@@ -535,9 +547,7 @@ class Game ():
             self.disp.fill(self.canvas)
             self.disp.show()
 
-        f = open("testeFile.txt", 'a')
-        f.writelines(["JOGO TERMINOU\n"])
-        f.close()
+
         pygame.event.set_allowed(pygame.KEYDOWN)
         pygame.mixer.music.fadeout(1000)
         pygame.mixer.music.load("../media/sounds/crimson.wav")
@@ -565,7 +575,9 @@ class Game ():
         self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
 
         self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
-        self.dataStore.log_gen.recordLog(self.dataStore.blink_log, 'blink-', 4, self.avalgame._playerCode)
+
+        self.dataStore.start_blinkingTest(lastBlinkPos, blinkCount)
+        self.dataStore.log_gen.recordBlinkLog(self.dataStore.blink_log, 'blink-', 4, self.avalgame._playerCode)
         self.dataStore.log_gen.recordLog(self.dataStore.staring_log, 'products-', 3, self.avalgame._playerCode)
         self.dataStore.log_gen.recordLog(self.dataStore.quadrant_log, 'quadrants', 2, self.avalgame._playerCode)
         self.dataStore.log_gen.recordLog(self.dataStore.position_log, 'fixation-', 1, self.avalgame._playerCode)
