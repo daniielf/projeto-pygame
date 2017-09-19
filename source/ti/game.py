@@ -16,9 +16,9 @@ cards_list = []
 monster_list = []
 
 pygame.mixer.init(44100, -16, 2, 2048)
-go_sound = pygame.mixer.Sound("../media/sounds/go_sound.wav")
-cash_sound = pygame.mixer.Sound("../media/sounds/cash_sound.wav")
-card_sound = pygame.mixer.Sound("../media/sounds/card_sound.wav")
+go_sound = pygame.mixer.Sound("media/sounds/go_sound.wav")
+cash_sound = pygame.mixer.Sound("media/sounds/cash_sound.wav")
+card_sound = pygame.mixer.Sound("media/sounds/card_sound.wav")
 card_sound.set_volume(1.0)
 go_sound.set_volume(0.8)
 cash_sound.set_volume(0.8)
@@ -33,7 +33,7 @@ def dist(x1, y1, x2, y2):
 class BackGround():
     def __init__(self,screen):
         self.screen = screen
-        self.image = pygame.image.load('../media/sprites/background.png')
+        self.image = pygame.image.load('media/sprites/background.png')
 
 
 class GameEnd(pygame.font.Font):
@@ -107,7 +107,7 @@ class Game ():
         self.screen = screen.screen
         self.width = self.screen.get_rect().width
         self.height = self.screen.get_rect().height
-        self.image = pygame.image.load('../media/sprites/background.png')
+        self.image = pygame.image.load('media/sprites/background.png')
         self.bg_color = (255,255,255)
         self.player = objects.Player("image", 300, 500, 50, 50, 0)
         self.startTime = datetime.now()
@@ -158,7 +158,7 @@ class Game ():
 
         ##END
 
-        main_music = pygame.mixer.music.load("../media/sounds/megalovania.wav")
+        main_music = pygame.mixer.music.load("media/sounds/megalovania.wav")
         pygame.mixer.music.play()
 
         pygame.mixer.music.set_volume(0.6)
@@ -301,6 +301,7 @@ class Game ():
         cont_blinks = 0
         gameRunning = True
         staring = False
+        position = 0
 
         #comeco do game
         while (gameRunning):
@@ -378,12 +379,10 @@ class Game ():
                         self.dataStore.start_staring(food.food_type)
 
                 if (event.type == MOUSEBUTTONDOWN):
-                    start_time = eyetracker.wait_for_event(3)
-                    time_end = eyetracker.wait_for_event(4)
-                    cont_blinks += 1
-                    self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
-
-
+                        start_time = eyetracker.wait_for_event(3)
+                        time_end = eyetracker.wait_for_event(4)
+                        cont_blinks += 1
+                        self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
 
                 if (event.type == food_time):
                     food_list.empty()
@@ -540,7 +539,7 @@ class Game ():
         f.close()
         pygame.event.set_allowed(pygame.KEYDOWN)
         pygame.mixer.music.fadeout(1000)
-        pygame.mixer.music.load("../media/sounds/crimson.wav")
+        pygame.mixer.music.load("media/sounds/crimson.wav")
         pygame.mixer.music.play()
 
         pyramidCompletion = 0.0

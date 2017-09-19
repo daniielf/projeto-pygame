@@ -96,7 +96,7 @@ class MainMenu():
 
         self.reloadItems()
         running = True
-        main_music = pygame.mixer.music.load("../media/sounds/crimson.wav")
+        main_music = pygame.mixer.music.load("media/sounds/crimson.wav")
         pygame.mixer.music.set_volume(0.6)
         pygame.mixer.music.play()
 
