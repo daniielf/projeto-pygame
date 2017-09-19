@@ -101,12 +101,12 @@ class LogGenerator:
 
         analyzing = ""
         for item in data:
-            if (initial_time == 0):
+            if initial_time == 0:
                 analyzing = item.text
                 initial_time = item.time
 
             end_time = item.time
-            if (item.text != analyzing):
+            if item.text != analyzing:
                 final_time = (end_time - initial_time) / 1000
                 lineNumber += 1
                 header = str(data_type) + " " + str(student_id) + " " + str(lineNumber) + " "
@@ -148,4 +148,3 @@ class LogData:
     def __init__(self, text, time):
         self.text = text
         self.time = time
-        # self.args = args

@@ -96,12 +96,13 @@ class MainMenu():
 
         self.reloadItems()
         running = True
-        main_music = pygame.mixer.music.load("../media/sounds/crimson.wav")
+        main_music = pygame.mixer.music.load("media/sounds/crimson.wav")
         pygame.mixer.music.set_volume(0.6)
         pygame.mixer.music.play()
 
         while running:
             self.canvas.clear()
+												
             # Limit frame speed to 50 FPS
             self.clock.tick(50)
             for event in pygame.event.get():

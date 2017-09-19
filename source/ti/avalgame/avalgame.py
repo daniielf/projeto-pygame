@@ -260,6 +260,35 @@ class Avalgame:
 
         f.close()
 
+
+    def storeAverageScore(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
+        dt = datetime.now()
+        f = open('./logs/AverageScore_LOG.txt',
+                 'a+')
+
+        f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %d %04d-%02d-%02d %02d:%02d\n" %
+                (self._playerCode,
+                 dateStart.year,
+                 dateStart.month,
+                 dateStart.day,
+                 dateStart.hour,
+                 dateStart.minute,
+                 self._code,
+                 nv_Jogo,
+                 fs_jogo,
+                 et_jogo,
+                 tipo_AEEJ,
+                 codigo_AEEJ,
+                 valor_AEEJ,
+                 dt.year,
+                 dt.month,
+                 dt.day,
+                 dt.hour,
+                 dt.minute)
+              )
+
+        f.close()
+
 # '''
 #     def recordProducts(self, data):
 #         dt = datetime.now()
