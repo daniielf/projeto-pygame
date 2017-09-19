@@ -7,6 +7,7 @@ class GenerateInfo:
         self.log_gen = LogGenerator()
         self.staring_log = []
         self.blink_log = []
+        self.blink_log2 = []
         self.quadrant_log = []
         self.position_log = []
         self.fixation_log = []
@@ -21,10 +22,10 @@ class GenerateInfo:
         self.blink_log.append(data)
 
     def start_blinking(self, cont_blink, start_time, time_end):
-        a = 1
-        # time = int(start_time[0]) - int(time_end[0])
-        # data = LogData("Qtd de Piscada:" + str(cont_blink) + "Tempo:", (time,), 'Posicao_inicio:', start_time[1], 'PosicaoFinal:', time_end[1])
-        # self.blink_log.append(data)
+        print(str(time_end[0] - start_time[0]))
+        time = float(time_end[0])
+        data = LogData(str(cont_blink), time)
+        self.blink_log2.append(data)
 
     def get_quadrant(self, (x, y)):
         ## QUADRANTE A
