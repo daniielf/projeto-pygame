@@ -1,1 +1,1 @@
-python27 setup.py build
+python setup2.py build

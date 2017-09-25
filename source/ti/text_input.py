@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os.path
 
 import pygame
@@ -13,7 +14,7 @@ class TextInput:
     This class let's the user input a short, one-lines piece of text at a blinking cursor
     that can be moved using the arrow-keys. Delete, home and end work as well.
     """
-    def __init__(self, font_family = "",
+    def __init__(self, font_family = 'media/fonts/arial.ttf',
                         font_size = 35,
                         antialias=True,
                         text_color=(0, 0, 0),

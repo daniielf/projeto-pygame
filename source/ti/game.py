@@ -1,11 +1,12 @@
+#!/usr/bin/env python
 from datetime import datetime
 
 import math
 import objects
 import pygame
 import random
-from avalgame import Avalgame
-from logs import log
+import avalgame
+import log
 from pygame.locals import *
 from pygaze import libtime  # Obter a latencia do usuario em relacao aos estimulos
 from pygaze.eyetracker import EyeTracker
@@ -37,19 +38,19 @@ class BackGround():
 
 
 class GameEnd(pygame.font.Font):
-    def __init__(self, screen, display ,bg_color=(0,0,0), font=None, font_size=40):
+    def __init__(self, screen, display ,bg_color=(0,0,0), font='media/fonts/arial.ttf', font_size=40):
         self.screen = screen.screen
         self.canvas = screen
         self.disp = display
         self.width = self.screen.get_rect().width
         self.height = self.screen.get_rect().height
         self.bg_color = (0,0,0)
-        pygame.font.Font.__init__(self, None, 40)
-        self.avalgame = Avalgame()
+        pygame.font.Font.__init__(self, 'media/fonts/arial.ttf', 40)
+        self.avalgame = avalgame.Avalgame()
 
 
-        self.textFont = pygame.font.SysFont(font,font_size)
-        self.exitFont = pygame.font.SysFont(font,20)
+        self.textFont = pygame.font.Font(font,font_size)
+        self.exitFont = pygame.font.Font(font,20)
 
         self.text = "Pontuacao: "
         self.result = "Resultado: "
@@ -99,7 +100,7 @@ class GameEnd(pygame.font.Font):
 
 
 class Game ():
-    def __init__(self,screen,display, avalgame = None):
+    def __init__(self,screen,display, avalgame = 0):
         self.avalgame = avalgame
         self.dataStore = log.GenerateInfo()
         self.disp = display
@@ -349,7 +350,7 @@ class Game ():
                 pygame.mixer.Sound.play(card_sound)
                 cards_list.remove(card)
                 all_sprite_list.remove(card)
-                self.avalgame.storeCreditCollection(self.startTime)
+                #self.avalgame.storeCreditCollection(self.startTime)
 
             for food in food_hit_list:
                 if (event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and bob.cash >= food.value):
@@ -581,11 +582,11 @@ class Game ():
             foodTotal = 3
         self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
 
-        # self.avalgame.storeFoodQuantity(self.startTime, valor_AEEJ=foodTotal)
-        averageScore = float(self.player.total_produtos)/float(self.player.cashTotal)
-        print(self.player.total_produtos)
-        print(self.player.cashTotal)
-        print(averageScore)
+        if self.player.cashTotal == 0:
+            averageScore = 0
+        else:
+            averageScore = float(float(self.player.total_produtos)/float(self.player.cashTotal))*100
+
         self.avalgame.storeAverageScore(self.startTime, valor_AEEJ=averageScore)
 
         self.dataStore.start_blinkingTest(lastBlinkPos, blinkCount)

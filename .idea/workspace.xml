@@ -2,58 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60faa4ef-b717-4163-a583-20113b6ad9da" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Baloon.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Baloon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/FastFood/Cookie.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/FastFood/Cookie.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/FastFood/Donnuts.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/FastFood/Donnuts.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/FastFood/HotDog.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/FastFood/HotDog.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/FastFood/picole.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/FastFood/picole.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/FastFood/pizza.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/FastFood/pizza.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Frutas/Apple.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Frutas/Apple.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Frutas/Banana.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Frutas/Banana.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Frutas/Melancia.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Frutas/Melancia.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Frutas/Morango.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Frutas/Morango.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Legumes/Brocolli.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Legumes/Brocolli.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Legumes/Carrot.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Legumes/Carrot.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Legumes/Ervilha.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Legumes/Ervilha.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/imagens/Produtos/Legumes/Tomate.png" afterPath="$PROJECT_DIR$/source/ti/media/imagens/Produtos/Legumes/Tomate.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sounds/card_sound.wav" afterPath="$PROJECT_DIR$/source/ti/media/sounds/card_sound.wav" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sounds/cash_sound.wav" afterPath="$PROJECT_DIR$/source/ti/media/sounds/cash_sound.wav" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sounds/crimson.wav" afterPath="$PROJECT_DIR$/source/ti/media/sounds/crimson.wav" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sounds/go_sound.wav" afterPath="$PROJECT_DIR$/source/ti/media/sounds/go_sound.wav" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sounds/megalovania.wav" afterPath="$PROJECT_DIR$/source/ti/media/sounds/megalovania.wav" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/atm.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/atm.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/background.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/background.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/balao.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/balao.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/bob_baixo.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/bob_baixo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/bob_cima.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/bob_cima.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/bob_direita.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/bob_direita.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/bob_esquerda.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/bob_esquerda.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/c_card.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/c_card.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/carbohidratos/bread.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/carbohidratos/bread.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/carbohidratos/corn.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/carbohidratos/corn.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/carbohidratos/pasta.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/carbohidratos/pasta.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/carbohidratos/rice.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/carbohidratos/rice.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/docesEgorduras/cookie.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/docesEgorduras/cookie.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/docesEgorduras/donut.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/docesEgorduras/donut.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/docesEgorduras/picole.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/docesEgorduras/picole.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/docesEgorduras/pizza.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/docesEgorduras/pizza.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/frutasEvegetais/banana.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/frutasEvegetais/banana.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/frutasEvegetais/brocolis.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/frutasEvegetais/brocolis.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/frutasEvegetais/cenoura.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/frutasEvegetais/cenoura.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/frutasEvegetais/ervilha.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/frutasEvegetais/ervilha.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/frutasEvegetais/maca.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/frutasEvegetais/maca.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/frutasEvegetais/tomate.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/frutasEvegetais/tomate.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/gondula-x.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/gondula-x.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/gondula-y.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/gondula-y.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/proteinas/egg.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/proteinas/egg.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/proteinas/espeto.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/proteinas/espeto.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/proteinas/meat.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/proteinas/meat.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/proteinas/milk.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/proteinas/milk.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/source/media/sprites/steve.png" afterPath="$PROJECT_DIR$/source/ti/media/sprites/steve.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/game.py" afterPath="$PROJECT_DIR$/source/ti/game.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/gameSettings.py" afterPath="$PROJECT_DIR$/source/ti/gameSettings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt" afterPath="$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt" afterPath="$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/menu.py" afterPath="$PROJECT_DIR$/source/ti/menu.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/objects.py" afterPath="$PROJECT_DIR$/source/ti/objects.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/setup.py" afterPath="$PROJECT_DIR$/source/ti/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/text_input.py" afterPath="$PROJECT_DIR$/source/ti/text_input.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,8 +20,8 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/projeto_pygame$menu.coverage" NAME="menu Coverage Results" MODIFIED="1505179704739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
-    <SUITE FILE_PATH="coverage/projetopygame$setup.coverage" NAME="setup Coverage Results" MODIFIED="1505855532020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
-    <SUITE FILE_PATH="coverage/projetopygame$menu.coverage" NAME="menu Coverage Results" MODIFIED="1505855471165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
+    <SUITE FILE_PATH="coverage/projetopygame$setup.coverage" NAME="setup Coverage Results" MODIFIED="1505888615067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
+    <SUITE FILE_PATH="coverage/projetopygame$menu.coverage" NAME="menu Coverage Results" MODIFIED="1506264325072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source/ti" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -73,11 +29,10 @@
       <file leaf-file-name="game.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/ti/game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="37" />
+            <state relative-caret-position="1785">
+              <caret line="115" column="29" lean-forward="false" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-                <marker date="1505855471129" expanded="true" signature="19317:19652" ph="..." />
               </folding>
             </state>
           </provider>
@@ -86,8 +41,8 @@
       <file leaf-file-name="gameSettings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/ti/gameSettings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="18" column="49" lean-forward="false" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -96,8 +51,8 @@
       <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/ti/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="79" column="35" lean-forward="false" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+            <state relative-caret-position="-85">
+              <caret line="79" column="56" lean-forward="false" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -106,8 +61,8 @@
       <file leaf-file-name="menu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="26" />
+            <state relative-caret-position="17">
+              <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
               </folding>
@@ -118,15 +73,20 @@
       <file leaf-file-name="objects.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/ti/objects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="276" column="25" lean-forward="false" selection-start-line="276" selection-start-column="20" selection-end-line="276" selection-end-column="25" />
+            <state relative-caret-position="4658">
+              <caret line="278" column="25" lean-forward="false" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="text_input.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/ti/text_input.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="15" column="60" lean-forward="false" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
               <folding>
-                <element signature="e#833#5242#0" expanded="false" />
-                <element signature="e#5276#5702#0" expanded="false" />
-                <element signature="e#5735#5988#0" expanded="false" />
-                <element signature="e#6024#6389#0" expanded="false" />
-                <element signature="e#8941#9579#0" expanded="false" />
-                <marker date="1505855470952" expanded="true" signature="10335:10428" ph="..." />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,9 +123,11 @@
         <option value="$PROJECT_DIR$/source/ti/avalgame/avalgame.py" />
         <option value="$PROJECT_DIR$/source/ti/logs/blink-12-9-2017.txt" />
         <option value="$PROJECT_DIR$/source/ti/logs/log.py" />
+        <option value="$PROJECT_DIR$/source/ti/objects.py" />
         <option value="$PROJECT_DIR$/source/ti/game.py" />
         <option value="$PROJECT_DIR$/source/ti/menu.py" />
-        <option value="$PROJECT_DIR$/source/ti/objects.py" />
+        <option value="$PROJECT_DIR$/source/ti/gameSettings.py" />
+        <option value="$PROJECT_DIR$/source/ti/text_input.py" />
         <option value="$PROJECT_DIR$/source/ti/setup.py" />
       </list>
     </option>
@@ -229,6 +191,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projetopygame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projeto-pygame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ti" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -238,7 +222,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/projeto27" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -266,7 +250,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.setup">
+  <component name="RunManager" selected="Python.menu">
     <configuration default="false" name="menu" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -459,8 +443,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.setup" />
-        <item index="1" class="java.lang.String" itemvalue="Python.menu" />
+        <item index="0" class="java.lang.String" itemvalue="Python.menu" />
+        <item index="1" class="java.lang.String" itemvalue="Python.setup" />
       </list>
     </recent_temporary>
   </component>
@@ -500,20 +484,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23095238" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23095238" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.5190476" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.50476193" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.48095238" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22633298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.4952381" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.4738095" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.49761903" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.4952381" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -542,21 +525,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/logs/log.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="67" lean-forward="false" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#29#0" expanded="false" />
-            <element signature="e#689#2268#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -566,7 +538,6 @@
           <caret line="497" column="0" lean-forward="false" selection-start-line="497" selection-start-column="0" selection-end-line="497" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <marker date="1505855471129" expanded="true" signature="19317:19652" ph="..." />
           </folding>
         </state>
       </provider>
@@ -582,10 +553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="false" />
-            <element signature="e#689#2268#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -659,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="94" column="27" lean-forward="false" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -682,7 +648,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -690,7 +655,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -698,7 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -706,10 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="115" column="28" lean-forward="false" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#29#0" expanded="false" />
-            <element signature="e#689#2268#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -717,7 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -725,7 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -733,7 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -741,7 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -749,7 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,50 +734,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/gameSettings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="238">
+          <caret line="18" column="49" lean-forward="false" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/objects.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="276" column="25" lean-forward="false" selection-start-line="276" selection-start-column="20" selection-end-line="276" selection-end-column="25" />
+        <state relative-caret-position="4658">
+          <caret line="278" column="25" lean-forward="false" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/text_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="60" lean-forward="false" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
           <folding>
-            <element signature="e#833#5242#0" expanded="false" />
-            <element signature="e#5276#5702#0" expanded="false" />
-            <element signature="e#5735#5988#0" expanded="false" />
-            <element signature="e#6024#6389#0" expanded="false" />
-            <element signature="e#8941#9579#0" expanded="false" />
-            <marker date="1505855470952" expanded="true" signature="10335:10428" ph="..." />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="37" />
+        <state relative-caret-position="1785">
+          <caret line="115" column="29" lean-forward="false" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <marker date="1505855471129" expanded="true" signature="19317:19652" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="79" column="35" lean-forward="false" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+        <state relative-caret-position="-85">
+          <caret line="79" column="56" lean-forward="false" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="26" />
+        <state relative-caret-position="17">
+          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
           <folding>
             <element signature="e#25#36#0" expanded="true" />
           </folding>

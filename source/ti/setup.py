@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # This will create a dist directory containing the executable file, all the data
 # directories. All Libraries will be bundled in executable file.
 #
@@ -71,7 +72,7 @@ class BuildExe:
         self.copyright = "Copyright (c) 2017 Me."
 
         # Description
-        self.project_description = "Jogo Feito no Pygame usando pygaze"
+        self.project_description = "game"
 
         # Icon file (None will use pygame default icon)
         self.icon_file = None
@@ -80,7 +81,7 @@ class BuildExe:
         self.extra_datas = ['media']
 
         # Extra/excludes python modules
-        self.extra_modules = []
+        self.extra_modules = ["pygame","game","avalgame","constants","gameSettings","log","objects","text_input"]
         self.exclude_modules = []
 
         # DLL Excludes

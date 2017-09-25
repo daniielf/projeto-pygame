@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import pygame, random
 from pygame.locals import*
 

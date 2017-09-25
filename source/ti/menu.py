@@ -1,23 +1,231 @@
+#!/usr/bin/env python
 # from psychopy import *
 import game
-import gameSettings
 import pygame
-from avalgame import Avalgame
+import avalgame
+import text_input
 from pygaze.eyetracker import EyeTracker
 from pygaze.libscreen import Screen, Display
 
 pygame.init()
 disp = Display()
+clock = pygame.time.Clock()
 ### Definitions
 windowSize = (1366, 768)  # Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
 running = True
 
 version = "v1.00"
-avalgame = Avalgame()
+avalgame = avalgame.Avalgame()
 
+class GameSettings(pygame.font.Font):
+    def __init__(self, screen, display ,bg_color=(0,0,0), font='media/fonts/arial.ttf',
+    font_size=40, avalgame=None):
+        self.avalgame = avalgame
+        self.screen = screen.screen
+        self.canvas = screen
+        self.disp = display
+        self.width = self.screen.get_rect().width
+        self.height = self.screen.get_rect().height
+        self.bg_color = bg_color
+        pygame.font.Font.__init__(self, font, 40)
+
+
+        self.textFont = pygame.font.Font(font,font_size)
+        self.exitFont = pygame.font.Font(font,20)
+
+        self.text = "Pontuacao: "
+        self.result = "Resultado: "
+
+        self.buttonOk = MenuItem("Ok", 100)
+        self.buttonCancel = MenuItem("Cancelar", 100)
+
+        self.dataToLog = []
+
+    def defScore(self, score):
+        self.text += str(score)
+        self.textLabel = self.textFont.render(self.text, 1, (255,255,255))
+
+    def storeData(self,array):
+        self.dataToLog = array
+
+    def logTheData(self):
+        for data in self.dataToLog:
+            self.log.write([data])
+
+    def run(self):
+        eyetracker = EyeTracker(disp)
+        eyetracker.calibrate()
+
+        running = True
+
+        self.textinput =text_input.TextInput(text_color=(255, 255, 255),
+        cursor_color=(255, 255, 255), literal_number=True)
+        if self.avalgame._code is not None:
+            self.textinput.input_string = str(self.avalgame._code)
+            self.textinput.cursor_position = len(str(self.avalgame._code))
+
+        self.text1 = self.textFont.render("Configuracoes", 1, (255,255,255))
+        self.text2 = self.textFont.render("Codigo do jogo", 1, (255,255,255))
+        #pygame.display.update()
+        self.screen.fill(self.bg_color)
+        self.screen.blit (self.text1, (380,250))
+        self.screen.blit (self.text2, (380,300))
+        exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
+        self.screen.blit (exitLabel, (0,650))
+        self.logTheData()
+        self.buttonOk.set_position(380,400)
+        self.buttonCancel.set_position(450,400)
+
+        while (running):
+            clock.tick(60)
+            self.screen.fill(self.bg_color)
+            self.screen.blit (self.text1, (380,250))
+            self.screen.blit (self.text2, (380,300))
+            exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
+            self.screen.blit (exitLabel, (0,650))
+
+            events = pygame.event.get()
+
+            self.textinput.update(events)
+            self.screen.blit(self.textinput.get_surface(), (380, 350))
+            pygame.display.update()
+
+            if self.buttonOk.is_mouse_over(pygame.mouse.get_pos()):
+                self.buttonOk.set_font_color((255, 0, 0))
+                if ((1,0,0) == pygame.mouse.get_pressed()):
+                    if self.textinput.get_text() != '':
+                        self.avalgame.install( True, int(self.textinput.get_text()))
+                    else:
+                        self.avalgame.install( False, 0)
+
+                    running = False
+            else:
+                self.buttonOk.set_font_color((255, 255, 255))
+
+            if self.buttonCancel.is_mouse_over(pygame.mouse.get_pos()):
+                self.buttonCancel.set_font_color((255, 0, 0))
+                if ((1,0,0) == pygame.mouse.get_pressed()):
+                    running = False
+            else:
+                self.buttonCancel.set_font_color((255, 255, 255))
+
+            for event in events:
+                if (event.type == pygame.QUIT or event.type == pygame.KEYDOWN):
+                    if (event.key == pygame.K_ESCAPE):
+                        #print(self.textinput.get_text())
+                        running = False
+
+
+            self.screen.blit(self.buttonOk.label, self.buttonOk.position)
+            self.screen.blit(self.buttonCancel.label, self.buttonCancel.position)
+
+            x,y = eyetracker.sample()
+            self.canvas.draw_circle(colour=(255,0,0),pos=(x,y), r=5 ,fill=True)
+
+            self.disp.fill(self)
+            self.disp.show()
+
+
+class SetGamerId(pygame.font.Font):
+    def __init__(self, screen, display ,bg_color=(0,0,0), font=None,
+    font_size=40, avalgame=None):
+        self.avalgame = avalgame
+        self.screen = screen.screen
+        self.canvas = screen
+        self.disp = display
+        self.width = self.screen.get_rect().width
+        self.height = self.screen.get_rect().height
+        self.bg_color = bg_color
+        pygame.font.Font.__init__(self, None, 40)
+
+
+        self.textFont = pygame.font.Font(font,font_size)
+        self.exitFont = pygame.font.Font(font,20)
+
+        self.buttonOk = MenuItem("Ok", 100)
+        self.buttonCancel = MenuItem("Cancelar", 100)
+
+        self.dataToLog = []
+
+    def defScore(self, score):
+        self.text += str(score)
+        self.textLabel = self.textFont.render(self.text, 1, (255,255,255))
+
+    def storeData(self,array):
+        self.dataToLog = array
+
+    def logTheData(self):
+        for data in self.dataToLog:
+            self.log.write([data])
+
+    def run(self):
+        eyetracker = EyeTracker(disp)
+        eyetracker.calibrate()
+
+        running = True
+
+        self.textinput =text_input.TextInput(text_color=(255, 255, 255),
+        cursor_color=(255, 255, 255), literal_number=True)
+
+        self.text2 = self.textFont.render("Matricula do Jogador", 1, (255,255,255))
+        #pygame.display.update()
+        self.screen.fill(self.bg_color)
+
+        self.screen.blit (self.text2, (380,300))
+        exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
+        self.screen.blit (exitLabel, (0,650))
+        self.logTheData()
+        self.buttonOk.set_position(380,400)
+        self.buttonCancel.set_position(450,400)
+
+        while (running):
+            clock.tick(60)
+            self.screen.fill(self.bg_color)
+
+            self.screen.blit (self.text2, (380,300))
+            exitLabel = self.exitFont.render("ESC para sair", 1, (255,255,255))
+            self.screen.blit (exitLabel, (0,650))
+
+            events = pygame.event.get()
+
+            self.textinput.update(events)
+            self.screen.blit(self.textinput.get_surface(), (380, 350))
+            pygame.display.update()
+
+            if self.buttonOk.is_mouse_over(pygame.mouse.get_pos()):
+                self.buttonOk.set_font_color((255, 0, 0))
+                if ((1,0,0) == pygame.mouse.get_pressed()):
+                    if self.textinput.get_text() != '':
+                        self.avalgame.initial( int(self.textinput.get_text()))
+                        running = False
+            else:
+                self.buttonOk.set_font_color((255, 255, 255))
+
+            if self.buttonCancel.is_mouse_over(pygame.mouse.get_pos()):
+                self.buttonCancel.set_font_color((255, 0, 0))
+                if ((1,0,0) == pygame.mouse.get_pressed()):
+                    running = False
+            else:
+                self.buttonCancel.set_font_color((255, 255, 255))
+
+            for event in events:
+                if (event.type == pygame.QUIT or event.type == pygame.KEYDOWN):
+                    if (event.key == pygame.K_ESCAPE):
+                        #print(self.textinput.get_text())
+                        running = False
+
+
+            self.screen.blit(self.buttonOk.label, self.buttonOk.position)
+            self.screen.blit(self.buttonCancel.label, self.buttonCancel.position)
+
+            x,y = eyetracker.sample()
+            self.canvas.draw_circle(colour=(255,0,0),pos=(x,y), r=5 ,fill=True)
+
+            self.disp.fill(self)
+            self.disp.show()
 
 class MenuItem(pygame.font.Font):
-    def __init__(self, text, index, font=None, font_size=30,
+    def __init__(self, text, index, font='media/fonts/arial.ttf', font_size=30,
                  font_color=(255, 255, 255), (pos_x, pos_y)=(0, 0)):
         pygame.font.Font.__init__(self, font, font_size)
         self.text = text
@@ -48,7 +256,7 @@ class MenuItem(pygame.font.Font):
 
 
 class MainMenu():
-    def __init__(self, screen, bg_color=(0, 0, 0), font=None, font_size=30, font_color=(255, 255, 255)):
+    def __init__(self, screen, bg_color=(0, 0, 0), font='media/fonts/arial.ttf', font_size=30, font_color=(255, 255, 255)):
         self.canvas = screen
         self.screen = screen.screen
         self.scr_width = screen.screen.get_rect().width
@@ -56,7 +264,7 @@ class MainMenu():
 
         self.bg_color = bg_color
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.SysFont(font, font_size)
+        self.font = pygame.font.Font(font, font_size)
         self.font_color = font_color
         self.items = []
 
@@ -64,10 +272,10 @@ class MainMenu():
         self.labels = ["Start", "Settings", "Exit"]
         self.langLabel = "Pt-BR"
 
-        self.titleFont = pygame.font.SysFont(font, font_size * 2)
+        self.titleFont = pygame.font.Font(font, font_size * 2)
         self.title = self.titleFont.render("PyGame", 1, font_color)
 
-        self.versionFont = pygame.font.SysFont(font, 20)
+        self.versionFont = pygame.font.Font(font, 20)
         self.version = self.versionFont.render(version, 1, font_color
                                                )
         self.langButton = MenuItem(self.langLabel, 100)
@@ -129,8 +337,7 @@ class MainMenu():
                             print "loading "
 
                             if avalgame.isEnabled():
-                                playercode = gameSettings.SetGamerId(self.canvas,
-                                                                     disp, avalgame=avalgame)
+                                playercode = SetGamerId(self.canvas,disp, avalgame=avalgame)
                                 self.canvas.clear()
                                 playercode.run()
                                 print ("playercode START")
@@ -147,8 +354,7 @@ class MainMenu():
                                 print ("GAME START")
                         elif (item.index == 1):
                             print "settings"
-                            settingsGame = gameSettings.GameSettings(
-                                self.canvas, disp, avalgame=avalgame)
+                            settingsGame = GameSettings(self.canvas, disp, avalgame=avalgame)
                             self.canvas.clear()
                             settingsGame.run()
                             print ("settings START")

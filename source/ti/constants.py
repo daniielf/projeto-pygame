@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Main
 DUMMYMODE = True
 LOGFILENAME = 'logs'
