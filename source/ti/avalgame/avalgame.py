@@ -128,8 +128,8 @@ class Avalgame:
         ###############################
         # Valida tipo argumentos
         ###############################
-        #print(str(type(codigo_AEEJ)))
-        #print(str(codigo_AEEJ))
+        print(str(type(codigo_AEEJ)))
+        print(str(codigo_AEEJ))
         if type(codigo_AEEJ) is not int and codigo_AEEJ < 0 or codigo_AEEJ > 999:
             raise Exception("Valor invalido no argumento codigo AEEJ ( int )")
 
@@ -288,10 +288,6 @@ class Avalgame:
               )
 
         f.close()
-
-    def recordBestScore(self, time, score):
-        f = open("./logs/bestScore.txt", "a+")
-        f.write(str(self._playerCode) + " " + str(score) + " " + str(time) + "\n")
 
 # '''
 #     def recordProducts(self, data):

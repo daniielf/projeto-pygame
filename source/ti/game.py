@@ -61,9 +61,10 @@ class GameEnd(pygame.font.Font):
         self.textLabel = self.textFont.render(self.text, 1, (255,255,255))
 
     def defResult(self, score):
+        print(score)
         if (score < 3):
             self.result += " ruim :("
-        elif (score <= 3 and score <= 7):
+        elif (score >= 3 and score <= 7):
             self.result += " bom :)"
         else:
             self.result += " otimo :D"
@@ -113,21 +114,21 @@ class Game ():
         self.player = objects.Player("image", 300, 500, 50, 50, 0)
         self.startTime = datetime.now()
 
-    def drawBar(self,value, posX, posY):
-        progress = value * 10
-        if (progress == 100):
-            color = (0,200,0)
-            self.avalgame.comp("C", 88)
-        elif (progress > 70):
-            color = (150,180,0)
-        elif (progress > 50):
-            color = (165,165,0)
-        elif (progress > 30):
-            color = (180,150,0)
-        else:
-            color = (200,0,0)
-
-        pygame.draw.rect(self.screen, color, (posX, posY, progress, 20))
+    # def drawBar(self,value, posX, posY):
+    #     # progress = value * 10
+    #     color = (0,200,0)
+    #     if (value == 100):
+    #         self.avalgame.comp("C", 88)
+    #     # else:
+    #     #     color = (150,180,0)
+    #     # elif (progress > 50):
+    #     #     color = (165,165,0)
+    #     # elif (progress > 30):
+    #     #     color = (180,150,0)
+    #     # else:
+    #     #     color = (200,0,0)
+    #
+    #     pygame.draw.rect(self.screen, color, (posX, posY, value, 20))
 
 
     def progressBars(self, player):
@@ -136,15 +137,27 @@ class Game ():
         progressProte = (player.proteina/2)
         progressDoce =  (player.doce/1)
 
-        self.drawBar(progressCarbo, 190, 610)
-        self.drawBar(progressVege, 190, 640)
-        self.drawBar(progressProte, 660, 610)
-        self.drawBar(progressDoce, 660, 640)
+        color = (0,200,0)
+
+        pygame.draw.rect(self.screen, color, (190, 610, progressCarbo*10, 20))
+        pygame.draw.rect(self.screen, (0,0,0), (290, 610, 2, 20))
+
+        pygame.draw.rect(self.screen, color, (190, 640, progressVege*10, 20))
+        pygame.draw.rect(self.screen, (0,0,0), (290, 640, 2, 20))
+
+        pygame.draw.rect(self.screen, color, (660, 610, progressProte*10, 20))
+        pygame.draw.rect(self.screen, (0,0,0), (760, 610, 2, 20))
+
+        pygame.draw.rect(self.screen, color, (660, 640, progressDoce*10, 20))
+        pygame.draw.rect(self.screen, (0,0,0), (760, 640, 2, 20))
+
+        # self.drawBar(progressCarbo, 190, 610)
+        # self.drawBar(progressVege, 190, 640)
+        # self.drawBar(progressProte, 660, 610)
+        # self.drawBar(progressDoce, 660, 640)
 
 
     def run(self):
-        # f = open("testeFile.txt", 'w')
-        # f.writelines([])
         dt = datetime.now()
         #Eye tracker configure
         eyetracker = EyeTracker(self.disp)
@@ -307,6 +320,13 @@ class Game ():
         blinkCount = 0
         lastBlinkPos = (0,0)
 
+        x = random.randint(50,800)
+        y = random.randint(50,400)
+        cash = objects.Cash("", x, y, 20, 20, 2)
+        cards_list.append(cash)
+        pygame.draw.rect(self.screen, (0,255,0), cash.rect , 0)
+        all_sprite_list.add(cash)
+
         #comeco do game
         while (gameRunning):
 
@@ -357,6 +377,8 @@ class Game ():
                     bob.buyFood(food)
                     food_list.empty()
                     self.player.total_produtos += 1
+                    if (bob.score >= 10):
+                        gameRunning = False
 
 
             #####  FRAME EVENTS
@@ -364,7 +386,7 @@ class Game ():
             for event in pygame.event.get():
                 if (event.type == time_decrement):
                     bob.time -= 1
-                    #bob.score += 1
+
                 if (event.type == eyeTracker_time):
                     #verificar se houve fixacao
                     time = libtime.get_time()
@@ -372,24 +394,11 @@ class Game ():
                     self.dataStore.get_quadrant((getX, getY))
                     self.dataStore.start_fixation((getX, getY))
 
-                # if(event.type == logRecord_fixation):
-                #     #verificar fixacao
-                #     if eyetracker.wait_for_fixation_start():
-                #         pos_tup = ()
-                #         start_time_fix, pos_tup = eyetracker.wait_for_fixation_start()
-                #         start_time_fix = str(start_time_fix)
-                #         etObject.startFixation(start_time_fix, pos_tup)
 
                 if (event.type == logRecord_time):
                     etObject.setPosition(eyetracker.sample())
                     for food in etSawList:
                         self.dataStore.start_staring(food.food_type)
-
-                # if (event.type == MOUSEBUTTONDOWN):
-                #     start_time = eyetracker.wait_for_event(3)
-                #     time_end = eyetracker.wait_for_event(4)
-                #     cont_blinks += 1
-                    # self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
 
                 if (event.type == MOUSEBUTTONDOWN):
                     start_time = eyetracker.wait_for_event(3)
@@ -422,7 +431,7 @@ class Game ():
                 ## Credit Card Generator
                 if (event.type == card_generator and len(cards_list) < 2):
                     cashGenerator = random.randint(0,100)
-                    if (cashGenerator <= 100):
+                    if (cashGenerator <= 25):
                         x = random.randint(50,800)
                         y = random.randint(50,400)
                         cash = objects.Cash("", x, y, 20, 20, 2)
@@ -508,16 +517,9 @@ class Game ():
             elif (bob.direction == "right"):
                 bob.moveRight()
 
-
-
-
             if bob.time <= 0:
-                #end.text = "Vitoria"
-                #end.endText()
                 gameRunning = False
 
-
-            #self.screen.fill((255,255,255))
 
             all_sprite_list.update()
             all_sprite_list.draw(self.screen)
@@ -595,6 +597,7 @@ class Game ():
         self.dataStore.log_gen.recordLog(self.dataStore.staring_log, 'products-', 3, self.avalgame._playerCode)
         self.dataStore.log_gen.recordLog(self.dataStore.quadrant_log, 'quadrants', 2, self.avalgame._playerCode)
         self.dataStore.log_gen.recordLog(self.dataStore.position_log, 'fixation-', 1, self.avalgame._playerCode)
+        self.avalgame.recordBestScore(self.player.time, self.player.score)
 
         ge = GameEnd(self.canvas, self.disp)
 

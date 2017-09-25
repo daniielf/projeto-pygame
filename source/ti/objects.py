@@ -75,19 +75,19 @@ class Player (GameObject, pygame.font.Font):
     def buyFood(self,food):
         self.cash -= food.value
         if food.food_type == 'doce':
-            self.doce += 3
+            self.doce += 4
             if (self.doce >= 10):
                 self.doce = 10
         elif food.food_type == 'proteina':
-            self.proteina += 5
+            self.proteina += 7
             if (self.proteina >= 20):
                 self.proteina = 20
         elif food.food_type == 'vegetal':
-            self.vegetal += 6
+            self.vegetal += 8
             if (self.vegetal >= 30):
                 self.vegetal = 30
         elif food.food_type == 'carbohidrato':
-            self.carbohidrato += 8
+            self.carbohidrato += 10
             if (self.carbohidrato >= 40):
                 self.carbohidrato = 40
 
