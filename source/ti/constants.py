@@ -1,13 +1,14 @@
-#!/usr/bin/env python
+
 # Main
 DUMMYMODE = True
 LOGFILENAME = 'logs'
 LOGFILE = LOGFILENAME[:]
 
+#Get Resolution
 # Display
 SCREENNR = 0
 DISPTYPE = 'pygame'
-DISPSIZE = (1366, 768)
+DISPSIZE = (1024, 768)
 SCREENSIZE = (36.3, 23.8)
 BGC = (255, 255, 255)
 FGC = (0, 0, 0)

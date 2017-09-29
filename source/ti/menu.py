@@ -6,13 +6,19 @@ import avalgame
 import text_input
 from pygaze.eyetracker import EyeTracker
 from pygaze.libscreen import Screen, Display
+from pygame.display import list_modes
+print list_modes()
 
 pygame.init()
 disp = Display()
 clock = pygame.time.Clock()
 ### Definitions
-windowSize = (1366, 768)  # Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
+######  Resolution
+#win_size = pygame.display.Info()
+#windowSize = pygame.display.set_mode((win_size.current_w, win_size.current_h), pygame.FULLSCREEN)  # Change as you want (MUST RESPECT DISPLAY DIMENSIONS)
+windowSize = pygame.display.set_mode((1024, 768), pygame.FULLSCREEN)
 running = True
+
 
 version = "v1.00"
 avalgame = avalgame.Avalgame()
@@ -127,8 +133,8 @@ class GameSettings(pygame.font.Font):
 
 
 class SetGamerId(pygame.font.Font):
-    def __init__(self, screen, display ,bg_color=(0,0,0), font=None,
-    font_size=40, avalgame=None):
+    def __init__(self, screen, display ,bg_color=(0,0,0), font='media/fonts/arial.ttf',
+    font_size=40, avalgame= None):
         self.avalgame = avalgame
         self.screen = screen.screen
         self.canvas = screen
@@ -137,6 +143,7 @@ class SetGamerId(pygame.font.Font):
         self.height = self.screen.get_rect().height
         self.bg_color = bg_color
         pygame.font.Font.__init__(self, None, 40)
+        
 
 
         self.textFont = pygame.font.Font(font,font_size)

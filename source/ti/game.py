@@ -101,7 +101,7 @@ class GameEnd(pygame.font.Font):
 
 
 class Game ():
-    def __init__(self,screen,display, avalgame = 0):
+    def __init__(self,screen,display, avalgame = None):
         self.avalgame = avalgame
         self.dataStore = log.GenerateInfo()
         self.disp = display

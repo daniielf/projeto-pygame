@@ -370,7 +370,9 @@ class EyeTracker(GameObject):
     #     self.log2.append(data)
 
 
+
 class LogData():
     def __init__(self,text,time):
         self.text = text
         self.time = time
+

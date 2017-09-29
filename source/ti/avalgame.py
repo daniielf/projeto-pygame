@@ -66,7 +66,7 @@ class Avalgame:
         except:
             raise Exception("Unexpected error:", sys.exc_info()[0])
 
-    def install(self, status, code):
+    def install(self, status, code=1):
 
         if type(status) is not bool:
             raise Exception("Valor invalido no argumento status ( bool )")
@@ -94,8 +94,8 @@ class Avalgame:
 
     def initial(self, playerCode):
 
-        if type(playerCode) is not int or playerCode < 0 or playerCode > 999999999:
-            raise Exception("Valor invalido no argumento Codigo do Jogador ( int ) 0-999999999")
+        if type(playerCode) is not int or playerCode < 0 or playerCode > 99999999999999:
+            raise Exception("Valor invalido no argumento Codigo do Jogador ( int ) 0-99999999999999")
 
         self._playerCode = playerCode
         dt = datetime.now()
