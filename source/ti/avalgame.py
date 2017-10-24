@@ -4,6 +4,7 @@
 from datetime import datetime
 import sys
 import csv
+import os.path
 
 
 class Avalgame:
@@ -16,7 +17,7 @@ class Avalgame:
     _date = ""
     _time = ""
 
-    csvBlinkLines = []# transformar em excel
+    csvBlinkLines = [] # transformar em excel
     csvFixationLines = []
 
     def __init__(self):
@@ -388,29 +389,38 @@ class Avalgame:
 
         f.close()
 
+    def startCSV(self,fileName):
+        if (not os.path.isfile("./logs/" + fileName + "_Table.csv")):
+            print("criou")
+            with open('./logs/' + fileName + '_Table.csv', 'a') as csvfile:
+                field_names = ["Matricula", "Data_Inicio", "Hora_Inicio", "Cod_Jogo", "Nivel_Jogo", "Fase_Jogo",
+                               "Etapa_Jogo", "Tipo_AEEJ", "Cod_AEEJ", "AEEJ_1", "AEEJ_2", "AEEJ_3", "N_Sequencial",
+                               "Data_Termino", "Hora_Termino", "Arquivo_Imagem"]
+                writer = csv.DictWriter(csvfile, fieldnames=field_names)
+                writer.writerow({'Matricula': "Matricula",
+                                 "Data_Inicio": "Data_Inicio",
+                                 "Hora_Inicio": "Hora_Inicio",
+                                 "Cod_Jogo": "Cod_Jogo",
+                                 "Nivel_Jogo": "Nivel_Jogo",
+                                 "Fase_Jogo": "Fase_Jogo",
+                                 "Etapa_Jogo": "Etapa_Jogo",
+                                 "Tipo_AEEJ": "Tipo_AEEJ",
+                                 "Cod_AEEJ": "Cod_AEEJ",
+                                 "AEEJ_1": "AEEJ_1",
+                                 "AEEJ_2": "AEEJ_2",
+                                 "AEEJ_3": "AEEJ_3",
+                                 "N_Sequencial": "N_Sequencial",
+                                 "Data_Termino": "Data_Termino",
+                                 "Hora_Termino": "Hora_Termino",
+                                 "Arquivo_Imagem": "Arquivo_Imagem"
+                                 })
+
     def exportCSV(self, fileName, dataSet):
-        with open('./logs/' + fileName + '_Table.csv', 'w') as csvfile:
+        with open('./logs/' + fileName + '_Table.csv', 'a') as csvfile:
             field_names = ["Matricula", "Data_Inicio", "Hora_Inicio", "Cod_Jogo", "Nivel_Jogo", "Fase_Jogo",
                            "Etapa_Jogo", "Tipo_AEEJ", "Cod_AEEJ", "AEEJ_1", "AEEJ_2", "AEEJ_3", "N_Sequencial",
                            "Data_Termino", "Hora_Termino", "Arquivo_Imagem"]
             writer = csv.DictWriter(csvfile, fieldnames=field_names)
-            writer.writerow({'Matricula': "Matricula",
-                             "Data_Inicio": "Data_Inicio",
-                             "Hora_Inicio": "Hora_Inicio",
-                             "Cod_Jogo": "Cod_Jogo",
-                             "Nivel_Jogo": "Nivel_Jogo",
-                             "Fase_Jogo": "Fase_Jogo",
-                             "Etapa_Jogo": "Etapa_Jogo",
-                             "Tipo_AEEJ": "Tipo_AEEJ",
-                             "Cod_AEEJ": "Cod_AEEJ",
-                             "AEEJ_1": "AEEJ_1",
-                             "AEEJ_2": "AEEJ_2",
-                             "AEEJ_3": "AEEJ_3",
-                             "N_Sequencial": "N_Sequencial",
-                             "Data_Termino": "Data_Termino",
-                             "Hora_Termino": "Hora_Termino",
-                             "Arquivo_Imagem": "Arquivo_Imagem"
-                             })
             for item in dataSet:
                 writer.writerow({'Matricula': item[0],
                                  "Data_Inicio": item[1],
@@ -429,91 +439,3 @@ class Avalgame:
                                  "Hora_Termino": item[14],
                                  "Arquivo_Imagem": item[15]
                                  })
-"""
-    def recordBlinks(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ_x=0,
-                     valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
-        dt = datetime.now()
-        f = open('./logs/Blink_LOG.txt',
-                 'a+')
-
-        fullDateStart = str(dateStart.year) + "-" + str(dateStart.month) + "-" + str(dateStart.day)
-        fullHourStart = str(dateStart.hour) + ":" + str(dateStart.minute)
-
-        fullDateEnd = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
-        fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
-
-        csvLine = (
-        self._playerCode, fullDateStart, fullHourStart, self._code, nv_Jogo, fs_jogo, et_jogo, tipo_AEEJ, codigo_AEEJ,
-        valor_AEEJ_x, valor_AEEJ_y, valor_AEEJ_qtd, seq_number, fullDateEnd, fullHourEnd, "")
-        self.exportCSV(csvLine, 'Blink')
-
-        f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %d %d %d %d %04d-%02d-%02d %02d:%02d %s\n" %
-                (self._playerCode,
-                 dateStart.year,
-                 dateStart.month,
-                 dateStart.day,
-                 dateStart.hour,
-                 dateStart.minute,
-                 self._code,
-                 nv_Jogo,
-                 fs_jogo,
-                 et_jogo,
-                 tipo_AEEJ,
-                 codigo_AEEJ,
-                 valor_AEEJ_x,
-                 valor_AEEJ_y,
-                 valor_AEEJ_qtd,
-                 seq_number,
-                 dt.year,
-                 dt.month,
-                 dt.day,
-                 dt.hour,
-                 dt.minute,
-                 filePath)
-                )
-
-        f.close()
-"""
-"""
-    def exportCSV(self, item, fileName):
-        with open('./logs/' + fileName + '_Table.csv', 'w') as csvfile:
-            field_names = ["Matricula", "Data_Inicio", "Hora_Inicio", "Cod_Jogo", "Nivel_Jogo", "Fase_Jogo",
-                           "Etapa_Jogo", "Tipo_AEEJ", "Cod_AEEJ", "AEEJ_1", "AEEJ_2", "AEEJ_3", "N_Sequencial",
-                           "Data_Termino", "Hora_Termino", "Arquivo_Imagem"]
-            writer = csv.DictWriter(csvfile, fieldnames=field_names)
-
-            writer.writerow({'Matricula': "Matricula",
-                             "Data_Inicio": "Data_Inicio",
-                             "Hora_Inicio": "Hora_Inicio",
-                             "Cod_Jogo": "Cod_Jogo",
-                             "Nivel_Jogo": "Nivel_Jogo",
-                             "Fase_Jogo": "Fase_Jogo",
-                             "Etapa_Jogo": "Etapa_Jogo",
-                             "Tipo_AEEJ": "Tipo_AEEJ",
-                             "Cod_AEEJ": "Cod_AEEJ",
-                             "AEEJ_1": "AEEJ_1",
-                             "AEEJ_2": "AEEJ_2",
-                             "AEEJ_3": "AEEJ_3",
-                             "N_Sequencial": "N_Sequencial",
-                             "Data_Termino": "Data_Termino",
-                             "Hora_Termino": "Hora_Termino",
-                             "Arquivo_Imagem": "Arquivo_Imagem"
-                             })
-            writer.writerow({'Matricula': item[0],
-                             "Data_Inicio": item[1],
-                             "Hora_Inicio": item[2],
-                             "Cod_Jogo": item[3],
-                             "Nivel_Jogo": item[4],
-                             "Fase_Jogo": item[5],
-                             "Etapa_Jogo": item[6],
-                             "Tipo_AEEJ": item[7],
-                             "Cod_AEEJ": item[8],
-                             "AEEJ_1": item[9],
-                             "AEEJ_2": item[10],
-                             "AEEJ_3": item[11],
-                             "N_Sequencial": item[12],
-                             "Data_Termino": item[13],
-                             "Hora_Termino": item[14],
-                             "Arquivo_Imagem": item[15]
-                             })
-"""

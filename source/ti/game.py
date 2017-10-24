@@ -578,9 +578,14 @@ class Game():
         # self.dataStore.log_gen.recordLog(self.dataStore.position_log, 'fixation-', 1, self.avalgame._playerCode)
         # self.avalgame.recordBestScore(self.player.time, self.player.score)
         self.dataStore.log_gen.recordFinalBlinkLog(self.avalgame, self.dataStore.blinkPositionsAndCount)
+        self.avalgame.startCSV('Blink')
         self.avalgame.exportCSV('Blink', self.avalgame.csvBlinkLines)
+        self.avalgame.csvBlinkLines = []
+
         self.dataStore.log_gen.recordFinalFixationLog(self.avalgame, self.dataStore.fixationPositions)
+        self.avalgame.startCSV('Fixation')
         self.avalgame.exportCSV('Fixation', self.avalgame.csvFixationLines)
+        self.avalgame.csvFixationLines = []
 
         ge = GameEnd(self.canvas, self.disp)
 
