@@ -7,7 +7,6 @@ import csv
 
 
 class Avalgame:
-
     _file = 'avalgame.install.cfg'
     _code = ""
     _status = False
@@ -17,6 +16,8 @@ class Avalgame:
     _date = ""
     _time = ""
 
+    csvBlinkLines = []# transformar em excel
+    csvFixationLines = []
 
     def __init__(self):
         try:
@@ -82,10 +83,10 @@ class Avalgame:
             "code:" + str(code) + '\n'
         ])
 
-        #Diz se o modo de coleta de dados esta ativo
+        # Diz se o modo de coleta de dados esta ativo
         self._status = status
 
-        #Guarda codigo do jogo
+        # Guarda codigo do jogo
         self._code = code
 
         f.close()
@@ -122,15 +123,15 @@ class Avalgame:
     ##############################
     def comp(self, tipo_AEEJ, codigo_AEEJ, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
 
-        #Verifica se tudo foi iniciado.
+        # Verifica se tudo foi iniciado.
         if self._done is False or self._status is False:
             return
 
         ###############################
         # Valida tipo argumentos
         ###############################
-        #print(str(type(codigo_AEEJ)))
-        #print(str(codigo_AEEJ))
+        # print(str(type(codigo_AEEJ)))
+        # print(str(codigo_AEEJ))
         if type(codigo_AEEJ) is not int and codigo_AEEJ < 0 or codigo_AEEJ > 999:
             raise Exception("Valor invalido no argumento codigo AEEJ ( int )")
 
@@ -153,7 +154,8 @@ class Avalgame:
 
         dt = datetime.now()
 
-        f = open('./logs/LogAEEJ_%s.%s_%s.txt' % (self._playerCode, self._date.replace('-', ''), self._time.replace(':', '')),
+        f = open('./logs/LogAEEJ_%s.%s_%s.txt' % (
+        self._playerCode, self._date.replace('-', ''), self._time.replace(':', '')),
                  'a+')
 
         f.write("%s;%s;%s;%s;%d;%d;%d;'%s';%s;%d;%04d-%02d-%02d;%02d:%02d\n" %
@@ -172,11 +174,12 @@ class Avalgame:
                  dt.day,
                  dt.hour,
                  dt.minute)
-              )
+                )
 
         f.close()
 
-    def storeCreditCollection(self, dateStart, tipo_AEEJ='A', codigo_AEEJ=1, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=1):
+    def storeCreditCollection(self, dateStart, tipo_AEEJ='A', codigo_AEEJ=1, nv_Jogo=1, fs_jogo=1, et_jogo=1,
+                              valor_AEEJ=1):
         dt = datetime.now()
         f = open('./logs/CreditCard_LOG.txt',
                  'a+')
@@ -200,12 +203,12 @@ class Avalgame:
                  dt.day,
                  dt.hour,
                  dt.minute)
-              )
+                )
 
         f.close()
 
-
-    def storePyramidCompletion(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
+    def storePyramidCompletion(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1,
+                               valor_AEEJ=0):
         dt = datetime.now()
         f = open('./logs/PyramidCompletion_LOG.txt',
                  'a+')
@@ -229,11 +232,12 @@ class Avalgame:
                  dt.day,
                  dt.hour,
                  dt.minute)
-              )
+                )
 
         f.close()
 
-    def storeFoodQuantity(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
+    def storeFoodQuantity(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1,
+                          valor_AEEJ=0):
         dt = datetime.now()
         f = open('./logs/FoodQuantity_LOG.txt',
                  'a+')
@@ -257,12 +261,12 @@ class Avalgame:
                  dt.day,
                  dt.hour,
                  dt.minute)
-              )
+                )
 
         f.close()
 
-
-    def storeAverageScore(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
+    def storeAverageScore(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=11, nv_Jogo=1, fs_jogo=1, et_jogo=1,
+                          valor_AEEJ=0):
         dt = datetime.now()
         f = open('./logs/AverageScore_LOG.txt',
                  'a+')
@@ -286,7 +290,7 @@ class Avalgame:
                  dt.day,
                  dt.hour,
                  dt.minute)
-              )
+                )
 
         f.close()
 
@@ -294,22 +298,23 @@ class Avalgame:
         f = open("./logs/bestScore.txt", "a+")
         f.write(str(self._playerCode) + " " + str(score) + " " + str(time) + "\n")
 
-
-
-
-    ## NOVO - A FAZER
-    def recordFixations(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=931, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ_x=0, valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
+    ## NOVO
+    def recordFixation(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=931, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ_x=0,
+                       valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
         dt = datetime.now()
-        f = open('./logs/Fixation_LOG.txt',
-                 'a+')
+        f = open('./logs/Fixation_LOG.txt', 'a+')
 
         fullDateStart = str(dateStart.year) + "-" + str(dateStart.month) + "-" + str(dateStart.day)
         fullHourStart = str(dateStart.hour) + ":" + str(dateStart.minute)
+
         fullDateEnd = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
         fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
 
-        csvLine = (self._playerCode ,fullDateStart, fullHourStart, self._code, nv_Jogo , fs_jogo , et_jogo , tipo_AEEJ , codigo_AEEJ, valor_AEEJ_x ,valor_AEEJ_y ,valor_AEEJ_qtd, seq_number, fullDateEnd, fullHourEnd, "")
-        self.exportCSV(csvLine, 'Blink')
+        csvLine = (
+            self._playerCode, fullDateStart, fullHourStart, self._code, nv_Jogo, fs_jogo, et_jogo, tipo_AEEJ,
+            codigo_AEEJ,
+            valor_AEEJ_x, valor_AEEJ_y, valor_AEEJ_qtd, seq_number, fullDateEnd, fullHourEnd, "")
+        self.csvFixationLines.append(csvLine)
 
         f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %d %d %d %d %04d-%02d-%02d %02d:%02d %s\n" %
                 (self._playerCode,
@@ -334,12 +339,13 @@ class Avalgame:
                  dt.hour,
                  dt.minute,
                  filePath)
-              )
+                )
 
         f.close()
 
-    ## NOVO
-    def recordBlinks(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ_x=0, valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
+    def recordBlinks(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1,
+                              valor_AEEJ_x=0, valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
+
         dt = datetime.now()
         f = open('./logs/Blink_LOG.txt',
                  'a+')
@@ -350,7 +356,95 @@ class Avalgame:
         fullDateEnd = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
         fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
 
-        csvLine = (self._playerCode ,fullDateStart, fullHourStart, self._code, nv_Jogo , fs_jogo , et_jogo , tipo_AEEJ , codigo_AEEJ, valor_AEEJ_x ,valor_AEEJ_y ,valor_AEEJ_qtd, seq_number, fullDateEnd, fullHourEnd, "")
+        csvLine = (
+        self._playerCode, fullDateStart, fullHourStart, self._code, nv_Jogo, fs_jogo, et_jogo, tipo_AEEJ, codigo_AEEJ,
+        valor_AEEJ_x, valor_AEEJ_y, valor_AEEJ_qtd, seq_number, fullDateEnd, fullHourEnd, "")
+        self.csvBlinkLines.append(csvLine)
+
+        f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %d %d %d %d %04d-%02d-%02d %02d:%02d %s\n" %
+                (self._playerCode,
+                 dateStart.year,
+                 dateStart.month,
+                 dateStart.day,
+                 dateStart.hour,
+                 dateStart.minute,
+                 self._code,
+                 nv_Jogo,
+                 fs_jogo,
+                 et_jogo,
+                 tipo_AEEJ,
+                 codigo_AEEJ,
+                 valor_AEEJ_x,
+                 valor_AEEJ_y,
+                 valor_AEEJ_qtd,
+                 seq_number,
+                 dt.year,
+                 dt.month,
+                 dt.day,
+                 dt.hour,
+                 dt.minute,
+                 filePath)
+                )
+
+        f.close()
+
+    def exportCSV(self, fileName, dataSet):
+        with open('./logs/' + fileName + '_Table.csv', 'w') as csvfile:
+            field_names = ["Matricula", "Data_Inicio", "Hora_Inicio", "Cod_Jogo", "Nivel_Jogo", "Fase_Jogo",
+                           "Etapa_Jogo", "Tipo_AEEJ", "Cod_AEEJ", "AEEJ_1", "AEEJ_2", "AEEJ_3", "N_Sequencial",
+                           "Data_Termino", "Hora_Termino", "Arquivo_Imagem"]
+            writer = csv.DictWriter(csvfile, fieldnames=field_names)
+            writer.writerow({'Matricula': "Matricula",
+                             "Data_Inicio": "Data_Inicio",
+                             "Hora_Inicio": "Hora_Inicio",
+                             "Cod_Jogo": "Cod_Jogo",
+                             "Nivel_Jogo": "Nivel_Jogo",
+                             "Fase_Jogo": "Fase_Jogo",
+                             "Etapa_Jogo": "Etapa_Jogo",
+                             "Tipo_AEEJ": "Tipo_AEEJ",
+                             "Cod_AEEJ": "Cod_AEEJ",
+                             "AEEJ_1": "AEEJ_1",
+                             "AEEJ_2": "AEEJ_2",
+                             "AEEJ_3": "AEEJ_3",
+                             "N_Sequencial": "N_Sequencial",
+                             "Data_Termino": "Data_Termino",
+                             "Hora_Termino": "Hora_Termino",
+                             "Arquivo_Imagem": "Arquivo_Imagem"
+                             })
+            for item in dataSet:
+                writer.writerow({'Matricula': item[0],
+                                 "Data_Inicio": item[1],
+                                 "Hora_Inicio": item[2],
+                                 "Cod_Jogo": item[3],
+                                 "Nivel_Jogo": item[4],
+                                 "Fase_Jogo": item[5],
+                                 "Etapa_Jogo": item[6],
+                                 "Tipo_AEEJ": item[7],
+                                 "Cod_AEEJ": item[8],
+                                 "AEEJ_1": item[9],
+                                 "AEEJ_2": item[10],
+                                 "AEEJ_3": item[11],
+                                 "N_Sequencial": item[12],
+                                 "Data_Termino": item[13],
+                                 "Hora_Termino": item[14],
+                                 "Arquivo_Imagem": item[15]
+                                 })
+"""
+    def recordBlinks(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ_x=0,
+                     valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
+        dt = datetime.now()
+        f = open('./logs/Blink_LOG.txt',
+                 'a+')
+
+        fullDateStart = str(dateStart.year) + "-" + str(dateStart.month) + "-" + str(dateStart.day)
+        fullHourStart = str(dateStart.hour) + ":" + str(dateStart.minute)
+
+        fullDateEnd = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
+        fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
+
+        csvLine = (
+        self._playerCode, fullDateStart, fullHourStart, self._code, nv_Jogo, fs_jogo, et_jogo, tipo_AEEJ, codigo_AEEJ,
+        valor_AEEJ_x, valor_AEEJ_y, valor_AEEJ_qtd, seq_number, fullDateEnd, fullHourEnd, "")
         self.exportCSV(csvLine, 'Blink')
 
         f.write("%s %04d-%02d-%02d %02d:%02d %s %d %d %d '%s' %s %d %d %d %d %04d-%02d-%02d %02d:%02d %s\n" %
@@ -376,45 +470,50 @@ class Avalgame:
                  dt.hour,
                  dt.minute,
                  filePath)
-              )
+                )
 
         f.close()
-
-    def exportCSV(self,item,fileName):
+"""
+"""
+    def exportCSV(self, item, fileName):
         with open('./logs/' + fileName + '_Table.csv', 'w') as csvfile:
-            field_names = ["Matricula", "Data_Inicio", "Hora_Inicio", "Cod_Jogo", "Nivel_Jogo", "Fase_Jogo", "Etapa_Jogo", "Tipo_AEEJ", "Cod_AEEJ", "AEEJ_1", "AEEJ_2", "AEEJ_3", "N_Sequencial", "Data_Termino", "Hora_Termino", "Arquivo_Imagem"]
+            field_names = ["Matricula", "Data_Inicio", "Hora_Inicio", "Cod_Jogo", "Nivel_Jogo", "Fase_Jogo",
+                           "Etapa_Jogo", "Tipo_AEEJ", "Cod_AEEJ", "AEEJ_1", "AEEJ_2", "AEEJ_3", "N_Sequencial",
+                           "Data_Termino", "Hora_Termino", "Arquivo_Imagem"]
             writer = csv.DictWriter(csvfile, fieldnames=field_names)
+
             writer.writerow({'Matricula': "Matricula",
-             "Data_Inicio": "Data_Inicio",
-              "Hora_Inicio": "Hora_Inicio",
-              "Cod_Jogo": "Cod_Jogo",
-              "Nivel_Jogo": "Nivel_Jogo",
-              "Fase_Jogo": "Fase_Jogo",
-              "Etapa_Jogo": "Etapa_Jogo",
-              "Tipo_AEEJ": "Tipo_AEEJ",
-              "Cod_AEEJ": "Cod_AEEJ",
-              "AEEJ_1": "AEEJ_1",
-              "AEEJ_2": "AEEJ_2",
-              "AEEJ_3": "AEEJ_3",
-              "N_Sequencial": "N_Sequencial",
-              "Data_Termino":"Data_Termino",
-              "Hora_Termino":"Hora_Termino",
-              "Arquivo_Imagem":"Arquivo_Imagem"
-              })
+                             "Data_Inicio": "Data_Inicio",
+                             "Hora_Inicio": "Hora_Inicio",
+                             "Cod_Jogo": "Cod_Jogo",
+                             "Nivel_Jogo": "Nivel_Jogo",
+                             "Fase_Jogo": "Fase_Jogo",
+                             "Etapa_Jogo": "Etapa_Jogo",
+                             "Tipo_AEEJ": "Tipo_AEEJ",
+                             "Cod_AEEJ": "Cod_AEEJ",
+                             "AEEJ_1": "AEEJ_1",
+                             "AEEJ_2": "AEEJ_2",
+                             "AEEJ_3": "AEEJ_3",
+                             "N_Sequencial": "N_Sequencial",
+                             "Data_Termino": "Data_Termino",
+                             "Hora_Termino": "Hora_Termino",
+                             "Arquivo_Imagem": "Arquivo_Imagem"
+                             })
             writer.writerow({'Matricula': item[0],
-             "Data_Inicio": item[1],
-              "Hora_Inicio": item[2],
-              "Cod_Jogo": item[3],
-              "Nivel_Jogo": item[4],
-              "Fase_Jogo": item[5],
-              "Etapa_Jogo": item[6],
-              "Tipo_AEEJ": item[7],
-              "Cod_AEEJ": item[8],
-              "AEEJ_1": item[9],
-              "AEEJ_2": item[10],
-              "AEEJ_3": item[11],
-              "N_Sequencial": item[12],
-              "Data_Termino": item[13],
-              "Hora_Termino": item[14],
-              "Arquivo_Imagem": item[15]
-              })
+                             "Data_Inicio": item[1],
+                             "Hora_Inicio": item[2],
+                             "Cod_Jogo": item[3],
+                             "Nivel_Jogo": item[4],
+                             "Fase_Jogo": item[5],
+                             "Etapa_Jogo": item[6],
+                             "Tipo_AEEJ": item[7],
+                             "Cod_AEEJ": item[8],
+                             "AEEJ_1": item[9],
+                             "AEEJ_2": item[10],
+                             "AEEJ_3": item[11],
+                             "N_Sequencial": item[12],
+                             "Data_Termino": item[13],
+                             "Hora_Termino": item[14],
+                             "Arquivo_Imagem": item[15]
+                             })
+"""

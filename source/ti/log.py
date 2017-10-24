@@ -14,8 +14,8 @@ class GenerateInfo:
         self.position_log = []
         self.fixation_log = []
 
-        self.blinkPositionsAndCount = [] ## (x,y,count)
-        self.fixationPositions = [] ## (x,y,0)
+        self.blinkPositionsAndCount = []  ## (x,y,count)
+        self.fixationPositions = []  ## (x,y,0)
 
     def start_staring(self, food_type):
         data = LogData(str(food_type) + " ", (libtime.get_time()))
@@ -23,7 +23,7 @@ class GenerateInfo:
 
     def start_blinkingTest(self, position, blinkCount):
         # data = LogData( "(" + position[0] + "," + position[1] + ") " + str(blinkCount), (libtime.get_time()))
-        data = LogData( str(position) + " " + str(blinkCount) + " ", (libtime.get_time()))
+        data = LogData(str(position) + " " + str(blinkCount) + " ", (libtime.get_time()))
         self.blink_log.append(data)
 
     def start_blinking(self, cont_blink, start_time, time_end):
@@ -81,7 +81,6 @@ class GenerateInfo:
         self.position_log.append(data)
 
 
-
 class LogGenerator:
     def __init__(self):
         self.date_now = datetime.now
@@ -125,15 +124,24 @@ class LogGenerator:
         lineNumber += 1
 
     ## NOVO
-    def recordFinalBlinkLog(self,avalgame,data):
+    def recordFinalFixationLog(self, avalgame, data):
         dateStart = datetime.now()
         lineNumber = 1
         for item in data:
-            avalgame.recordBlinks(dateStart=dateStart, tipo_AEEJ=1, codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1,valor_AEEJ_x=item[0], valor_AEEJ_y=item[1], valor_AEEJ_qtd=item[2],seq_number=lineNumber ,filePath="")
+            avalgame.recordFixation(dateStart=dateStart, tipo_AEEJ=1, codigo_AEEJ=931, nv_Jogo=1, fs_jogo=1, et_jogo=1,
+                                  valor_AEEJ_x=item[0], valor_AEEJ_y=item[1],valor_AEEJ_qtd=0,
+                                  seq_number=lineNumber, filePath="")
             lineNumber += 1
 
+    def recordFinalBlinkLog(self, avalgame, data):
+        dateStart = datetime.now()
+        lineNumber = 1
+        for item in data:
+            avalgame.recordBlinks(dateStart=dateStart, tipo_AEEJ=1, codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1,
+                                  valor_AEEJ_x=item[0], valor_AEEJ_y=item[1], valor_AEEJ_qtd=item[2],
+                                  seq_number=lineNumber, filePath="")
+            lineNumber += 1
 
-            
     #### VERSAO ANTIGA, NAO DELETAR
     # def recordLog(self, data, file_name, data_type, student_id=0):
     #
@@ -193,6 +201,26 @@ class LogGenerator:
 
         f.close()
 
+    def recordFixationLog(self, data, file_name, data_type, student_id=0):
+        dt = datetime.now()
+        date_string = str(dt.day) + '-' + str(dt.month) + '-' + str(dt.year)
+        filename = './logs/' + file_name + date_string + '.txt'
+        lineNumber = 0
+        header = str(data_type) + " " + str(student_id) + " " + str(lineNumber) + " "
+
+        f = open(filename, 'a+')
+        initial_time = 0
+        end_time = 0
+
+        analyzing = ""
+        for item in data:
+            analyzing = item.text
+            lineNumber += 1
+            header = str(data_type) + " " + str(student_id) + " " + str(lineNumber) + " "
+            line = header + analyzing + str(item.time)
+            f.write(line + '\n')
+
+        f.close()
 
 
 class LogData:

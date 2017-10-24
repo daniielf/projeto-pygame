@@ -23,6 +23,7 @@ running = True
 version = "v1.00"
 avalgame = avalgame.Avalgame()	
 
+
 class GameSettings(pygame.font.Font):
     def __init__(self, screen, display ,bg_color=(0,0,0), font='media/fonts/arial.ttf',
     font_size=40, avalgame=None):
