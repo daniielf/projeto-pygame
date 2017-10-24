@@ -401,14 +401,15 @@ class Game ():
                         self.dataStore.start_staring(food.food_type)
 
                 if (event.type == MOUSEBUTTONDOWN):
-                    start_time = eyetracker.wait_for_event(3)
-                    time_end = eyetracker.wait_for_event(4)
-                #     cont_blinks += 1
-                    self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
+                    # start_time = eyetracker.wait_for_event(3)
+                    # cont_blinks += 1
+                    # time_end = eyetracker.wait_for_event(4)
+                    # self.dataStore.start_blinking(str(cont_blinks), start_time, time_end)
 
                     tracker_pos = eyetracker.sample()
                     if (tracker_pos != lastBlinkPos):
-                        self.dataStore.start_blinkingTest(lastBlinkPos, blinkCount)
+                        self.dataStore.blinkPositionsAndCount.append((lastBlinkPos[0], lastBlinkPos[1], blinkCount))
+                        # self.dataStore.start_blinkingTest(lastBlinkPos, blinkCount)
                         lastBlinkPos = tracker_pos
                         blinkCount = 1
                     else:
@@ -591,13 +592,14 @@ class Game ():
 
         self.avalgame.storeAverageScore(self.startTime, valor_AEEJ=averageScore)
 
-        self.dataStore.start_blinkingTest(lastBlinkPos, blinkCount)
-        self.dataStore.log_gen.recordBlinkLog(self.dataStore.blink_log, 'blink-', 4, self.avalgame._playerCode)
-        self.dataStore.log_gen.recordLog(self.dataStore.blink_log2, 'blink2-', 4, self.avalgame._playerCode)
-        self.dataStore.log_gen.recordLog(self.dataStore.staring_log, 'products-', 3, self.avalgame._playerCode)
-        self.dataStore.log_gen.recordLog(self.dataStore.quadrant_log, 'quadrants', 2, self.avalgame._playerCode)
-        self.dataStore.log_gen.recordLog(self.dataStore.position_log, 'fixation-', 1, self.avalgame._playerCode)
-        self.avalgame.recordBestScore(self.player.time, self.player.score)
+        # self.dataStore.start_blinkingTest(lastBlinkPos, blinkCount)
+        # self.dataStore.log_gen.recordBlinkLog(self.dataStore.blink_log, 'blink-', 4, self.avalgame._playerCode)
+        # self.dataStore.log_gen.recordLog(self.dataStore.blink_log2, 'blink2-', 4, self.avalgame._playerCode)
+        # self.dataStore.log_gen.recordLog(self.dataStore.staring_log, 'products-', 3, self.avalgame._playerCode)
+        # self.dataStore.log_gen.recordLog(self.dataStore.quadrant_log, 'quadrants', 2, self.avalgame._playerCode)
+        # self.dataStore.log_gen.recordLog(self.dataStore.position_log, 'fixation-', 1, self.avalgame._playerCode)
+        # self.avalgame.recordBestScore(self.player.time, self.player.score)
+        self.dataStore.log_gen.recordFinalBlinkLog(self.avalgame,self.dataStore.blinkPositionsAndCount)
 
         ge = GameEnd(self.canvas, self.disp)
 
