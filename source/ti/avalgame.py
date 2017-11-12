@@ -1,10 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-from datetime import datetime
+import os.path
 import sys
 import csv
-import os.path
+sys.path.append('C:/Users/Daniel-PC/Downloads/WinPython-PyGaze-0.5.1/WinPython-PyGaze-0.5.1/python-2.7.3/Lib/site-packages')
+from datetime import datetime
+from cv2 import *
+
 
 
 class Avalgame:
@@ -16,6 +18,10 @@ class Avalgame:
     _playerCode = ""
     _date = ""
     _time = ""
+
+    _wcam = VideoCapture(0)
+    _imgf = './imagensjogadores/'
+    _imgcnt = 0
 
     csvBlinkLines = [] # transformar em excel
     csvFixationLines = []
@@ -122,8 +128,9 @@ class Avalgame:
     # @et_jogo: Opsional, Etapa da fase informada pelo desenvolvedor 0-99 padrão 1
     # @valor_AEEJ: Opsional, Valor da pontuação feita pelo jogador, 0-99 padrão 0
     ##############################
-    def comp(self, tipo_AEEJ, codigo_AEEJ, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0):
+    def comp(self, tipo_AEEJ, codigo_AEEJ, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ=0, valor_AEEJ_2=0, valor_AEEJ_3=0, imagem=False):
 
+        nome_imagem = ''
         # Verifica se tudo foi iniciado.
         if self._done is False or self._status is False:
             return
@@ -148,18 +155,42 @@ class Avalgame:
         if type(et_jogo) is not int or et_jogo < 0 or et_jogo > 99:
             raise Exception("Valor invalido no argumento Etapa ( int )")
 
-        if type(valor_AEEJ) is not int or valor_AEEJ < 0 or valor_AEEJ > 99:
-            raise Exception("Valor invalido no argumento valor AEEJ ( int ) 0-99")
-        # ate 99
+        if type(valor_AEEJ) is not int or valor_AEEJ < 0 or valor_AEEJ > 9999:
+            raise Exception("Valor invalido no argumento valor AEEJ ( int ) 0-9999")
 
+        if type(valor_AEEJ_2) is not int or valor_AEEJ_2 < 0 or valor_AEEJ_2 > 9999:
+            raise Exception("Valor invalido no argumento valor AEEJ ( int ) 0-9999")
+
+        if type(valor_AEEJ_3) is not int or valor_AEEJ_3 < 0 or valor_AEEJ_3 > 9999:
+            raise Exception("Valor invalido no argumento valor AEEJ ( int ) 0-9999")
 
         dt = datetime.now()
+
+        if imagem:
+
+            valida, imgObj = self._wcam.read()
+            valida, imgObj = self._wcam.read()
+            valida, imgObj = self._wcam.read()
+
+            if valida:
+                nome_imagem = 'I-%s-%s-%04d%02d%02d%02d%02d.raw.png' % (
+                    self._playerCode,
+                    self._imgcnt,
+                    dt.year,
+                    dt.month,
+                    dt.day,
+                    dt.hour,
+                    dt.minute)
+
+                imwrite((self._imgf + nome_imagem), imgObj)
+                self._imgcnt = self._imgcnt + 1
+
 
         f = open('./logs/LogAEEJ_%s.%s_%s.txt' % (
         self._playerCode, self._date.replace('-', ''), self._time.replace(':', '')),
                  'a+')
 
-        f.write("%s;%s;%s;%s;%d;%d;%d;'%s';%s;%d;%04d-%02d-%02d;%02d:%02d\n" %
+        f.write("%s;%s;%s%s;%d;%d;%d;'%s';%d;%d;%d;%d;%d;%04d-%02d-%02d;%02d:%02d;'%s'\n" %
                 (self._playerCode,
                  self._date,
                  self._time,
@@ -170,11 +201,15 @@ class Avalgame:
                  tipo_AEEJ,
                  codigo_AEEJ,
                  valor_AEEJ,
+                 valor_AEEJ_2,
+                 valor_AEEJ_3,
+                 self._imgcnt,
                  dt.year,
                  dt.month,
                  dt.day,
                  dt.hour,
-                 dt.minute)
+                 dt.minute,
+                 nome_imagem)
                 )
 
         f.close()
@@ -301,7 +336,7 @@ class Avalgame:
 
     ## NOVO
     def recordFixation(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=931, nv_Jogo=1, fs_jogo=1, et_jogo=1, valor_AEEJ_x=0,
-                       valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
+                       valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, save_image=False):
         dt = datetime.now()
         f = open('./logs/Fixation_LOG.txt', 'a+')
 
@@ -310,6 +345,19 @@ class Avalgame:
 
         fullDateEnd = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
         fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
+
+        if (save_image):
+            filePath = 'I-%s-%s-%04d%02d%02d%02d%02d.raw.png' % (
+                self._playerCode,
+                self._imgcnt,
+                dt.year,
+                dt.month,
+                dt.day,
+                dt.hour,
+                dt.minute)
+
+            imwrite((self._imgf + nome_imagem), imgObj)
+            self._imgcnt = self._imgcnt + 1
 
         csvLine = (
             self._playerCode, fullDateStart, fullHourStart, self._code, nv_Jogo, fs_jogo, et_jogo, tipo_AEEJ,
@@ -345,7 +393,7 @@ class Avalgame:
         f.close()
 
     def recordBlinks(self, dateStart, tipo_AEEJ='T', codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1,
-                              valor_AEEJ_x=0, valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, filePath=""):
+                              valor_AEEJ_x=0, valor_AEEJ_y=0, valor_AEEJ_qtd=0, seq_number=0, save_image=False):
 
         dt = datetime.now()
         f = open('./logs/Blink_LOG.txt',
@@ -356,6 +404,20 @@ class Avalgame:
 
         fullDateEnd = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
         fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
+
+        ## IMG SAVING
+        if (save_image):
+            filePath = 'I-%s-%s-%04d%02d%02d%02d%02d.raw.png' % (
+                self._playerCode,
+                self._imgcnt,
+                dt.year,
+                dt.month,
+                dt.day,
+                dt.hour,
+                dt.minute)
+
+            imwrite((self._imgf + nome_imagem), imgObj)
+            self._imgcnt = self._imgcnt + 1
 
         csvLine = (
         self._playerCode, fullDateStart, fullHourStart, self._code, nv_Jogo, fs_jogo, et_jogo, tipo_AEEJ, codigo_AEEJ,
