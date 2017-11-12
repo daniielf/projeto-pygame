@@ -3,11 +3,8 @@
 import os.path
 import sys
 import csv
-sys.path.append('C:/Users/Daniel-PC/Downloads/WinPython-PyGaze-0.5.1/WinPython-PyGaze-0.5.1/python-2.7.3/Lib/site-packages')
 from datetime import datetime
 from cv2 import *
-
-
 
 class Avalgame:
     _file = 'avalgame.install.cfg'
@@ -345,7 +342,8 @@ class Avalgame:
 
         fullDateEnd = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
         fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
-
+        filePath = ""
+        valida, imgObj = self._wcam.read()
         if (save_image):
             filePath = 'I-%s-%s-%04d%02d%02d%02d%02d.raw.png' % (
                 self._playerCode,
@@ -356,7 +354,7 @@ class Avalgame:
                 dt.hour,
                 dt.minute)
 
-            imwrite((self._imgf + nome_imagem), imgObj)
+            imwrite((self._imgf + filePath), imgObj)
             self._imgcnt = self._imgcnt + 1
 
         csvLine = (
@@ -406,6 +404,8 @@ class Avalgame:
         fullHourEnd = str(dt.hour) + ":" + str(dt.minute)
 
         ## IMG SAVING
+        filePath = ""
+        valida, imgObj = self._wcam.read()
         if (save_image):
             filePath = 'I-%s-%s-%04d%02d%02d%02d%02d.raw.png' % (
                 self._playerCode,
@@ -416,7 +416,7 @@ class Avalgame:
                 dt.hour,
                 dt.minute)
 
-            imwrite((self._imgf + nome_imagem), imgObj)
+            imwrite((self._imgf + filePath), imgObj)
             self._imgcnt = self._imgcnt + 1
 
         csvLine = (
