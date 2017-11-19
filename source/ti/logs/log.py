@@ -22,7 +22,7 @@ class GenerateInfo:
         self.blink_log.append(data)
 
     def start_blinking(self, cont_blink, start_time, time_end):
-        print(str(time_end[0] - start_time[0]))
+        # print(str(time_end[0] - start_time[0]))
         time = float(time_end[0])
         data = LogData(str(cont_blink), time)
         self.blink_log2.append(data)

@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60faa4ef-b717-4163-a583-20113b6ad9da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/projeto-pygame.iml" afterPath="$PROJECT_DIR$/.idea/projeto-pygame.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/avalgame.py" afterPath="$PROJECT_DIR$/source/ti/avalgame.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/game.py" afterPath="$PROJECT_DIR$/source/ti/game.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/log.py" afterPath="$PROJECT_DIR$/source/ti/log.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/AverageScore_LOG.txt" afterPath="$PROJECT_DIR$/source/ti/logs/AverageScore_LOG.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/Blink_LOG.txt" afterPath="$PROJECT_DIR$/source/ti/logs/Blink_LOG.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/Blink_Table.csv" afterPath="$PROJECT_DIR$/source/ti/logs/Blink_Table.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/Fixation_LOG.txt" afterPath="$PROJECT_DIR$/source/ti/logs/Fixation_LOG.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/Fixation_Table.csv" afterPath="$PROJECT_DIR$/source/ti/logs/Fixation_Table.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt" afterPath="$PROJECT_DIR$/source/ti/logs/FoodQuantity_LOG.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt" afterPath="$PROJECT_DIR$/source/ti/logs/PyramidCompletion_LOG.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/logs/log.py" afterPath="$PROJECT_DIR$/source/ti/logs/log.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/ti/objects.py" afterPath="$PROJECT_DIR$/source/ti/objects.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,8 +45,8 @@
       <file leaf-file-name="menu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+            <state relative-caret-position="176">
+              <caret line="61" column="11" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="11" />
               <folding>
                 <element signature="e#47#58#0" expanded="true" />
               </folding>
@@ -49,47 +54,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="objects.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/ti/objects.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+              <folding>
+                <element signature="e#22#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/ti/game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="580" column="39" lean-forward="false" selection-start-line="580" selection-start-column="39" selection-end-line="580" selection-end-column="39" />
+            <state relative-caret-position="295">
+              <caret line="58" column="31" lean-forward="false" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
               <folding>
-                <element signature="e#10801#11078#0" expanded="false" />
-                <element signature="e#11141#11300#0" expanded="false" />
-                <element signature="e#11358#11580#0" expanded="false" />
-                <element signature="e#11637#11959#0" expanded="false" />
-                <element signature="e#13373#13804#0" expanded="false" />
-                <element signature="e#13942#14392#0" expanded="false" />
-                <element signature="e#14481#16032#0" expanded="false" />
-                <element signature="e#16119#17223#0" expanded="false" />
-                <element signature="e#17294#17375#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/ti/log.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="141" column="67" lean-forward="false" selection-start-line="141" selection-start-column="67" selection-end-line="141" selection-end-column="67" />
-              <folding>
-                <element signature="e#1133#2712#0" expanded="false" />
-                <element signature="e#3225#4300#0" expanded="false" />
-                <element signature="e#5234#5265#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="avalgame.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/ti/avalgame.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding>
-                <element signature="e#42#56#0" expanded="true" />
+                <element signature="e#11220#11497#0" expanded="false" />
+                <element signature="e#11560#11719#0" expanded="false" />
+                <element signature="e#11777#11999#0" expanded="false" />
+                <element signature="e#12056#12378#0" expanded="false" />
+                <element signature="e#13790#14221#0" expanded="false" />
+                <element signature="e#14359#14809#0" expanded="false" />
+                <element signature="e#14898#16449#0" expanded="false" />
+                <element signature="e#16536#17640#0" expanded="false" />
+                <element signature="e#17711#17792#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -120,7 +111,24 @@
       <find>avalgame</find>
       <find>_code</find>
       <find>fileName</find>
+      <find>r</find>
+      <find>record</find>
+      <find>pirnt</find>
+      <find>print</find>
+      <find>replace</find>
+      <find>player</find>
+      <find>run</find>
+      <find>save</find>
+      <find>score</find>
+      <find>Score</find>
+      <find>endGame</find>
+      <find>self.textLabel</find>
+      <find>defScore</find>
+      <find>GameEnd</find>
     </findStrings>
+    <replaceStrings>
+      <replace>print</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="REBASE" />
@@ -131,16 +139,17 @@
       <list>
         <option value="$PROJECT_DIR$/source/ti/avalgame/avalgame.py" />
         <option value="$PROJECT_DIR$/source/ti/logs/blink-12-9-2017.txt" />
-        <option value="$PROJECT_DIR$/source/ti/logs/log.py" />
         <option value="$PROJECT_DIR$/source/ti/gameSettings.py" />
         <option value="$PROJECT_DIR$/source/ti/text_input.py" />
         <option value="$PROJECT_DIR$/source/ti/setup.py" />
-        <option value="$PROJECT_DIR$/source/ti/objects.py" />
         <option value="$PROJECT_DIR$/source/ti/constants.py" />
         <option value="$PROJECT_DIR$/source/ti/menu.py" />
-        <option value="$PROJECT_DIR$/source/ti/game.py" />
         <option value="$PROJECT_DIR$/source/ti/log.py" />
         <option value="$PROJECT_DIR$/source/ti/avalgame.py" />
+        <option value="$PROJECT_DIR$/source/ti/logs/log.py" />
+        <option value="$PROJECT_DIR$/source/ti/objects.py" />
+        <option value="$PROJECT_DIR$/source/ti/player-scores.txt" />
+        <option value="$PROJECT_DIR$/source/ti/game.py" />
       </list>
     </option>
   </component>
@@ -172,8 +181,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -192,17 +199,12 @@
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="ti" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="projetopygame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto-pygame" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="ti" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -498,16 +500,16 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17203514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23499268" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298122" sideWeight="0.4975278" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33438987" sideWeight="0.5431918" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23296355" sideWeight="0.4568082" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22633298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.4952381" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26624405" sideWeight="0.4568082" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.336293" sideWeight="0.4927798" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39936608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -532,17 +534,21 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/source/ti/objects.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/posicoes-12-9-2017.txt" />
-    <entry file="file://$USER_HOME$/Desktop/WinPython-PyGaze-0.5.1/python-2.7.3/Lib/site-packages/pygaze/_eyetracker/libdummytracker.py" />
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/quadrants12-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-12-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/fixation-12-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/products-12-9-2017.txt" />
@@ -588,13 +594,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/gameSettings.py" />
-    <entry file="file://$PROJECT_DIR$/source/ti/text_input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="7" lean-forward="false" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink2-25-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-25-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink2-24-9-2017.txt" />
@@ -612,21 +611,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/objects.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="371" column="0" lean-forward="false" selection-start-line="371" selection-start-column="0" selection-end-line="371" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-762174762/pygame/display.py" />
-    <entry file="file://$PROJECT_DIR$/source/ti/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="79" column="41" lean-forward="false" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/logs/quadrants28-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/fixation-28-9-2017.txt" />
     <entry file="file://$PROJECT_DIR$/source/ti/logs/blink-28-9-2017.txt" />
@@ -654,20 +639,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/avalgame/avalgame.py" />
-    <entry file="file://$PROJECT_DIR$/source/ti/logs/log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="98" column="24" lean-forward="false" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/logs/Blink_LOG.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -687,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -695,56 +665,118 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="132" column="52" lean-forward="false" selection-start-line="132" selection-start-column="52" selection-end-line="132" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/game.py">
+    <entry file="file://$PROJECT_DIR$/source/ti/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="580" column="39" lean-forward="false" selection-start-line="580" selection-start-column="39" selection-end-line="580" selection-end-column="39" />
-          <folding>
-            <element signature="e#10801#11078#0" expanded="false" />
-            <element signature="e#11141#11300#0" expanded="false" />
-            <element signature="e#11358#11580#0" expanded="false" />
-            <element signature="e#11637#11959#0" expanded="false" />
-            <element signature="e#13373#13804#0" expanded="false" />
-            <element signature="e#13942#14392#0" expanded="false" />
-            <element signature="e#14481#16032#0" expanded="false" />
-            <element signature="e#16119#17223#0" expanded="false" />
-            <element signature="e#17294#17375#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
+    <entry file="file://$PROJECT_DIR$/source/ti/constants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding>
-            <element signature="e#47#58#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="176">
+          <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/logs/log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="24" column="15" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/text_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="102" column="53" lean-forward="false" selection-start-line="102" selection-start-column="53" selection-end-line="102" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/numpy/testing/print_coercion_tables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/log.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="141" column="67" lean-forward="false" selection-start-line="141" selection-start-column="67" selection-end-line="141" selection-end-column="67" />
+        <state relative-caret-position="329">
+          <caret line="212" column="20" lean-forward="true" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
           <folding>
             <element signature="e#1133#2712#0" expanded="false" />
             <element signature="e#3225#4300#0" expanded="false" />
-            <element signature="e#5234#5265#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/ti/avalgame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="61" column="11" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="11" />
           <folding>
-            <element signature="e#42#56#0" expanded="true" />
+            <element signature="e#47#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/player-scores.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding>
+            <element signature="e#22#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ti/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="58" column="31" lean-forward="false" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+          <folding>
+            <element signature="e#11220#11497#0" expanded="false" />
+            <element signature="e#11560#11719#0" expanded="false" />
+            <element signature="e#11777#11999#0" expanded="false" />
+            <element signature="e#12056#12378#0" expanded="false" />
+            <element signature="e#13790#14221#0" expanded="false" />
+            <element signature="e#14359#14809#0" expanded="false" />
+            <element signature="e#14898#16449#0" expanded="false" />
+            <element signature="e#16536#17640#0" expanded="false" />
+            <element signature="e#17711#17792#0" expanded="false" />
           </folding>
         </state>
       </provider>

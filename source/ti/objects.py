@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import pygame, random
+from datetime import datetime
 from pygame.locals import*
 
 from pygaze import liblog  # Criar logs de saida com os resultados do experimento
@@ -49,6 +50,7 @@ class Player (GameObject, pygame.font.Font):
         self.foodTotal = 0
 
         self.score=0
+        self.bestScore=0
 
         self.rect = pygame.Rect (550,300, 30,30)
         pygame.font.Font.__init__(self, font, font_size)
@@ -65,7 +67,33 @@ class Player (GameObject, pygame.font.Font):
         self.protLabel = self.render("Proteinas:", 1, (0,0,0))
         self.doceLabel = self.render("Doces e Gorduras:" , 1, (0,0,0))
 
+    def saveLocalUser(self, playerCode, newScore):
+        date = datetime.now()
+        dateString = str(date.year) + "-" + str(date.month) + "-" + str(date.month) + ";" + str(date.hour) + ":" + str(date.minute)
 
+        dataFile = open("./player-scores.txt", "r")
+        lines = dataFile.readline()
+        dataFile = open("./player-scores.txt", "w")
+        for line in lines:
+            player_code = line.split(";")[0]
+            if (player_code != playerCode):
+                dataFile.write(line)
+        dataFile.write(str(playerCode) + ";" + str(newScore) + ";" + str(dateString) + "\n")
+        #
+        dataFile.close()
+        # dataFile = open("./player-scores.txt" , "a+")
+        # dataFile.write(str(playerCode) + ";" + str(newScore) + ";" + str(dateString) + "\n")
+
+
+    def loadLocalUser(self, playerCode):
+        bestScore = 0
+        dataFile = open("./player-scores.txt", "r")
+        for row in dataFile:
+            line = row.split(';')
+            if(line[0] == str(playerCode)):
+                bestScore = line[1]
+                break
+        return bestScore
 
     def updateScore(self):
         foodSum = (self.doce + self.proteina + self.vegetal + self.carbohidrato)

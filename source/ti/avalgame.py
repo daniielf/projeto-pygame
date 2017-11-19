@@ -168,7 +168,8 @@ class Avalgame:
             valida, imgObj = self._wcam.read()
             valida, imgObj = self._wcam.read()
             valida, imgObj = self._wcam.read()
-
+            print(valida)
+            print(imgObj)
             if valida:
                 nome_imagem = 'I-%s-%s-%04d%02d%02d%02d%02d.raw.png' % (
                     self._playerCode,
@@ -501,3 +502,8 @@ class Avalgame:
                                  "Hora_Termino": item[14],
                                  "Arquivo_Imagem": item[15]
                                  })
+
+
+
+### Expressao Facial : Codigo = 900
+### 

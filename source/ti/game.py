@@ -56,12 +56,18 @@ class GameEnd(pygame.font.Font):
         self.text = "Pontuacao: "
         self.result = "Resultado: "
 
+        self.bestResult = "Sua Melhor Pontuacao: "
+
     def defScore(self, score):
         self.text += str(score)
         self.textLabel = self.textFont.render(self.text, 1, (255, 255, 255))
 
+    def defBestScore(self, bscore):
+        self.bestResult += str(bscore)
+        self.bestLabel = self.textFont.render(self.bestResult, 1, (255,255,255))
+
     def defResult(self, score):
-        print(score)
+        # print(score)
         if (score < 3):
             self.result += " ruim :("
         elif (score >= 3 and score <= 7):
@@ -85,6 +91,7 @@ class GameEnd(pygame.font.Font):
             self.screen.fill(self.bg_color)
             self.screen.blit(self.textLabel, (380, 250))
             self.screen.blit(self.resultLabel, (380, 300))
+            self.screen.blit(self.bestLabel, (380,350))
             exitLabel = self.exitFont.render("ESC para sair", 1, (255, 255, 255))
             self.screen.blit(exitLabel, (0, 650))
             for event in pygame.event.get():
@@ -156,6 +163,8 @@ class Game():
         # self.drawBar(progressDoce, 660, 640)
 
     def run(self):
+        self.player.bestScore = self.player.loadLocalUser(self.avalgame._playerCode)
+        self.avalgame.comp(tipo_AEEJ=1, codigo_AEEJ=1, imagem=True)
         dt = datetime.now()
         # Eye tracker configure
         eyetracker = EyeTracker(self.disp)
@@ -314,7 +323,6 @@ class Game():
 
         lastFixationPos = [0, 0]
 
-
         x = random.randint(50, 800)
         y = random.randint(50, 400)
         cash = objects.Cash("", x, y, 20, 20, 2)
@@ -383,8 +391,6 @@ class Game():
                     self.dataStore.get_quadrant((lastFixationPos[0], lastFixationPos[1]))
                     self.dataStore.start_fixation((lastFixationPos[0], lastFixationPos[1]))
                     self.dataStore.fixationPositions.append((lastFixationPos[0], lastFixationPos[1]))
-
-
 
                 if event.type == logRecord_time:
                     etObject.setPosition(eyetracker.sample())
@@ -588,8 +594,11 @@ class Game():
         self.avalgame.csvFixationLines = []
 
         ge = GameEnd(self.canvas, self.disp)
+        if(bob.score > bob.bestScore):
+            bob.saveLocalUser(self.avalgame._playerCode, bob.score)
 
         ge.defScore(bob.score)
         ge.defResult(bob.score)
+        ge.defBestScore(bob.bestScore)
         ge.run()
         # pygame.display.update()

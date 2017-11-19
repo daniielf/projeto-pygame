@@ -124,13 +124,13 @@ class LogGenerator:
         lineNumber += 1
 
     ## NOVO
-    def recordFinalFixationLog(self, avalgame, data):
+    def recordFinalFixationLog(self, avalgame, data, save_image=False):
         dateStart = datetime.now()
         lineNumber = 1
         for item in data:
             avalgame.recordFixation(dateStart=dateStart, tipo_AEEJ=1, codigo_AEEJ=931, nv_Jogo=1, fs_jogo=1, et_jogo=1,
                                   valor_AEEJ_x=item[0], valor_AEEJ_y=item[1],valor_AEEJ_qtd=0,
-                                  seq_number=lineNumber, save_image=False)
+                                  seq_number=lineNumber, save_image=save_image)
             lineNumber += 1
 
     def recordFinalBlinkLog(self, avalgame, data):
@@ -139,7 +139,7 @@ class LogGenerator:
         for item in data:
             avalgame.recordBlinks(dateStart=dateStart, tipo_AEEJ=1, codigo_AEEJ=932, nv_Jogo=1, fs_jogo=1, et_jogo=1,
                                   valor_AEEJ_x=item[0], valor_AEEJ_y=item[1], valor_AEEJ_qtd=item[2],
-                                  seq_number=lineNumber, save_image=False)
+                                  seq_number=lineNumber, save_image=True)
             lineNumber += 1
 
     #### VERSAO ANTIGA, NAO DELETAR
