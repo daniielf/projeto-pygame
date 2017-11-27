@@ -169,6 +169,7 @@ class Game():
         # Eye tracker configure
         eyetracker = EyeTracker(self.disp)
         eyetracker.calibrate()
+
         self.disp.fill(self.canvas)
         self.disp.show()
         # self.disp.mousevis = True
@@ -176,6 +177,10 @@ class Game():
         eyetracker.start_recording()
 
         etObject = objects.EyeTracker(0, 0, 20, 20)
+
+
+        fixationTime = libtime.get_time()
+        fixedPos = (0,0)
 
         ##END
 
@@ -386,11 +391,19 @@ class Game():
 
                 if event.type == eyeTracker_time:
                     # verificar se houve fixacao
-                    time = libtime.get_time()
-                    lastFixationPos[0], lastFixationPos[1] = eyetracker.sample()
-                    self.dataStore.get_quadrant((lastFixationPos[0], lastFixationPos[1]))
-                    self.dataStore.start_fixation((lastFixationPos[0], lastFixationPos[1]))
-                    self.dataStore.fixationPositions.append((lastFixationPos[0], lastFixationPos[1]))
+                    # time = libtime.get_time()
+                    # lastFixationPos[0], lastFixationPos[1] = eyetracker.sample()
+                    # self.dataStore.get_quadrant((lastFixationPos[0], lastFixationPos[1]))
+                    # self.dataStore.start_fixation((lastFixationPos[0], lastFixationPos[1]))
+                    # self.dataStore.fixationPositions.append((lastFixationPos[0], lastFixationPos[1]))
+                    if (eyetracker.sample() != fixedPos):
+                        timeNow = libtime.get_time()
+                        totalTime = int((timeNow - fixationTime) / 1000)
+                        positionNow = fixedPos
+                        fixationTime = timeNow
+                        fixedPos = eyetracker.sample()
+                        self.avalgame.comp(tipo_AEEJ="T",codigo_AEEJ=951, valor_AEEJ=positionNow[0], valor_AEEJ_2=positionNow[1],valor_AEEJ_3=totalTime,imagem=False)
+                        # print ((positionNow[0], positionNow[1], totalTime))
 
                 if event.type == logRecord_time:
                     etObject.setPosition(eyetracker.sample())
@@ -400,7 +413,8 @@ class Game():
                 if event.type == MOUSEBUTTONDOWN:
                     tracker_pos = eyetracker.sample()
                     if tracker_pos != lastBlinkPos:
-                        self.dataStore.blinkPositionsAndCount.append((lastBlinkPos[0], lastBlinkPos[1], blinkCount))
+                        self.avalgame.comp(tipo_AEEJ="T",codigo_AEEJ=952, valor_AEEJ=lastBlinkPos[0], valor_AEEJ_2=lastBlinkPos[1],valor_AEEJ_3=blinkCount,imagem=False)
+                        # self.dataStore.blinkPositionsAndCount.append((lastBlinkPos[0], lastBlinkPos[1], blinkCount))
                         lastBlinkPos = tracker_pos
                         blinkCount = 1
                     else:
@@ -542,6 +556,8 @@ class Game():
             # pygame.display.flip()
             self.disp.fill(self.canvas)
             self.disp.show()
+
+        self.avalgame.comp(tipo_AEEJ="T", codigo_AEEJ=952, valor_AEEJ=lastBlinkPos[0], valor_AEEJ_2=lastBlinkPos[1], valor_AEEJ_3=blinkCount, imagem=False)
 
         pygame.event.set_allowed(pygame.KEYDOWN)
         pygame.mixer.music.fadeout(1000)
